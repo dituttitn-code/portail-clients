@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail de Gestion & Relevés Terrain</title>
+    <style>
+        /* Couleurs et Style Général */
+        :root {
+            --primary-color: #1e293b; /* Bleu nuit pro */
+            --accent-color: #2563eb;  /* Bleu moderne */
+            --bg-light: #f8fafc;      /* Fond clair */
+            --text-dark: #0f172a;     /* Texte foncé */
+            --text-muted: #64748b;    /* Texte secondaire */
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            background-color: #dcfce7;
+            color: #15803d;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Section Présentation / Bannière */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Section Portail Clients */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        /* Grille des Clients */
+        .grid-clients {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card-client {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-client:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+        }
+
+        .project-details {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .btn-access {
+            display: block;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-access:hover {
+            background-color: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Services Relevés Pro</div>
+        <div class="status-badge">● Liaison Tunisie - Canada Active</div>
+    </header>
+
+    <section class="hero">
+        <h1>Plateforme de Suivi Technique</h1>
+        <p>Externalisation de relevés photographiques et audits de terrain. Accédez à vos données sécurisées en temps réel.</p>
+    </section>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Espaces Clients Sécurisés</h2>
+            <p>Sélectionnez votre entreprise pour accéder directement à vos dossiers de livrables et photos de terrain.</p>
+        </div>
+
+        <div class="grid-clients">
+            
+            <div class="card-client">
+                <div>
+                    <h3 class="company-name">Compagnie Client X</h3>
+                    <p class="project-details">Suivi des audits de structure — Canada East.<br>Dernière mise à jour : Aujourd'hui</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/VOTRE_LIEN_CLIENT_X" target="_blank" class="btn-access">Accéder au dossier</a>
+            </div>
+
+            <div class="card-client">
+                <div>
+                    <h3 class="company-name">Compagnie Client Y</h3>
+                    <p class="project-details">Relevés d'espaces commerciaux.<br>Dernière mise à jour : Il y a 2 jours</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/VOTRE_LIEN_CLIENT_Y" target="_blank" class="btn-access">Accéder au dossier</a>
+            </div>
+
+            <div class="card-client">
+                <div>
+                    <h3 class="company-name">Compagnie Client Z</h3>
+                    <p class="project-details">Suivi de chantiers résidentiels.<br>Dernière mise à jour : En attente</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/VOTRE_LIEN_CLIENT_Z" target="_blank" class="btn-access">Accéder au dossier</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Services Relevés Pro. Plateforme de transit sécurisée Tunisie - Canada. Tous droits réservés.
+    </footer>
+
+</body>
+</html>
