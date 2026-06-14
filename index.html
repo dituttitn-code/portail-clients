@@ -49,24 +49,30 @@
             font-weight: 600;
         }
 
-        /* Section Présentation / Bannière */
+        /* Section Présentation / Bannière avec Image de Fond */
         .hero {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 90px 20px;
+            /* Image de poteaux et lignes télécom avec filtre sombre pour lisibilité du texte */
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
         }
 
         .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
             color: #cbd5e1;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
         /* Section Portail Clients */
@@ -162,8 +168,8 @@
     </header>
 
     <section class="hero">
-        <h1>Plateforme de Suivi Technique</h1>
-        <p>Externalisation de relevés photographiques, audits de structure et ingénierie de terrain. Accédez à vos données sécurisées en temps réel.</p>
+        <h1>Bureau d’Ingénierie & Relevés Télécom</h1>
+        <p>Spécialisés dans le domaine des télécommunications : relevés, calcul de charge et conception extérieure de structures aériennes et souterraines en réseau unique ou conjoint. Notre expertise en ingénierie de détail assure des services professionnels de qualité supérieure et le strict respect de vos échéanciers.</p>
     </section>
 
     <div class="container">
