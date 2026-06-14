@@ -49,30 +49,31 @@
             font-weight: 600;
         }
 
-        /* Section Présentation / Bannière avec Image de Fond */
+        /* Section Présentation / Bannière avec votre photo en arrière-plan */
         .hero {
             text-align: center;
-            padding: 90px 20px;
-            /* Image de poteaux et lignes télécom avec filtre sombre pour lisibilité du texte */
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.85)), 
-                        url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80');
+            padding: 100px 20px;
+            /* Correction de l'encodage du nom avec %20 pour l'espace */
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.8)), 
+                        url('poteau%20HQ-Bell.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             color: white;
         }
 
         .hero h1 {
             font-size: 2.4rem;
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
 
         .hero p {
             color: #cbd5e1;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             font-size: 1.15rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
         }
 
         /* Section Portail Clients */
@@ -208,7 +209,7 @@
     </div>
 
     <footer>
-        &copy; 2026 Relevé et Ingenierie. Plateforme de transit sécurisée Tunisie - Canada. Tous droits réservés.
+        &copy; 2026 Relevé et Ingenierie. Tous droits réservés.
     </footer>
 
 </body>
