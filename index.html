@@ -122,6 +122,18 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
+        /* Style pour l'affichage propre des logos clients */
+        .client-logo-container {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .client-logo {
+            max-height: 55px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
         .company-name {
             font-size: 1.3rem;
             font-weight: 600;
@@ -225,10 +237,13 @@
             
             <div class="card-client">
                 <div>
-                    <h3 class="company-name">Compagnie Client X</h3>
-                    <p class="project-details">Suivi des audits de structure — Canada East.<br>Dernière mise à jour : Aujourd'hui</p>
+                    <div class="client-logo-container">
+                        <img src="logo%20infra.jpg" alt="Logo Infrastructel" class="client-logo">
+                    </div>
+                    <h3 class="company-name">Infrastructel Inc.</h3>
+                    <p class="project-details">Suivi des projets d'ingénierie et de structure — Réseaux Télécom.<br>Dernière mise à jour : Aujourd'hui</p>
                 </div>
-                <a href="https://drive.google.com/drive/folders/VOTRE_LIEN_CLIENT_X" target="_blank" class="btn-access">Accéder au dossier</a>
+                <a href="https://drive.google.com/drive/folders/VOTRE_LIEN_INFRASTRUCTEL" target="_blank" class="btn-access">Accéder au dossier</a>
             </div>
 
             <div class="card-client">
