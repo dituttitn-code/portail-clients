@@ -54,7 +54,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* NOUVEAU STYLE : Navigation rapide */
         .nav-links {
             display: flex;
             gap: 20px;
@@ -125,7 +124,7 @@
             border: 1px solid #e2e8f0;
         }
 
-        .about-section h2, .services-section h2, .delivery-section h2, .section-title h2 {
+        .about-section h2, .services-section h2, .delivery-section h2 {
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-top: 0;
@@ -193,13 +192,13 @@
             color: var(--text-muted);
         }
 
-        /* NOUVEAU STYLE : Espace de transmission des réalisations finaux */
         .delivery-box {
             background-color: var(--bg-light);
             border-radius: 12px;
             padding: 30px;
             margin-top: 25px;
-            border-left: 5px solid #10b981; /* Couleur verte pour symboliser la livraison/validation */
+            margin-bottom: 35px;
+            border-left: 5px solid #10b981;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -236,46 +235,19 @@
             background-color: #059669;
         }
 
-        .section-title {
-            text-align: center;
-            margin-top: 60px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-
+        /* Grille des dossiers ajustée pour l'espace de livraison */
         .grid-clients {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .card-client {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.08);
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
             border: 1px solid #e2e8f0;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
@@ -284,21 +256,21 @@
         }
 
         .card-client:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 24px -6px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
         }
 
         .company-name {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
             color: var(--primary-color);
         }
 
         .project-details {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .btn-access {
@@ -307,9 +279,10 @@
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 6px;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: background-color 0.2s ease;
         }
 
@@ -337,7 +310,6 @@
         <div class="nav-links">
             <a href="#services" class="nav-item">Nos Services</a>
             <a href="#realisations" class="nav-item">Transmettre nos réalisations</a>
-            <a href="#ingenierie" class="nav-item">Espace Collaboratif</a>
             <div class="status-badge">● Consultant en Télécommunication</div>
         </div>
     </header>
@@ -393,52 +365,49 @@
 
         <div id="realisations" class="delivery-section">
             <h2>Transmettre nos réalisations</h2>
+            
             <div class="delivery-box">
                 <div class="delivery-info">
                     <h3>Espace de Livraison et Archives Finales</h3>
                     <p>Accédez à l'ensemble des livrables finaux, plans d'ingénierie certifiés, rapports de calcul de charge et documents de clôture de projet officiellement transmis à nos clients partenaires.</p>
                 </div>
-                <a href="https://drive.google.com/drive/my-drive" target="_blank" class="btn-delivery">Consulter les livrables finaux</a>
+                <a href="https://drive.google.com/drive/my-drive" target="_blank" class="btn-delivery">Consulter la racine des livrables</a>
             </div>
-        </div>
 
-        <div id="ingenierie" class="section-title">
-            <h2>Espace Ingénierie</h2>
-            <p>Accédez aux volets techniques, dossiers de conception et suivis administratifs en cours.</p>
-        </div>
-
-        <div class="grid-clients">
-            <div class="card-client">
-                <div>
-                    <h3 class="company-name">Relevé</h3>
-                    <p class="project-details">Collecte de données terrain, fiches techniques de structures.</p>
+            <div class="grid-clients">
+                <div class="card-client">
+                    <div>
+                        <h3 class="company-name">Relevé</h3>
+                        <p class="project-details">Collecte de données terrain, fiches techniques de structures.</p>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link" target="_blank" class="btn-access">Ouvrir le dossier</a>
                 </div>
-                <a href="https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
+
+                <div class="card-client">
+                    <div>
+                        <h3 class="company-name">Conception</h3>
+                        <p class="project-details">Calculs de charges et ingénierie de détail pour structures aériennes.</p>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1x2D7nM7bOyS1lAxT6PUnIma3-Hg6RQw4?usp=drive_link" target="_blank" class="btn-access">Ouvrir le dossier</a>
+                </div>
+
+                <div class="card-client">
+                    <div>
+                        <h3 class="company-name">Dessin</h3>
+                        <p class="project-details">Plans de profils extérieurs et schémas DAO/CAD.</p>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1RlLkWWLjgpcdgdCsvP54Pw0hX9TEREWp?usp=drive_link" target="_blank" class="btn-access">Ouvrir le dossier</a>
+                </div>
+
+                <div class="card-client">
+                    <div>
+                        <h3 class="company-name">Demande de permis DDP</h3>
+                        <p class="project-details">Préparation et suivi de formulaires officiels de permis.</p>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1MBtD-Un-Rjksnp_f9cJHxSMU_PDlCzfm?usp=drive_link" target="_blank" class="btn-access">Ouvrir le dossier</a>
+                </div>
             </div>
 
-            <div class="card-client">
-                <div>
-                    <h3 class="company-name">Conception</h3>
-                    <p class="project-details">Calculs de charges et ingénierie de détail pour structures aériennes.</p>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1x2D7nM7bOyS1lAxT6PUnIma3-Hg6RQw4?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
-            </div>
-
-            <div class="card-client">
-                <div>
-                    <h3 class="company-name">Dessin</h3>
-                    <p class="project-details">Plans de profils extérieurs et schémas DAO/CAD.</p>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1RlLkWWLjgpcdgdCsvP54Pw0hX9TEREWp?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
-            </div>
-
-            <div class="card-client">
-                <div>
-                    <h3 class="company-name">Demande de permis DDP</h3>
-                    <p class="project-details">Préparation et suivi de formulaires officiels de permis.</p>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1MBtD-Un-Rjksnp_f9cJHxSMU_PDlCzfm?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
-            </div>
         </div>
     </div>
 
