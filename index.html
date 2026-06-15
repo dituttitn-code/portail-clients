@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portail de Gestion — Relevé et Ingenierie</title>
+    <title>Portail de Gestion — Compagnie Générale de Télécommunication</title>
     <style>
-        /* Couleurs et Style Général */
         :root {
-            --primary-color: #1e293b; /* Bleu nuit pro */
-            --accent-color: #2563eb;  /* Bleu moderne */
-            --bg-light: #f8fafc;      /* Fond clair */
-            --text-dark: #0f172a;     /* Texte foncé */
-            --text-muted: #64748b;    /* Texte secondaire */
+            --primary-color: #1e293b;
+            --accent-color: #2563eb;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
         }
 
         body {
@@ -26,30 +25,42 @@
         header {
             background-color: white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .status-badge {
             background-color: #dcfce7;
             color: #15803d;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
+            white-space: nowrap;
         }
 
-        /* Section Présentation / Bannière avec votre photo en arrière-plan */
         .hero {
             text-align: center;
             padding: 100px 20px;
@@ -75,7 +86,6 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.4);
         }
 
-        /* Section Portail Clients et Ingénierie */
         .container {
             max-width: 1100px;
             margin: 40px auto;
@@ -98,7 +108,6 @@
             color: var(--text-muted);
         }
 
-        /* Grille des Éléments (Clients et Ingénierie) */
         .grid-clients {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -120,21 +129,6 @@
         .card-client:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Style pour l'affichage propre des logos clients */
-        .client-logo-container {
-            text-align: left;
-            margin-bottom: 15px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-        }
-
-        .client-logo {
-            max-height: 55px;
-            max-width: 100%;
-            object-fit: contain;
         }
 
         .company-name {
@@ -179,28 +173,29 @@
 <body>
 
     <header>
-        <div class="logo">Relevé et Ingenierie</div>
-        <div class="status-badge">● LK-Khelifi</div>
+        <div class="logo-container">
+            <img src="logo%20CGT-1.PNG" alt="Logo CGT" class="logo-img">
+            <div class="logo-text">Compagnie Générale de Télécommunication</div>
+        </div>
+        <div class="status-badge">● Consultant en Télécommunication</div>
     </header>
 
     <section class="hero">
         <h1>Bureau d’Ingénierie & Relevés Télécom</h1>
-        <p>Spécialisés dans le domaine des télécommunications : relevés, calcul de charge et conception extérieure de structures aériennes et souterraines en réseau unique ou conjoint. Notre expertise en ingénierie de détail assure des services professionnels de qualité supérieure et le strict respect de vos échéanciers.</p>
+        <p>Spécialisés dans le domaine des télécommunications : relevés, calcul de charge et conception extérieure de structures aériennes et souterraines en réseau unique ou conjoint.</p>
     </section>
 
     <div class="container">
-
         <div class="section-title">
             <h2>Espace Ingénierie</h2>
             <p>Accédez aux volets techniques, dossiers de conception et suivis administratifs.</p>
         </div>
 
-        <div class="grid-clients" style="margin-bottom: 60px;">
-            
+        <div class="grid-clients">
             <div class="card-client">
                 <div>
                     <h3 class="company-name">Relevé</h3>
-                    <p class="project-details">Collecte de données terrain, fiches techniques de structures et mesures d'ingénierie.</p>
+                    <p class="project-details">Collecte de données terrain, fiches techniques de structures.</p>
                 </div>
                 <a href="https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
             </div>
@@ -208,7 +203,7 @@
             <div class="card-client">
                 <div>
                     <h3 class="company-name">Conception</h3>
-                    <p class="project-details">Calculs de charges, études de faisabilité et ingénierie de détail pour structures aériennes.</p>
+                    <p class="project-details">Calculs de charges et ingénierie de détail pour structures aériennes.</p>
                 </div>
                 <a href="https://drive.google.com/drive/folders/1x2D7nM7bOyS1lAxT6PUnIma3-Hg6RQw4?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
             </div>
@@ -216,7 +211,7 @@
             <div class="card-client">
                 <div>
                     <h3 class="company-name">Dessin</h3>
-                    <p class="project-details">Plans de profils extérieurs, schémas DAO/CAD et livrables cartographiques.</p>
+                    <p class="project-details">Plans de profils extérieurs et schémas DAO/CAD.</p>
                 </div>
                 <a href="https://drive.google.com/drive/folders/1RlLkWWLjgpcdgdCsvP54Pw0hX9TEREWp?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
             </div>
@@ -224,55 +219,15 @@
             <div class="card-client">
                 <div>
                     <h3 class="company-name">Demande de permis DDP</h3>
-                    <p class="project-details">Préparation, suivi des formulaires officiels et gestion des approbations de permis.</p>
+                    <p class="project-details">Préparation et suivi de formulaires officiels de permis.</p>
                 </div>
                 <a href="https://drive.google.com/drive/folders/1MBtD-Un-Rjksnp_f9cJHxSMU_PDlCzfm?usp=drive_link" target="_blank" class="btn-access">Ouvrir l'espace</a>
             </div>
-
-        </div>
-
-        <div class="section-title">
-            <h2>Espaces Clients Sécurisés</h2>
-            <p>Sélectionnez votre entreprise pour accéder directement à vos dossiers de livrables et photos de terrain.</p>
-        </div>
-
-        <div class="grid-clients">
-            
-            <div class="card-client">
-                <div>
-                    <div class="client-logo-container">
-                        <img src="logo%20infra.jpg" alt="Logo Infrastructel" class="client-logo">
-                    </div>
-                    <h3 class="company-name">Infrastructel Inc.</h3>
-                    <p class="project-details">Suivi des projets d'ingénierie et de structure — Réseaux Télécom.<br>Dernière mise à jour : Aujourd'hui</p>
-                </div>
-                <a href="https://drive.google.com/drive/folders/1_rX39esJlBWYnp-X6eQUJy13mDp_6iCd?usp=drive_link" target="_blank" class="btn-access">Accéder au dossier</a>
-            </div>
-
-            <div class="card-client">
-                <div>
-                    <div class="client-logo-container">
-                        <img src="logo%20metroptic.png" alt="Logo Metro Optic" class="client-logo">
-                    </div>
-                    <h3 class="company-name">Metro Optic</h3>
-                    <p class="project-details">Relevés de structures et déploiement de réseaux de fibre optique.<br>Dernière mise à jour : Il y a 2 jours</p>
-                </div>
-                <a href="https://drive.google.com/drive/folders/19iDKSJt7Tp0i42pia2VU0L4PZshvDM4A?usp=drive_link" target="_blank" class="btn-access">Accéder au dossier</a>
-            </div>
-
-            <div class="card-client">
-                <div>
-                    <h3 class="company-name">Compagnie Client Z</h3>
-                    <p class="project-details">Suivi de chantiers résidentiels.<br>Dernière mise à jour : En attente</p>
-                </div>
-                <a href="https://drive.google.com/drive/folders/VOTRE_LIEN_CLIENT_Z" target="_blank" class="btn-access">Accéder au dossier</a>
-            </div>
-
         </div>
     </div>
 
     <footer>
-        &copy; 2026 Relevé et Ingenierie. Tous droits réservés.
+        &copy; 2026 Compagnie Générale de Télécommunication. Tous droits réservés.
     </footer>
 
 </body>
