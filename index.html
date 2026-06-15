@@ -38,14 +38,14 @@
         }
 
         .logo-img {
-            height: 120px; /* Logo configuré encore plus grand */
+            height: 120px;
             width: auto;
             object-fit: contain;
         }
 
         .logo-text {
             font-weight: 700;
-            font-size: 1.8rem; /* Texte agrandi pour s'harmoniser avec le grand logo */
+            font-size: 1.8rem;
             color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -89,13 +89,65 @@
 
         .container {
             max-width: 1100px;
-            margin: 60px auto;
+            margin: 40px auto;
             padding: 0 20px;
+        }
+
+        /* NOUVEAU STYLE : Section À propos */
+        .about-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .about-section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .about-card {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .about-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-top: 60px;
+            margin-bottom: 40px;
         }
 
         .section-title h2 {
@@ -187,6 +239,23 @@
     </section>
 
     <div class="container">
+        
+        <div class="about-section">
+            <h2>À propos de nous</h2>
+            <p>Fondée sur de solides compétences techniques et une connaissance approfondie des infrastructures réseaux, la <strong>Compagnie Générale de Télécommunication (CGT)</strong> se positionne comme un partenaire stratégique de confiance pour les opérateurs et entreprises de télécommunication. Nous transformons les contraintes du terrain en solutions d'ingénierie viables, précises et durables.</p>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Notre Engagement</h3>
+                    <p>Garantir une précision absolue dans nos relevés et calculs de charge, tout en assurant une flexibilité et une rigueur totale dans le respect de vos livrables et de vos échéanciers de déploiement.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Notre Vision</h3>
+                    <p>Propulser la performance des infrastructures aériennes et souterraines grâce à une expertise technique de pointe, un strict respect des normes en vigueur et une gestion collaborative de chaque projet.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="section-title">
             <h2>Espace Ingénierie</h2>
             <p>Accédez aux volets techniques, dossiers de conception et suivis administratifs.</p>
