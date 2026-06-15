@@ -20,6 +20,7 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         header {
@@ -29,6 +30,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo-container {
@@ -49,6 +52,25 @@
             color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        /* NOUVEAU STYLE : Navigation rapide */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-color);
         }
 
         .status-badge {
@@ -93,7 +115,7 @@
             padding: 0 20px;
         }
 
-        .about-section {
+        .about-section, .services-section, .delivery-section {
             background: white;
             border-radius: 16px;
             padding: 40px;
@@ -103,7 +125,7 @@
             border: 1px solid #e2e8f0;
         }
 
-        .about-section h2, .services-section h2, .section-title h2 {
+        .about-section h2, .services-section h2, .delivery-section h2, .section-title h2 {
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-top: 0;
@@ -112,7 +134,7 @@
             padding-bottom: 10px;
         }
 
-        .about-section h2::after, .services-section h2::after {
+        .about-section h2::after, .services-section h2::after, .delivery-section h2::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -143,17 +165,6 @@
             font-size: 1.1rem;
         }
 
-        /* CONFIGURATION STYLE : Section Nos Services */
-        .services-section {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-        }
-
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -182,10 +193,54 @@
             color: var(--text-muted);
         }
 
+        /* NOUVEAU STYLE : Espace de transmission des réalisations finaux */
+        .delivery-box {
+            background-color: var(--bg-light);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 25px;
+            border-left: 5px solid #10b981; /* Couleur verte pour symboliser la livraison/validation */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .delivery-info h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .delivery-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 650px;
+        }
+
+        .btn-delivery {
+            background-color: #10b981;
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-delivery:hover {
+            background-color: #059669;
+        }
+
         .section-title {
             text-align: center;
             margin-top: 60px;
             margin-bottom: 40px;
+            position: relative;
         }
 
         .section-title h2 {
@@ -279,7 +334,12 @@
             <img src="logo%20CGT-2.jpeg" alt="Logo CGT" class="logo-img">
             <div class="logo-text">Compagnie Générale de Télécommunication</div>
         </div>
-        <div class="status-badge">● Consultant en Télécommunication</div>
+        <div class="nav-links">
+            <a href="#services" class="nav-item">Nos Services</a>
+            <a href="#realisations" class="nav-item">Transmettre nos réalisations</a>
+            <a href="#ingenierie" class="nav-item">Espace Collaboratif</a>
+            <div class="status-badge">● Consultant en Télécommunication</div>
+        </div>
     </header>
 
     <section class="hero">
@@ -305,7 +365,7 @@
             </div>
         </div>
 
-        <div class="services-section">
+        <div id="services" class="services-section">
             <h2>Nos Services</h2>
             <div class="services-grid">
                 <div class="service-card">
@@ -331,9 +391,20 @@
             </div>
         </div>
 
-        <div class="section-title">
+        <div id="realisations" class="delivery-section">
+            <h2>Transmettre nos réalisations</h2>
+            <div class="delivery-box">
+                <div class="delivery-info">
+                    <h3>Espace de Livraison et Archives Finales</h3>
+                    <p>Accédez à l'ensemble des livrables finaux, plans d'ingénierie certifiés, rapports de calcul de charge et documents de clôture de projet officiellement transmis à nos clients partenaires.</p>
+                </div>
+                <a href="https://drive.google.com/drive/my-drive" target="_blank" class="btn-delivery">Consulter les livrables finaux</a>
+            </div>
+        </div>
+
+        <div id="ingenierie" class="section-title">
             <h2>Espace Ingénierie</h2>
-            <p>Accédez aux volets techniques, dossiers de conception et suivis administratifs.</p>
+            <p>Accédez aux volets techniques, dossiers de conception et suivis administratifs en cours.</p>
         </div>
 
         <div class="grid-clients">
