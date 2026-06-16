@@ -13,7 +13,6 @@
             --bg-light: #f8fafc;
             --text-dark: #0f172a;
             --text-muted: #64748b;
-            --success: #10b981;
         }
 
         * {
@@ -312,7 +311,7 @@
             </div>
         </div>
 
-        <!-- Accès Google Drive (visible si le client a un driveLink) -->
+        <!-- Google Drive -->
         <div id="driveSection" class="section-card" style="display: none;">
             <h2>📁 Accès Google Drive</h2>
             <p>Accédez directement à votre espace de travail partagé sur Google Drive.</p>
@@ -332,7 +331,7 @@
     </footer>
 
     <script>
-        // ===== BASE DE DONNÉES CLIENTS =====
+        // ===== DONNÉES CLIENTS =====
         const clientData = {
             'CLIENT001': {
                 nom: 'Metro Optic',
@@ -349,7 +348,7 @@
             },
             'CLIENT002': {
                 nom: 'Sofiene Hosni',
-                logo: null, // pas de logo
+                logo: null,
                 driveLink: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
                 projets: [
                     { nom: 'Conception HQ', statut: 'En attente' },
@@ -374,17 +373,16 @@
             }
         };
 
-        // ===== RÉCUPÉRATION DU CODE CLIENT =====
+        // ===== RÉCUPÉRATION DU CODE =====
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code')?.toUpperCase();
 
-        // ===== REDIRECTION SI CODE INVALIDE =====
         if (!code || !clientData[code]) {
             window.location.href = 'login.html';
         } else {
             const data = clientData[code];
 
-            // ===== BADGE CLIENT =====
+            // Badge
             const badge = document.getElementById('clientBadge');
             let badgeHtml = `Client : ${data.nom} (${code})`;
             if (data.logo) {
@@ -392,7 +390,7 @@
             }
             badge.innerHTML = badgeHtml;
 
-            // ===== PROJETS =====
+            // Projets
             const projectList = document.getElementById('projectList');
             if (data.projets && data.projets.length > 0) {
                 let html = '<ul style="list-style: none; padding: 0;">';
@@ -408,7 +406,7 @@
                 projectList.innerHTML = '<p class="empty-state">Aucun projet enregistré.</p>';
             }
 
-            // ===== FICHIERS =====
+            // Fichiers
             const fileList = document.getElementById('fileList');
             if (data.fichiers && data.fichiers.length > 0) {
                 let html = '<div class="file-list">';
@@ -427,7 +425,7 @@
                 fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible.</p>';
             }
 
-            // ===== GOOGLE DRIVE (si lien défini) =====
+            // Google Drive
             if (data.driveLink) {
                 const driveSection = document.getElementById('driveSection');
                 const driveLink = document.getElementById('driveLink');
