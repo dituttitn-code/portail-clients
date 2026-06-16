@@ -1,1 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes travaux — CGT</title>
+
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --accent-color: #2563eb;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-item.logout {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: 8px 18px;
+            border-radius: 20px;
+        }
+
+        .nav-item.logout:hover {
+            background-color: #fecaca;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .client-badge {
+            background-color: #dbeafe;
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .file-item .file-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-item .file-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .file-item .file-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .file-item .file-action {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .file-item .file-action:hover {
+            text-decoration: underline;
+        }
+
+        .empty-state {
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 20px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .file-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            .logo-img {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo%20CGT-2.jpeg" alt="Logo CGT" class="logo-img">
+            <span class="logo-text">CGT</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Accueil</a>
+            <a href="login.html" class="nav-item logout">Déconnexion</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>📂 Mes travaux</h1>
+            <span class="client-badge" id="clientBadge">Client : —</span>
+        </div>
+
+        <!-- Projets -->
+        <div class="section-card">
+            <h2>Projets en cours</h2>
+            <div id="projectList">
+                <!-- Rempli par JavaScript -->
+            </div>
+        </div>
+
+        <!-- Fichiers -->
+        <div class="section-card">
+            <h2>Fichiers disponibles</h2>
+            <div id="fileList">
+                <!-- Rempli par JavaScript -->
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Retour à l'accueil du site</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Compagnie Générale de Télécommunication
+    </footer>
+
+    <script>
+        // ===== BASE DE DONNÉES SIMULÉE (chaque client a ses propres projets et fichiers) =====
+        const clientData = {
+            'CLIENT001': {
+                nom: 'Entreprise Alpha',
+                projets: [
+                    { nom: 'Réseau Laval', statut: 'En cours' },
+                    { nom: 'Inspection Nord', statut: 'Terminé' }
+                ],
+                fichiers: [
+                    { nom: 'Relevé_poteaux_2025-03-12.pdf', taille: '2.4 Mo', date: '12 mars 2025' },
+                    { nom: 'Plan_conception_V1.dwg', taille: '5.8 Mo', date: '10 mars 2025' }
+                ]
+            },
+            'CLIENT002': {
+                nom: 'Société Bêta',
+                projets: [
+                    { nom: 'Conception HQ', statut: 'En attente' }
+                ],
+                fichiers: [
+                    { nom: 'DDP_formulaire_rempli.docx', taille: '1.2 Mo', date: '8 mars 2025' },
+                    { nom: 'Photos_chantier_2025-03-05.zip', taille: '45.7 Mo', date: '5 mars 2025' }
+                ]
+            },
+            'CLIENT003': {
+                nom: 'Nouvelle Société Gamma',
+                projets: [
+                    { nom: 'Étude de faisabilité Sud', statut: 'En cours' }
+                ],
+                fichiers: [
+                    { nom: 'Rapport_étude_faisabilité.pdf', taille: '3.1 Mo', date: '15 mars 2025' }
+                ]
+            }
+        };
+
+        // ===== RÉCUPÉRATION DU CODE CLIENT =====
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code')?.toUpperCase();
+
+        // ===== REDIRECTION SI CODE INVALIDE OU MANQUANT =====
+        if (!code || !clientData[code]) {
+            window.location.href = 'login.html';
+        } else {
+            // AFFICHAGE DU TABLEAU DE BORD
+            const data = clientData[code];
+            document.getElementById('clientBadge').textContent = `Client : ${data.nom} (${code})`;
+
+            // Projets
+            const projectList = document.getElementById('projectList');
+            if (data.projets && data.projets.length > 0) {
+                let html = '<ul style="list-style: none; padding: 0;">';
+                data.projets.forEach(p => {
+                    html += `<li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between;">
+                                <span style="font-weight: 500;">${p.nom}</span>
+                                <span style="background: #e2e8f0; padding: 2px 12px; border-radius: 12px; font-size: 0.85rem;">${p.statut}</span>
+                             </li>`;
+                });
+                html += '</ul>';
+                projectList.innerHTML = html;
+            } else {
+                projectList.innerHTML = '<p class="empty-state">Aucun projet enregistré.</p>';
+            }
+
+            // Fichiers
+            const fileList = document.getElementById('fileList');
+            if (data.fichiers && data.fichiers.length > 0) {
+                let html = '<div class="file-list">';
+                data.fichiers.forEach(f => {
+                    html += `<div class="file-item">
+                                <div class="file-info">
+                                    <span class="file-name">${f.nom}</span>
+                                    <span class="file-meta">${f.date} • ${f.taille}</span>
+                                </div>
+                                <a href="#" class="file-action">Télécharger</a>
+                             </div>`;
+                });
+                html += '</div>';
+                fileList.innerHTML = html;
+            } else {
+                fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible.</p>';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
