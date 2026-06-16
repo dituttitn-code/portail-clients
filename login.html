@@ -192,19 +192,26 @@
     <div class="container">
         <div class="login-card">
             <h1>🔐 Espace Client</h1>
-            <p>Entrez votre code client pour accéder à vos travaux.</p>
+            <p>Entrez votre code client et votre mot de passe.</p>
 
             <form id="loginForm">
                 <div class="form-group">
                     <label for="clientCode">Code client</label>
                     <input type="text" id="clientCode" placeholder="Ex: CLIENT001" required autofocus>
                 </div>
+                <div class="form-group">
+                    <label for="clientPassword">Mot de passe</label>
+                    <input type="password" id="clientPassword" placeholder="Votre mot de passe" required>
+                </div>
                 <button type="submit" class="btn-submit">Se connecter</button>
-                <div id="errorMsg" class="error-msg">❌ Code client invalide. Veuillez réessayer.</div>
+                <div id="errorMsg" class="error-msg">❌ Code ou mot de passe invalide. Veuillez réessayer.</div>
             </form>
 
             <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-                <strong>Codes de démonstration :</strong> CLIENT001, CLIENT002, CLIENT003
+                <strong>Clients de démonstration :</strong><br>
+                CLIENT001 · mot de passe : metro<br>
+                CLIENT002 · mot de passe : Sofiene1978<br>
+                CLIENT003 · mot de passe : gamma
             </p>
         </div>
     </div>
@@ -214,15 +221,20 @@
     </footer>
 
     <script>
-        // Liste des codes clients autorisés (simule une base de données)
-        const VALID_CODES = ['CLIENT001', 'CLIENT002', 'CLIENT003'];
+        // ===== IDENTIFIANTS CLIENTS (code + mot de passe) =====
+        const clientCredentials = {
+            'CLIENT001': { password: 'metro', nom: 'Metro Optic' },
+            'CLIENT002': { password: 'Sofiene1978', nom: 'Sofiene Hosni' },
+            'CLIENT003': { password: 'gamma', nom: 'Nouvelle Société Gamma' }
+        };
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const code = document.getElementById('clientCode').value.trim().toUpperCase();
+            const password = document.getElementById('clientPassword').value.trim();
             const errorMsg = document.getElementById('errorMsg');
 
-            if (VALID_CODES.includes(code)) {
+            if (clientCredentials[code] && clientCredentials[code].password === password) {
                 window.location.href = `dashboard.html?code=${encodeURIComponent(code)}`;
             } else {
                 errorMsg.classList.add('show');
