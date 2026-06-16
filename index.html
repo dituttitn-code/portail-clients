@@ -29,7 +29,6 @@
             scroll-behavior: smooth;
         }
 
-        /* ===== HEADER ===== */
         header {
             background-color: white;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -83,7 +82,6 @@
             white-space: nowrap;
         }
 
-        /* ===== NAVIGATION ===== */
         .nav-links {
             display: flex;
             gap: 30px;
@@ -109,13 +107,11 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
-        /* Style spécial pour l'onglet Espace Client */
         .nav-item.client {
             color: var(--accent-color);
             border-bottom: 2px solid var(--accent-color);
         }
 
-        /* ===== HERO ===== */
         .hero {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -158,14 +154,12 @@
             object-fit: cover;
         }
 
-        /* ===== CONTAINER ===== */
         .container {
             max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* ===== SECTIONS ===== */
         .about-section,
         .services-section,
         .contact-section {
@@ -202,7 +196,6 @@
             border-radius: 2px;
         }
 
-        /* ===== ABOUT ===== */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -223,7 +216,6 @@
             font-size: 1.1rem;
         }
 
-        /* ===== SERVICES ===== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -258,7 +250,6 @@
             color: var(--text-muted);
         }
 
-        /* ===== CONTACT ===== */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -296,7 +287,6 @@
             text-decoration: underline;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 50px 20px;
@@ -306,61 +296,49 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
                 padding: 40px 5%;
             }
-
             .hero-text h1 {
                 font-size: 2rem;
             }
-
             .hero-image {
                 height: 250px;
             }
-
             .header-top {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
             .logo-container {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
-
             .logo-text {
                 font-size: 1.3rem;
             }
-
             .nav-links {
                 gap: 15px;
             }
-
             .nav-item {
                 font-size: 0.85rem;
             }
-
             .about-section,
             .services-section,
             .contact-section {
                 padding: 25px;
             }
-
             .status-badge {
                 font-size: 0.75rem;
                 padding: 6px 14px;
             }
-
             .contact-item {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 5px;
             }
-
             .contact-item strong {
                 min-width: auto;
             }
@@ -370,24 +348,19 @@
             .logo-text {
                 font-size: 1rem;
             }
-
             .logo-img {
                 height: 60px;
             }
-
             .hero-text h1 {
                 font-size: 1.6rem;
             }
-
             .nav-links {
                 gap: 10px;
                 flex-wrap: wrap;
             }
-
             .nav-item {
                 font-size: 0.7rem;
             }
-
             .about-section h2,
             .services-section h2,
             .contact-section h2 {
@@ -399,7 +372,6 @@
 
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <div class="header-top">
             <div class="logo-container">
@@ -409,7 +381,6 @@
             <div class="status-badge">● Consultant en Télécommunication</div>
         </div>
 
-        <!-- ===== NAVIGATION AVEC ONGLET ESPACE CLIENT ===== -->
         <div class="nav-links">
             <a href="#accueil" class="nav-item active">Accueil</a>
             <a href="#propos" class="nav-item">À propos de nous</a>
@@ -419,7 +390,6 @@
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
     <section id="accueil" class="hero">
         <div class="hero-text">
             <h1>EXPERTISE EN RÉSEAUX DE <br><span>TÉLÉCOMMUNICATIONS</span></h1>
@@ -430,14 +400,11 @@
         </div>
     </section>
 
-    <!-- ===== CONTENEUR PRINCIPAL ===== -->
     <div class="container">
 
-        <!-- ===== À PROPOS ===== -->
         <section id="propos" class="about-section">
             <h2>À propos de nous</h2>
             <p>Fondée sur de solides compétences techniques et une connaissance approfondie des infrastructures réseaux, la <strong>Compagnie Générale de Télécommunication (CGT)</strong> se positionne comme un partenaire stratégique de confiance pour les opérateurs et entreprises de télécommunication. Nous transformons les contraintes du terrain en solutions d'ingénierie viables, précises et durables.</p>
-
             <div class="about-grid">
                 <div class="about-card">
                     <h3>Notre Engagement</h3>
@@ -450,7 +417,6 @@
             </div>
         </section>
 
-        <!-- ===== NOS SERVICES ===== -->
         <section id="services" class="services-section">
             <h2>Nos Services</h2>
             <div class="services-grid">
@@ -477,7 +443,6 @@
             </div>
         </section>
 
-        <!-- ===== CONTACT ===== -->
         <section id="contact" class="contact-section">
             <h2>Contact</h2>
             <div class="contact-info">
@@ -494,7 +459,6 @@
 
     </div>
 
-    <!-- ===== FOOTER ===== -->
     <footer>
         &copy; 2026 Compagnie Générale de Télécommunication. Tous droits réservés.
     </footer>
