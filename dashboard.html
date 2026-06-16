@@ -242,6 +242,86 @@
             fill: white;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-submit-success {
+            background-color: #10b981;
+        }
+
+        .btn-submit-success:hover {
+            background-color: #059669;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .bidirectional-info {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .bidirectional-info strong {
+            color: #15803d;
+        }
+
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -269,6 +349,9 @@
             }
             .client-badge {
                 flex-wrap: wrap;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -303,24 +386,61 @@
             </div>
         </div>
 
-        <!-- Fichiers -->
+        <!-- Fichiers disponibles (téléchargement) -->
         <div class="section-card">
-            <h2>Fichiers disponibles</h2>
+            <h2>📥 Télécharger mes fichiers</h2>
             <div id="fileList">
                 <!-- Rempli par JavaScript -->
             </div>
         </div>
 
-        <!-- Google Drive -->
+        <!-- DÉPÔT ET TÉLÉCHARGEMENT BIDIRECTIONNEL VIA GOOGLE DRIVE -->
         <div id="driveSection" class="section-card" style="display: none;">
-            <h2>📁 Accès Google Drive</h2>
-            <p>Accédez directement à votre espace de travail partagé sur Google Drive.</p>
+            <h2>📤 Déposer & 📥 Télécharger (bidirectionnel)</h2>
+            <div class="bidirectional-info">
+                <strong>✅ Fonctionne dans les deux sens :</strong><br>
+                • <strong>Déposer</strong> : glissez-déposez vos fichiers dans ce dossier pour nous les transmettre.<br>
+                • <strong>Télécharger</strong> : accédez aux fichiers que nous avons mis à votre disposition.<br>
+                • Cliquez sur le bouton ci-dessous pour ouvrir votre espace Google Drive partagé.
+            </div>
             <a id="driveLink" href="#" target="_blank" class="btn-drive">
                 <svg viewBox="0 0 24 24">
                     <path d="M4.5 17.5L7.5 12L10.5 17.5H4.5ZM13.5 17.5L16.5 12L19.5 17.5H13.5ZM9 10.5L12 5.5L15 10.5H9Z"/>
                 </svg>
-                Ouvrir mon dossier Google Drive
+                Ouvrir mon dossier Google Drive (aller-retour)
             </a>
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);">
+                💡 Une fois dans Drive, vous pouvez <strong>glisser-déposer</strong> vos fichiers pour nous les envoyer, ou <strong>télécharger</strong> ceux que nous avons déposés pour vous.
+            </p>
+        </div>
+
+        <!-- NOUVEAU PROJET : formulaire -->
+        <div class="section-card">
+            <h2>📋 Demander un nouveau projet</h2>
+            <p>Vous souhaitez nous confier une nouvelle mission ? Remplissez ce formulaire et nous vous répondrons rapidement.</p>
+
+            <form id="newProjectForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectName">Nom du projet *</label>
+                        <input type="text" id="projectName" placeholder="Ex: Étude réseau Est" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectUrgency">Urgence</label>
+                        <select id="projectUrgency">
+                            <option value="Normale">Normale</option>
+                            <option value="Urgent">Urgent</option>
+                            <option value="Très urgent">Très urgent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Description détaillée *</label>
+                    <textarea id="projectDescription" placeholder="Décrivez votre besoin, les contraintes techniques, les échéances..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit btn-submit-success">📩 Envoyer la demande</button>
+            </form>
+            <div id="formFeedback" style="margin-top: 15px; display: none; padding: 10px; border-radius: 8px;"></div>
         </div>
 
         <a href="index.html" class="back-link">← Retour à l'accueil du site</a>
@@ -406,7 +526,7 @@
                 projectList.innerHTML = '<p class="empty-state">Aucun projet enregistré.</p>';
             }
 
-            // Fichiers
+            // Fichiers (téléchargement)
             const fileList = document.getElementById('fileList');
             if (data.fichiers && data.fichiers.length > 0) {
                 let html = '<div class="file-list">';
@@ -425,7 +545,7 @@
                 fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible.</p>';
             }
 
-            // Google Drive
+            // Google Drive bidirectionnel
             if (data.driveLink) {
                 const driveSection = document.getElementById('driveSection');
                 const driveLink = document.getElementById('driveLink');
@@ -433,6 +553,46 @@
                 driveSection.style.display = 'block';
             }
         }
+
+        // ===== GESTION DU FORMULAIRE "NOUVEAU PROJET" =====
+        document.getElementById('newProjectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nom = document.getElementById('projectName').value.trim();
+            const urgence = document.getElementById('projectUrgency').value;
+            const description = document.getElementById('projectDescription').value.trim();
+
+            if (!nom || !description) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+
+            const code = new URLSearchParams(window.location.search).get('code')?.toUpperCase();
+            const clientNom = clientData[code]?.nom || code;
+
+            const sujet = encodeURIComponent(`Nouveau projet de ${clientNom} - ${nom}`);
+            const corps = encodeURIComponent(
+                `Bonjour,\n\n` +
+                `Le client ${clientNom} (${code}) a soumis une nouvelle demande de projet.\n\n` +
+                `📌 Nom du projet : ${nom}\n` +
+                `⚡ Urgence : ${urgence}\n\n` +
+                `📝 Description :\n${description}\n\n` +
+                `---\n` +
+                `Merci de traiter cette demande dans les plus brefs délais.\n` +
+                `Ce message a été envoyé depuis l'espace client CGT.`
+            );
+
+            // 🔁 Remplacez par votre adresse email réelle
+            const email = 'votre-email@exemple.com';
+            window.location.href = `mailto:${email}?subject=${sujet}&body=${corps}`;
+
+            const feedback = document.getElementById('formFeedback');
+            feedback.style.display = 'block';
+            feedback.style.backgroundColor = '#dcfce7';
+            feedback.style.color = '#15803d';
+            feedback.innerHTML = '✅ Votre demande a été envoyée avec succès. Nous vous répondrons rapidement.';
+            this.reset();
+        });
     </script>
 
 </body>
