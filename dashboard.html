@@ -256,6 +256,15 @@
             color: #15803d;
         }
 
+        .drive-instruction ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .drive-instruction ul li {
+            margin-bottom: 4px;
+        }
+
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -312,7 +321,7 @@
         <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS ===== -->
         <div class="section-card">
             <h2>📥 Télécharger vos fichiers</h2>
-            <p>Retrouvez ci-dessous les documents que nous avons mis à votre disposition. Cliquez sur « Télécharger » pour les récupérer.</p>
+            <p>Retrouvez ci-dessous les documents que nous avons mis à votre disposition (plans, rapports, devis, etc.). Cliquez sur « Télécharger » pour les récupérer.</p>
             <div id="fileList">
                 <!-- Rempli par JavaScript avec la liste des fichiers -->
             </div>
@@ -327,22 +336,33 @@
             </a>
         </div>
 
-        <!-- ===== SECTION 2 : DÉPOSER VOS FICHIERS ===== -->
+        <!-- ===== SECTION 2 : DÉPOSER VOS NOUVEAUX PROJETS ET FICHIERS ===== -->
         <div class="section-card">
-            <h2>📤 Déposer vos fichiers</h2>
-            <p>Pour nous transmettre vos relevés, photos ou tout autre document, glissez‑déposez‑les directement dans votre dossier Google Drive.</p>
+            <h2>📤 Déposer vos nouveaux projets et fichiers</h2>
+            <p>
+                Utilisez cet espace pour nous <strong>soumettre de nouvelles demandes de projet</strong> et nous transmettre tous les <strong>fichiers nécessaires</strong> (relevés, photos, plans, données techniques, etc.) afin que nous puissions réaliser vos travaux dans les meilleures conditions.
+            </p>
             <div class="drive-instruction">
-                <strong>✅ Fonctionne dans les deux sens :</strong><br>
-                • <strong>Déposer</strong> : glissez vos fichiers dans ce dossier pour nous les envoyer.<br>
-                • <strong>Télécharger</strong> : accédez aux fichiers que nous avons déposés pour vous.<br>
-                • Cliquez sur le bouton ci‑dessous pour ouvrir votre espace partagé.
+                <strong>✅ Comment ça fonctionne ?</strong>
+                <ul>
+                    <li><strong>Déposer un nouveau projet :</strong> créez un dossier avec le nom de votre projet, glissez-y vos fichiers (cahier des charges, photos, relevés, etc.) et nous le traiterons.</li>
+                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez à tout moment ajouter ou mettre à jour des documents dans votre dossier.</li>
+                    <li><strong>Télécharger nos travaux :</strong> nous déposerons dans ce même dossier les livrables finaux (plans, rapports, etc.) que vous pourrez récupérer.</li>
+                    <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
+                </ul>
+                <p style="margin-top: 10px;">
+                    👉 Cliquez sur le bouton ci‑dessous pour ouvrir votre dossier Google Drive partagé.
+                </p>
             </div>
             <a id="driveLinkUpload" href="#" target="_blank" class="btn-drive">
                 <svg viewBox="0 0 24 24">
                     <path d="M4.5 17.5L7.5 12L10.5 17.5H4.5ZM13.5 17.5L16.5 12L19.5 17.5H13.5ZM9 10.5L12 5.5L15 10.5H9Z"/>
                 </svg>
-                Ouvrir Google Drive (dépôt)
+                Ouvrir Google Drive (dépôt de projets)
             </a>
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);">
+                💡 <strong>Astuce :</strong> pour un nouveau projet, créez un dossier avec son nom, puis glissez‑y tous vos fichiers. Nous saurons ainsi qu’il s’agit d’une nouvelle demande.
+            </p>
         </div>
 
         <a href="index.html" class="back-link">← Retour à l'accueil du site</a>
@@ -422,11 +442,10 @@
 
             // ===== LIENS GOOGLE DRIVE =====
             if (data.driveLink) {
-                // Même lien pour les deux boutons
                 document.getElementById('driveLinkDownload').href = data.driveLink;
                 document.getElementById('driveLinkUpload').href = data.driveLink;
             } else {
-                // Si pas de Drive, on cache les boutons
+                // Si pas de Drive, on cache les boutons et instructions
                 document.querySelectorAll('.btn-drive').forEach(btn => btn.style.display = 'none');
                 document.querySelectorAll('.drive-instruction').forEach(el => el.style.display = 'none');
             }
