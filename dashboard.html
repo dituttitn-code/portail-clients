@@ -219,7 +219,6 @@
             text-decoration: underline;
         }
 
-        /* Bouton Google Drive */
         .btn-drive {
             display: inline-flex;
             align-items: center;
@@ -238,9 +237,10 @@
             background-color: #1557b0;
         }
 
-        .btn-drive img {
+        .btn-drive svg {
+            width: 20px;
             height: 20px;
-            width: auto;
+            fill: white;
         }
 
         footer {
@@ -292,7 +292,7 @@
         <div class="dashboard-header">
             <h1>📂 Mes travaux</h1>
             <span class="client-badge" id="clientBadge">
-                <!-- Le contenu est généré par JavaScript -->
+                <!-- Rempli par JavaScript -->
             </span>
         </div>
 
@@ -312,12 +312,12 @@
             </div>
         </div>
 
-        <!-- Accès Google Drive (visible uniquement pour Metro Optic / CLIENT001) -->
+        <!-- Accès Google Drive (visible si le client a un driveLink) -->
         <div id="driveSection" class="section-card" style="display: none;">
             <h2>📁 Accès Google Drive</h2>
             <p>Accédez directement à votre espace de travail partagé sur Google Drive.</p>
-            <a href="https://drive.google.com/drive/folders/19iDKSJt7Tp0i42pia2VU0L4PZshvDM4A?usp=drive_link" target="_blank" class="btn-drive">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <a id="driveLink" href="#" target="_blank" class="btn-drive">
+                <svg viewBox="0 0 24 24">
                     <path d="M4.5 17.5L7.5 12L10.5 17.5H4.5ZM13.5 17.5L16.5 12L19.5 17.5H13.5ZM9 10.5L12 5.5L15 10.5H9Z"/>
                 </svg>
                 Ouvrir mon dossier Google Drive
@@ -332,11 +332,11 @@
     </footer>
 
     <script>
-        // ===== BASE DE DONNÉES SIMULÉE =====
+        // ===== BASE DE DONNÉES CLIENTS =====
         const clientData = {
             'CLIENT001': {
                 nom: 'Metro Optic',
-                logo: 'logo%20metroptic.png', // Logo du client
+                logo: 'logo%20metroptic.png',
                 driveLink: 'https://drive.google.com/drive/folders/19iDKSJt7Tp0i42pia2VU0L4PZshvDM4A?usp=drive_link',
                 projets: [
                     { nom: 'Réseau fibre optique Laval', statut: 'En cours' },
@@ -348,15 +348,17 @@
                 ]
             },
             'CLIENT002': {
-                nom: 'Société Bêta',
-                logo: null,
-                driveLink: null,
+                nom: 'Sofiene Hosni',
+                logo: null, // pas de logo
+                driveLink: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
                 projets: [
-                    { nom: 'Conception HQ', statut: 'En attente' }
+                    { nom: 'Conception HQ', statut: 'En attente' },
+                    { nom: 'Étude de faisabilité Sud', statut: 'En cours' }
                 ],
                 fichiers: [
                     { nom: 'DDP_formulaire_rempli.docx', taille: '1.2 Mo', date: '8 mars 2025' },
-                    { nom: 'Photos_chantier_2025-03-05.zip', taille: '45.7 Mo', date: '5 mars 2025' }
+                    { nom: 'Photos_chantier_2025-03-05.zip', taille: '45.7 Mo', date: '5 mars 2025' },
+                    { nom: 'Rapport_étude_faisabilité.pdf', taille: '3.1 Mo', date: '15 mars 2025' }
                 ]
             },
             'CLIENT003': {
@@ -364,10 +366,10 @@
                 logo: null,
                 driveLink: null,
                 projets: [
-                    { nom: 'Étude de faisabilité Sud', statut: 'En cours' }
+                    { nom: 'Audit réseau Nord', statut: 'Planifié' }
                 ],
                 fichiers: [
-                    { nom: 'Rapport_étude_faisabilité.pdf', taille: '3.1 Mo', date: '15 mars 2025' }
+                    { nom: 'audit_initial.pdf', taille: '0.8 Mo', date: '20 mars 2025' }
                 ]
             }
         };
@@ -376,13 +378,13 @@
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code')?.toUpperCase();
 
-        // ===== REDIRECTION SI CODE INVALIDE OU MANQUANT =====
+        // ===== REDIRECTION SI CODE INVALIDE =====
         if (!code || !clientData[code]) {
             window.location.href = 'login.html';
         } else {
             const data = clientData[code];
 
-            // ===== AFFICHAGE DU BADGE CLIENT =====
+            // ===== BADGE CLIENT =====
             const badge = document.getElementById('clientBadge');
             let badgeHtml = `Client : ${data.nom} (${code})`;
             if (data.logo) {
@@ -390,7 +392,7 @@
             }
             badge.innerHTML = badgeHtml;
 
-            // ===== AFFICHAGE DES PROJETS =====
+            // ===== PROJETS =====
             const projectList = document.getElementById('projectList');
             if (data.projets && data.projets.length > 0) {
                 let html = '<ul style="list-style: none; padding: 0;">';
@@ -406,7 +408,7 @@
                 projectList.innerHTML = '<p class="empty-state">Aucun projet enregistré.</p>';
             }
 
-            // ===== AFFICHAGE DES FICHIERS =====
+            // ===== FICHIERS =====
             const fileList = document.getElementById('fileList');
             if (data.fichiers && data.fichiers.length > 0) {
                 let html = '<div class="file-list">';
@@ -425,11 +427,12 @@
                 fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible.</p>';
             }
 
-            // ===== AFFICHAGE DU LIEN GOOGLE DRIVE (uniquement pour CLIENT001) =====
-            if (code === 'CLIENT001' && data.driveLink) {
+            // ===== GOOGLE DRIVE (si lien défini) =====
+            if (data.driveLink) {
                 const driveSection = document.getElementById('driveSection');
+                const driveLink = document.getElementById('driveLink');
+                driveLink.href = data.driveLink;
                 driveSection.style.display = 'block';
-                // Le lien est déjà dans le HTML, pas besoin de le modifier dynamiquement
             }
         }
     </script>
