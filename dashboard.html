@@ -318,7 +318,7 @@
             </span>
         </div>
 
-        <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS ===== -->
+        <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS (LIVRABLES) ===== -->
         <div class="section-card">
             <h2>📥 Télécharger vos fichiers</h2>
             <p>Retrouvez ci-dessous les documents que nous avons mis à votre disposition (plans, rapports, devis, etc.). Cliquez sur « Télécharger » pour les récupérer.</p>
@@ -326,11 +326,11 @@
                 <!-- Rempli par JavaScript avec la liste des fichiers -->
             </div>
             <div class="drive-instruction">
-                <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce même dossier les livrables finaux
+                <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce dossier les livrables finaux
                 <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
             </div>
             <div class="drive-instruction" style="border-left-color: var(--accent-color); background-color: #eff6ff;">
-                <strong>🔗 Accès direct :</strong> vous pouvez également consulter et télécharger tous vos fichiers depuis notre dossier Google Drive partagé.
+                <strong>🔗 Accès direct :</strong> consultez et téléchargez vos livrables depuis notre dossier Google Drive dédié.
             </div>
             <a id="driveLinkDownload" href="#" target="_blank" class="btn-drive">
                 <svg viewBox="0 0 24 24">
@@ -344,7 +344,7 @@
         <div class="section-card">
             <h2>📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>
-                <strong>Utilisez cet espace pour vous soumettre les nouveaux projets et vous transmettre tous les fichiers nécessaires afin que nous puissions réaliser vos travaux dans les meilleures conditions.</strong>
+                <strong>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires afin que nous puissions réaliser vos travaux dans les meilleures conditions.</strong>
             </p>
             <div class="drive-instruction">
                 <strong>✅ Comment ça fonctionne ?</strong>
@@ -354,7 +354,7 @@
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
                 <p style="margin-top: 10px;">
-                    👉 Cliquez sur le bouton ci‑dessous pour ouvrir votre dossier Google Drive partagé.
+                    👉 Cliquez sur le bouton ci‑dessous pour ouvrir votre dossier Google Drive dédié aux nouveaux projets.
                 </p>
             </div>
             <a id="driveLinkUpload" href="#" target="_blank" class="btn-drive">
@@ -376,12 +376,14 @@
     </footer>
 
     <script>
-        // ===== DONNÉES CLIENTS =====
+        // ===== DONNÉES CLIENTS AVEC DEUX LIENS GOOGLE DRIVE DISTINCTS =====
         const clientData = {
             'CLIENT001': {
                 nom: 'Metro Optic',
                 logo: 'logo%20metroptic.png',
-                driveLink: 'https://drive.google.com/drive/folders/19iDKSJt7Tp0i42pia2VU0L4PZshvDM4A?usp=drive_link',
+                // === DEUX DOSSIERS DISTINCTS ===
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1mE6Yw2N4fOIuk3c_eVdAYHYNcUe2TNRZ?usp=drive_link',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=drive_link',
                 fichiers: [
                     { nom: 'Plan_fibre_optique_V2.pdf', taille: '3.2 Mo', date: '15 mars 2025' },
                     { nom: 'Relevé_poteaux_2025-03-12.pdf', taille: '2.4 Mo', date: '12 mars 2025' }
@@ -390,7 +392,8 @@
             'CLIENT002': {
                 nom: 'Sofiene Hosni',
                 logo: null,
-                driveLink: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
                 fichiers: [
                     { nom: 'DDP_formulaire_rempli.docx', taille: '1.2 Mo', date: '8 mars 2025' },
                     { nom: 'Photos_chantier_2025-03-05.zip', taille: '45.7 Mo', date: '5 mars 2025' },
@@ -400,7 +403,8 @@
             'CLIENT003': {
                 nom: 'Nouvelle Société Gamma',
                 logo: null,
-                driveLink: null,
+                driveLinkLivrables: null,
+                driveLinkNouveauxProjets: null,
                 fichiers: [
                     { nom: 'audit_initial.pdf', taille: '0.8 Mo', date: '20 mars 2025' }
                 ]
@@ -443,13 +447,25 @@
                 fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible pour le moment.</p>';
             }
 
-            // ===== LIENS GOOGLE DRIVE =====
-            if (data.driveLink) {
-                document.getElementById('driveLinkDownload').href = data.driveLink;
-                document.getElementById('driveLinkUpload').href = data.driveLink;
+            // ===== LIENS GOOGLE DRIVE DISTINCTS =====
+            // Lien pour les livrables (téléchargement)
+            if (data.driveLinkLivrables) {
+                document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
+                document.getElementById('driveLinkDownload').style.display = 'inline-flex';
             } else {
-                // Si pas de Drive, on cache les boutons et instructions
-                document.querySelectorAll('.btn-drive').forEach(btn => btn.style.display = 'none');
+                document.getElementById('driveLinkDownload').style.display = 'none';
+            }
+
+            // Lien pour les nouveaux projets (dépôt)
+            if (data.driveLinkNouveauxProjets) {
+                document.getElementById('driveLinkUpload').href = data.driveLinkNouveauxProjets;
+                document.getElementById('driveLinkUpload').style.display = 'inline-flex';
+            } else {
+                document.getElementById('driveLinkUpload').style.display = 'none';
+            }
+
+            // Si aucun des deux liens n'existe, on cache les instructions
+            if (!data.driveLinkLivrables && !data.driveLinkNouveauxProjets) {
                 document.querySelectorAll('.drive-instruction').forEach(el => el.style.display = 'none');
             }
         }
