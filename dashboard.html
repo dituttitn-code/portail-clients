@@ -115,11 +115,20 @@
         }
 
         .client-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             background-color: #dbeafe;
             color: var(--accent-color);
             padding: 8px 20px;
             border-radius: 20px;
             font-weight: 600;
+        }
+
+        .client-badge img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
         }
 
         .section-card {
@@ -210,6 +219,30 @@
             text-decoration: underline;
         }
 
+        /* Bouton Google Drive */
+        .btn-drive {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-drive:hover {
+            background-color: #1557b0;
+        }
+
+        .btn-drive img {
+            height: 20px;
+            width: auto;
+        }
+
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -235,6 +268,9 @@
             .logo-img {
                 height: 50px;
             }
+            .client-badge {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
@@ -255,7 +291,9 @@
     <div class="container">
         <div class="dashboard-header">
             <h1>📂 Mes travaux</h1>
-            <span class="client-badge" id="clientBadge">Client : —</span>
+            <span class="client-badge" id="clientBadge">
+                <!-- Le contenu est généré par JavaScript -->
+            </span>
         </div>
 
         <!-- Projets -->
@@ -274,6 +312,18 @@
             </div>
         </div>
 
+        <!-- Accès Google Drive (visible uniquement pour Metro Optic / CLIENT001) -->
+        <div id="driveSection" class="section-card" style="display: none;">
+            <h2>📁 Accès Google Drive</h2>
+            <p>Accédez directement à votre espace de travail partagé sur Google Drive.</p>
+            <a href="https://drive.google.com/drive/folders/19iDKSJt7Tp0i42pia2VU0L4PZshvDM4A?usp=drive_link" target="_blank" class="btn-drive">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <path d="M4.5 17.5L7.5 12L10.5 17.5H4.5ZM13.5 17.5L16.5 12L19.5 17.5H13.5ZM9 10.5L12 5.5L15 10.5H9Z"/>
+                </svg>
+                Ouvrir mon dossier Google Drive
+            </a>
+        </div>
+
         <a href="index.html" class="back-link">← Retour à l'accueil du site</a>
     </div>
 
@@ -282,21 +332,25 @@
     </footer>
 
     <script>
-        // ===== BASE DE DONNÉES SIMULÉE (chaque client a ses propres projets et fichiers) =====
+        // ===== BASE DE DONNÉES SIMULÉE =====
         const clientData = {
             'CLIENT001': {
-                nom: 'Entreprise Alpha',
+                nom: 'Metro Optic',
+                logo: 'logo%20metroptic.png', // Logo du client
+                driveLink: 'https://drive.google.com/drive/folders/19iDKSJt7Tp0i42pia2VU0L4PZshvDM4A?usp=drive_link',
                 projets: [
-                    { nom: 'Réseau Laval', statut: 'En cours' },
-                    { nom: 'Inspection Nord', statut: 'Terminé' }
+                    { nom: 'Réseau fibre optique Laval', statut: 'En cours' },
+                    { nom: 'Inspection des infrastructures', statut: 'Terminé' }
                 ],
                 fichiers: [
-                    { nom: 'Relevé_poteaux_2025-03-12.pdf', taille: '2.4 Mo', date: '12 mars 2025' },
-                    { nom: 'Plan_conception_V1.dwg', taille: '5.8 Mo', date: '10 mars 2025' }
+                    { nom: 'Plan_fibre_optique_V2.pdf', taille: '3.2 Mo', date: '15 mars 2025' },
+                    { nom: 'Relevé_poteaux_2025-03-12.pdf', taille: '2.4 Mo', date: '12 mars 2025' }
                 ]
             },
             'CLIENT002': {
                 nom: 'Société Bêta',
+                logo: null,
+                driveLink: null,
                 projets: [
                     { nom: 'Conception HQ', statut: 'En attente' }
                 ],
@@ -307,6 +361,8 @@
             },
             'CLIENT003': {
                 nom: 'Nouvelle Société Gamma',
+                logo: null,
+                driveLink: null,
                 projets: [
                     { nom: 'Étude de faisabilité Sud', statut: 'En cours' }
                 ],
@@ -324,11 +380,17 @@
         if (!code || !clientData[code]) {
             window.location.href = 'login.html';
         } else {
-            // AFFICHAGE DU TABLEAU DE BORD
             const data = clientData[code];
-            document.getElementById('clientBadge').textContent = `Client : ${data.nom} (${code})`;
 
-            // Projets
+            // ===== AFFICHAGE DU BADGE CLIENT =====
+            const badge = document.getElementById('clientBadge');
+            let badgeHtml = `Client : ${data.nom} (${code})`;
+            if (data.logo) {
+                badgeHtml = `<img src="${data.logo}" alt="Logo ${data.nom}"> ${data.nom} (${code})`;
+            }
+            badge.innerHTML = badgeHtml;
+
+            // ===== AFFICHAGE DES PROJETS =====
             const projectList = document.getElementById('projectList');
             if (data.projets && data.projets.length > 0) {
                 let html = '<ul style="list-style: none; padding: 0;">';
@@ -344,7 +406,7 @@
                 projectList.innerHTML = '<p class="empty-state">Aucun projet enregistré.</p>';
             }
 
-            // Fichiers
+            // ===== AFFICHAGE DES FICHIERS =====
             const fileList = document.getElementById('fileList');
             if (data.fichiers && data.fichiers.length > 0) {
                 let html = '<div class="file-list">';
@@ -361,6 +423,13 @@
                 fileList.innerHTML = html;
             } else {
                 fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible.</p>';
+            }
+
+            // ===== AFFICHAGE DU LIEN GOOGLE DRIVE (uniquement pour CLIENT001) =====
+            if (code === 'CLIENT001' && data.driveLink) {
+                const driveSection = document.getElementById('driveSection');
+                driveSection.style.display = 'block';
+                // Le lien est déjà dans le HTML, pas besoin de le modifier dynamiquement
             }
         }
     </script>
