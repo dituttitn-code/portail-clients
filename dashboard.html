@@ -302,7 +302,8 @@
     <header>
         <div class="logo-container">
             <img src="logo%20CGT-2.jpeg" alt="Logo CGT" class="logo-img">
-            <span class="logo-text">CGT</span>
+            <!-- ===== LOGO TEXTE MODIFIÉ ===== -->
+            <span class="logo-text">Espace Client</span>
         </div>
         <div class="nav-links">
             <a href="index.html" class="nav-item">Accueil</a>
@@ -382,7 +383,6 @@
             'CLIENT001': {
                 nom: 'Metro Optic',
                 logo: 'logo%20metroptic.png',
-                // Indicateur pour afficher ou non la section téléchargement
                 hasLivrables: true,
                 driveLinkLivrables: 'https://drive.google.com/drive/folders/1mE6Yw2N4fOIuk3c_eVdAYHYNcUe2TNRZ?usp=drive_link',
                 driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=drive_link',
@@ -394,11 +394,10 @@
             'CLIENT002': {
                 nom: 'Sofiene Hosni',
                 logo: null,
-                // === PAS DE SECTION TÉLÉCHARGEMENT ===
                 hasLivrables: false,
                 driveLinkLivrables: null,
                 driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
-                fichiers: [] // Aucun fichier affiché
+                fichiers: []
             },
             'CLIENT003': {
                 nom: 'Nouvelle Société Gamma',
@@ -432,10 +431,8 @@
             // ===== GESTION DE LA SECTION TÉLÉCHARGEMENT =====
             const downloadSection = document.getElementById('downloadSection');
             if (data.hasLivrables === false) {
-                // Masquer complètement la section
                 downloadSection.style.display = 'none';
             } else {
-                // Afficher la section et remplir la liste des fichiers
                 const fileList = document.getElementById('fileList');
                 if (data.fichiers && data.fichiers.length > 0) {
                     let html = '<div class="file-list">';
@@ -454,7 +451,6 @@
                     fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible pour le moment.</p>';
                 }
 
-                // Lien Google Drive pour les livrables
                 if (data.driveLinkLivrables) {
                     document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
                     document.getElementById('driveLinkDownload').style.display = 'inline-flex';
@@ -471,7 +467,6 @@
                 document.getElementById('driveLinkUpload').style.display = 'none';
             }
 
-            // Si aucun des deux liens n'existe, on cache les instructions
             if (!data.driveLinkLivrables && !data.driveLinkNouveauxProjets) {
                 document.querySelectorAll('.drive-instruction').forEach(el => el.style.display = 'none');
             }
