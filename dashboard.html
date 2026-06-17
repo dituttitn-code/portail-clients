@@ -354,10 +354,10 @@
                 driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link'
             },
             'CLIENT003': {
-                nom: 'Nouvelle Société Gamma',
+                nom: 'Infrastructel',
                 logo: null,
-                driveLinkLivrables: null,
-                driveLinkNouveauxProjets: null
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=drive_link',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1CY03ggtbYtdkkTHAxY-mJI8QY4z1RGTa?usp=drive_link'
             }
         };
 
@@ -384,7 +384,6 @@
                 document.getElementById('driveLinkDownload').style.display = 'inline-flex';
             } else {
                 document.getElementById('driveLinkDownload').style.display = 'none';
-                // Masquer les instructions de téléchargement si pas de lien
                 const downloadSection = document.getElementById('downloadSection');
                 const instructions = downloadSection.querySelectorAll('.drive-instruction');
                 instructions.forEach(el => el.style.display = 'none');
