@@ -253,6 +253,11 @@
             background-color: #059669;
         }
 
+        .btn-notify:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .drive-instruction {
             background-color: #f0fdf4;
             border-left: 4px solid #10b981;
@@ -289,16 +294,6 @@
             color: #b45309;
         }
 
-        .notification-box .note {
-            font-size: 0.85rem;
-            color: #92400e;
-            margin-top: 8px;
-            background: #fffbeb;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #fcd34d;
-        }
-
         .feedback-msg {
             margin-top: 10px;
             padding: 10px 15px;
@@ -307,10 +302,17 @@
             display: none;
         }
 
-        .feedback-msg.info {
-            background-color: #dbeafe;
-            color: #1e40af;
-            border: 1px solid #93c5fd;
+        .feedback-msg.success {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+            display: block;
+        }
+
+        .feedback-msg.error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
             display: block;
         }
 
@@ -413,13 +415,10 @@
                 Ouvrir Google Drive (dépôt de nouveaux projets à faire)
             </a>
 
-            <!-- ===== BOUTON DE NOTIFICATION UNIQUEMENT ===== -->
+            <!-- ===== BOUTON DE NOTIFICATION AVEC ENVOI AUTOMATIQUE ===== -->
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br>
-                Une fois que vous avez déposé vos fichiers, cliquez sur le bouton ci‑dessous pour nous envoyer un email. Cela nous permettra de traiter votre demande plus rapidement.
-                <div class="note">
-                    ⚠️ <strong>Important :</strong> votre client email va s'ouvrir avec un message pré‑rempli. <strong>N'oubliez pas de cliquer sur « Envoyer »</strong> pour que nous recevions votre notification.
-                </div>
+                Une fois que vous avez déposé vos fichiers, cliquez sur le bouton ci‑dessous. Votre notification sera envoyée automatiquement par email à notre équipe.
             </div>
 
             <button id="notifyBtn" class="btn-drive btn-notify">
@@ -440,7 +439,25 @@
         &copy; 2026 Compagnie Générale de Télécommunication
     </footer>
 
+    <!-- ===== FORMULAIRE CACHÉ POUR L'ENVOI AUTOMATIQUE ===== -->
+    <form id="notifyForm" action="https://formspree.io/f/xpznkkgg" method="POST" style="display:none;">
+        <input type="hidden" name="_subject" value="Nouveau dépôt de fichiers - Espace Client CGT">
+        <input type="hidden" name="_replyto" value="lotfi.khelifi360@gmail.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="client" id="formClient">
+        <input type="hidden" name="code" id="formCode">
+        <input type="hidden" name="date" id="formDate">
+        <input type="hidden" name="drive_link" id="formDriveLink">
+        <input type="hidden" name="_gotcha" value="">
+    </form>
+
     <script>
+        // ===== CONFIGURATION =====
+        // 🔁 REMPLACEZ L'URL CI-DESSOUS PAR VOTRE PROPRE ENDPOINT FORMSPREE
+        // Pour obtenir votre endpoint : allez sur https://formspree.io, créez un compte,
+        // créez un nouveau formulaire et copiez l'URL de votre endpoint.
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpznkkgg';
+
         // ===== DONNÉES CLIENTS =====
         const clientData = {
             'CLIENT001': {
@@ -534,39 +551,66 @@
                 document.querySelectorAll('.drive-instruction').forEach(el => el.style.display = 'none');
             }
 
-            // ===== BOUTON DE NOTIFICATION =====
+            // ===== BOUTON DE NOTIFICATION AVEC ENVOI AUTOMATIQUE =====
             const notifyBtn = document.getElementById('notifyBtn');
             const feedback = document.getElementById('feedbackMsg');
-            const adminEmail = 'lotfi.khelifi360@gmail.com';
 
             if (!data.driveLinkNouveauxProjets) {
                 notifyBtn.style.display = 'none';
                 document.querySelector('.notification-box').style.display = 'none';
             } else {
-                notifyBtn.addEventListener('click', function() {
-                    const date = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
-                    const sujet = encodeURIComponent(`Nouveau dépôt de fichiers - ${data.nom} (${code})`);
-                    const corps = encodeURIComponent(
-                        `Bonjour,\n\n` +
-                        `Le client ${data.nom} (${code}) vient de déposer de nouveaux fichiers dans son dossier Google Drive partagé.\n\n` +
-                        `📅 Date et heure : ${date}\n` +
-                        `📁 Dossier de dépôt : ${data.driveLinkNouveauxProjets}\n\n` +
-                        `Veuillez consulter ce dossier et traiter la demande dans les meilleurs délais.\n\n` +
-                        `---\n` +
-                        `Ce message a été envoyé depuis l'espace client CGT.`
-                    );
-                    window.location.href = `mailto:${adminEmail}?subject=${sujet}&body=${corps}`;
+                // Mettre à jour l'action du formulaire avec l'endpoint configuré
+                document.getElementById('notifyForm').action = FORMSPREE_ENDPOINT;
 
-                    // Feedback
-                    feedback.className = 'feedback-msg info';
-                    feedback.innerHTML = `
-                        ✅ Votre client email s'est ouvert avec le message pré‑rempli.<br>
-                        <strong>⚠️ N'oubliez pas de cliquer sur « Envoyer »</strong> pour que nous recevions votre notification.
-                    `;
-                    feedback.style.display = 'block';
+                notifyBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Désactiver le bouton pour éviter les doubles soumissions
+                    notifyBtn.disabled = true;
+                    notifyBtn.innerHTML = '⏳ Envoi en cours...';
+
+                    // Remplir les champs du formulaire
+                    const date = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
+                    document.getElementById('formClient').value = data.nom;
+                    document.getElementById('formCode').value = code;
+                    document.getElementById('formDate').value = date;
+                    document.getElementById('formDriveLink').value = data.driveLinkNouveauxProjets;
+
+                    // Soumettre le formulaire
+                    const form = document.getElementById('notifyForm');
+                    const formData = new FormData(form);
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            feedback.className = 'feedback-msg success';
+                            feedback.innerHTML = '✅ Notification envoyée avec succès ! Notre équipe va traiter votre demande rapidement.';
+                            feedback.style.display = 'block';
+                            notifyBtn.innerHTML = '✅ Email envoyé !';
+                            notifyBtn.style.backgroundColor = '#10b981';
+                        } else {
+                            throw new Error('Erreur lors de l\'envoi');
+                        }
+                    })
+                    .catch(error => {
+                        feedback.className = 'feedback-msg error';
+                        feedback.innerHTML = '❌ Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.';
+                        feedback.style.display = 'block';
+                        notifyBtn.innerHTML = '📩 Notifier l’équipe du dépôt';
+                        notifyBtn.disabled = false;
+                    });
+
+                    // Réactiver le bouton après 5 secondes (même en cas de succès)
                     setTimeout(() => {
-                        feedback.style.display = 'none';
-                    }, 10000);
+                        notifyBtn.disabled = false;
+                        notifyBtn.innerHTML = '📩 Notifier l’équipe du dépôt';
+                    }, 5000);
                 });
             }
         }
