@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes travaux — CGT</title>
+    <title>Mes travaux — GeCoTelecom</title>
 
     <style>
         :root {
@@ -55,11 +55,27 @@
             object-fit: contain;
         }
 
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
         .logo-text {
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
             text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            font-size: 0.5rem;
+            font-weight: 400;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-top: -4px;
         }
 
         .nav-links {
@@ -233,11 +249,25 @@
 
         .footer {
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px 20px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             border-top: 1px solid #e2e8f0;
             margin-top: 40px;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .footer-sub {
+            font-size: 0.5rem;
+            color: #94a3b8;
+            letter-spacing: 1.2px;
+            margin-top: -3px;
         }
 
         @media (max-width: 768px) {
@@ -246,7 +276,7 @@
                 align-items: flex-start;
             }
             .logo-text {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             .logo-img {
                 height: 50px;
@@ -262,8 +292,11 @@
 
     <header>
         <div class="logo-container">
-            <img src="logo%20CGT-2.jpeg" alt="Logo CGT" class="logo-img">
-            <span class="logo-text">Espace Client</span>
+            <img src="logo%20CGT-2.jpeg" alt="Logo GeCoTelecom" class="logo-img">
+            <div class="logo-text-group">
+                <div class="logo-text">GeCoTelecom</div>
+                <div class="logo-sub">Compagnie Générale de Télécommunication</div>
+            </div>
         </div>
         <div class="nav-links">
             <a href="index.html" class="nav-item">Accueil</a>
@@ -321,7 +354,6 @@
                 Ouvrir Google Drive (dépôt de nouveaux projets à faire)
             </a>
 
-            <!-- ===== MESSAGE D'AVERTISSEMENT ===== -->
             <div class="notification-simple">
                 <strong>📢 Besoin de nous avertir ?</strong><br>
                 Après avoir déposé vos fichiers, veuillez avertir le client afin de nous en informer.
@@ -336,11 +368,12 @@
     </div>
 
     <footer class="footer">
-        &copy; 2026 Compagnie Générale de Télécommunication
+        <div class="footer-brand">GeCoTelecom</div>
+        <div class="footer-sub">Compagnie Générale de Télécommunication</div>
+        <div style="margin-top: 6px;">&copy; 2026 GeCoTelecom</div>
     </footer>
 
     <script>
-        // ===== DONNÉES CLIENTS =====
         const clientData = {
             'CLIENT001': {
                 nom: 'Metro Optic',
@@ -362,7 +395,6 @@
             }
         };
 
-        // ===== RÉCUPÉRATION DU CODE =====
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code')?.toUpperCase();
 
@@ -371,7 +403,6 @@
         } else {
             const data = clientData[code];
 
-            // ===== BADGE CLIENT =====
             const badge = document.getElementById('clientBadge');
             let badgeHtml = `Client : ${data.nom} (${code})`;
             if (data.logo) {
@@ -379,7 +410,7 @@
             }
             badge.innerHTML = badgeHtml;
 
-            // ===== LIEN GOOGLE DRIVE POUR LES LIVRABLES (TÉLÉCHARGEMENT) =====
+            // Gestion des liens livrables
             if (data.driveLinkLivrables) {
                 document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
                 document.getElementById('driveLinkDownload').style.display = 'inline-flex';
@@ -390,7 +421,7 @@
                 instructions.forEach(el => el.style.display = 'none');
             }
 
-            // ===== LIEN GOOGLE DRIVE POUR LES NOUVEAUX PROJETS =====
+            // Gestion des liens nouveaux projets
             if (data.driveLinkNouveauxProjets) {
                 document.getElementById('driveLinkUpload').href = data.driveLinkNouveauxProjets;
                 document.getElementById('driveLinkUpload').style.display = 'inline-flex';
