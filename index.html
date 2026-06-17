@@ -54,37 +54,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 25px;
-            flex-wrap: wrap;
         }
 
         .logo-img {
-            height: 90px;
+            height: 130px;
             width: auto;
             object-fit: contain;
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo-sub {
-            font-size: 0.55rem;
-            font-weight: 400;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-top: -4px;
         }
 
         .status-badge {
@@ -340,13 +315,8 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .logo-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            .logo-text {
-                font-size: 1.6rem;
+            .logo-img {
+                height: 90px;
             }
             .nav-links {
                 gap: 15px;
@@ -374,11 +344,8 @@
         }
 
         @media (max-width: 480px) {
-            .logo-text {
-                font-size: 1.2rem;
-            }
             .logo-img {
-                height: 60px;
+                height: 70px;
             }
             .hero-text h1 {
                 font-size: 1.6rem;
@@ -405,10 +372,6 @@
         <div class="header-top">
             <div class="logo-container">
                 <img src="logo-2%20GeCoTelecom.png" alt="Logo GeCoTelecom" class="logo-img">
-                <div class="logo-text-group">
-                    <div class="logo-text">GeCoTelecom</div>
-                    <div class="logo-sub">Compagnie Générale de Télécommunication</div>
-                </div>
             </div>
             <div class="status-badge">● Consultant en Télécommunication</div>
         </div>
