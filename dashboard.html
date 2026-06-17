@@ -158,54 +158,6 @@
             border-radius: 2px;
         }
 
-        .file-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--bg-light);
-            padding: 15px 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .file-item .file-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .file-item .file-name {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .file-item .file-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .file-item .file-action {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .file-item .file-action:hover {
-            text-decoration: underline;
-        }
-
-        .empty-state {
-            color: var(--text-muted);
-            font-style: italic;
-            padding: 20px 0;
-        }
-
         .back-link {
             display: inline-block;
             margin-top: 25px;
@@ -292,11 +244,6 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .file-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
             .logo-text {
                 font-size: 1.1rem;
             }
@@ -331,13 +278,9 @@
             </span>
         </div>
 
-        <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS (LIVRABLES) ===== -->
+        <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS LIVRABLES ===== -->
         <div id="downloadSection" class="section-card">
-            <h2>📥 Télécharger vos fichiers</h2>
-            <p>Retrouvez ci-dessous les documents que nous avons mis à votre disposition (plans, rapports, devis, etc.). Cliquez sur « Télécharger » pour les récupérer.</p>
-            <div id="fileList">
-                <!-- Rempli par JavaScript -->
-            </div>
+            <h2>📥 Télécharger vos fichiers livrables</h2>
             <div class="drive-instruction">
                 <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce dossier les livrables finaux
                 <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
@@ -377,7 +320,7 @@
                 Ouvrir Google Drive (dépôt de nouveaux projets à faire)
             </a>
 
-            <!-- ===== MESSAGE SIMPLIFIÉ (TEXTE MODIFIÉ) ===== -->
+            <!-- ===== MESSAGE D'AVERTISSEMENT ===== -->
             <div class="notification-simple">
                 <strong>📢 Besoin de nous avertir ?</strong><br>
                 Après avoir déposé vos fichiers, veuillez avertir le client afin de nous en informer.
@@ -401,31 +344,20 @@
             'CLIENT001': {
                 nom: 'Metro Optic',
                 logo: 'logo%20metroptic.png',
-                hasLivrables: true,
                 driveLinkLivrables: 'https://drive.google.com/drive/folders/1mE6Yw2N4fOIuk3c_eVdAYHYNcUe2TNRZ?usp=drive_link',
-                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=drive_link',
-                fichiers: [
-                    { nom: 'Plan_fibre_optique_V2.pdf', taille: '3.2 Mo', date: '15 mars 2025' },
-                    { nom: 'Relevé_poteaux_2025-03-12.pdf', taille: '2.4 Mo', date: '12 mars 2025' }
-                ]
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=drive_link'
             },
             'CLIENT002': {
                 nom: 'Sofiene Hosni',
                 logo: null,
-                hasLivrables: false,
                 driveLinkLivrables: null,
-                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
-                fichiers: []
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link'
             },
             'CLIENT003': {
                 nom: 'Nouvelle Société Gamma',
                 logo: null,
-                hasLivrables: true,
                 driveLinkLivrables: null,
-                driveLinkNouveauxProjets: null,
-                fichiers: [
-                    { nom: 'audit_initial.pdf', taille: '0.8 Mo', date: '20 mars 2025' }
-                ]
+                driveLinkNouveauxProjets: null
             }
         };
 
@@ -446,35 +378,16 @@
             }
             badge.innerHTML = badgeHtml;
 
-            // ===== GESTION DE LA SECTION TÉLÉCHARGEMENT =====
-            const downloadSection = document.getElementById('downloadSection');
-            if (data.hasLivrables === false) {
-                downloadSection.style.display = 'none';
+            // ===== LIEN GOOGLE DRIVE POUR LES LIVRABLES (TÉLÉCHARGEMENT) =====
+            if (data.driveLinkLivrables) {
+                document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
+                document.getElementById('driveLinkDownload').style.display = 'inline-flex';
             } else {
-                const fileList = document.getElementById('fileList');
-                if (data.fichiers && data.fichiers.length > 0) {
-                    let html = '<div class="file-list">';
-                    data.fichiers.forEach(f => {
-                        html += `<div class="file-item">
-                                    <div class="file-info">
-                                        <span class="file-name">${f.nom}</span>
-                                        <span class="file-meta">${f.date} • ${f.taille}</span>
-                                    </div>
-                                    <a href="#" class="file-action">Télécharger</a>
-                                 </div>`;
-                    });
-                    html += '</div>';
-                    fileList.innerHTML = html;
-                } else {
-                    fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible pour le moment.</p>';
-                }
-
-                if (data.driveLinkLivrables) {
-                    document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
-                    document.getElementById('driveLinkDownload').style.display = 'inline-flex';
-                } else {
-                    document.getElementById('driveLinkDownload').style.display = 'none';
-                }
+                document.getElementById('driveLinkDownload').style.display = 'none';
+                // Masquer les instructions de téléchargement si pas de lien
+                const downloadSection = document.getElementById('downloadSection');
+                const instructions = downloadSection.querySelectorAll('.drive-instruction');
+                instructions.forEach(el => el.style.display = 'none');
             }
 
             // ===== LIEN GOOGLE DRIVE POUR LES NOUVEAUX PROJETS =====
@@ -483,10 +396,8 @@
                 document.getElementById('driveLinkUpload').style.display = 'inline-flex';
             } else {
                 document.getElementById('driveLinkUpload').style.display = 'none';
-            }
-
-            if (!data.driveLinkLivrables && !data.driveLinkNouveauxProjets) {
                 document.querySelectorAll('.drive-instruction').forEach(el => el.style.display = 'none');
+                document.querySelector('.notification-simple').style.display = 'none';
             }
         }
     </script>
