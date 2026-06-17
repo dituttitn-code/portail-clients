@@ -319,7 +319,8 @@
         </div>
 
         <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS (LIVRABLES) ===== -->
-        <div class="section-card">
+        <!-- Cette section est masquée pour CLIENT002 (Sofiene Hosni) -->
+        <div id="downloadSection" class="section-card">
             <h2>📥 Télécharger vos fichiers</h2>
             <p>Retrouvez ci-dessous les documents que nous avons mis à votre disposition (plans, rapports, devis, etc.). Cliquez sur « Télécharger » pour les récupérer.</p>
             <div id="fileList">
@@ -381,7 +382,8 @@
             'CLIENT001': {
                 nom: 'Metro Optic',
                 logo: 'logo%20metroptic.png',
-                // === DEUX DOSSIERS DISTINCTS ===
+                // Indicateur pour afficher ou non la section téléchargement
+                hasLivrables: true,
                 driveLinkLivrables: 'https://drive.google.com/drive/folders/1mE6Yw2N4fOIuk3c_eVdAYHYNcUe2TNRZ?usp=drive_link',
                 driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=drive_link',
                 fichiers: [
@@ -392,17 +394,16 @@
             'CLIENT002': {
                 nom: 'Sofiene Hosni',
                 logo: null,
-                driveLinkLivrables: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
+                // === PAS DE SECTION TÉLÉCHARGEMENT ===
+                hasLivrables: false,
+                driveLinkLivrables: null,
                 driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link',
-                fichiers: [
-                    { nom: 'DDP_formulaire_rempli.docx', taille: '1.2 Mo', date: '8 mars 2025' },
-                    { nom: 'Photos_chantier_2025-03-05.zip', taille: '45.7 Mo', date: '5 mars 2025' },
-                    { nom: 'Rapport_étude_faisabilité.pdf', taille: '3.1 Mo', date: '15 mars 2025' }
-                ]
+                fichiers: [] // Aucun fichier affiché
             },
             'CLIENT003': {
                 nom: 'Nouvelle Société Gamma',
                 logo: null,
+                hasLivrables: true,
                 driveLinkLivrables: null,
                 driveLinkNouveauxProjets: null,
                 fichiers: [
@@ -428,35 +429,41 @@
             }
             badge.innerHTML = badgeHtml;
 
-            // ===== LISTE DES FICHIERS (téléchargement) =====
-            const fileList = document.getElementById('fileList');
-            if (data.fichiers && data.fichiers.length > 0) {
-                let html = '<div class="file-list">';
-                data.fichiers.forEach(f => {
-                    html += `<div class="file-item">
-                                <div class="file-info">
-                                    <span class="file-name">${f.nom}</span>
-                                    <span class="file-meta">${f.date} • ${f.taille}</span>
-                                </div>
-                                <a href="#" class="file-action">Télécharger</a>
-                             </div>`;
-                });
-                html += '</div>';
-                fileList.innerHTML = html;
+            // ===== GESTION DE LA SECTION TÉLÉCHARGEMENT =====
+            const downloadSection = document.getElementById('downloadSection');
+            if (data.hasLivrables === false) {
+                // Masquer complètement la section
+                downloadSection.style.display = 'none';
             } else {
-                fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible pour le moment.</p>';
+                // Afficher la section et remplir la liste des fichiers
+                const fileList = document.getElementById('fileList');
+                if (data.fichiers && data.fichiers.length > 0) {
+                    let html = '<div class="file-list">';
+                    data.fichiers.forEach(f => {
+                        html += `<div class="file-item">
+                                    <div class="file-info">
+                                        <span class="file-name">${f.nom}</span>
+                                        <span class="file-meta">${f.date} • ${f.taille}</span>
+                                    </div>
+                                    <a href="#" class="file-action">Télécharger</a>
+                                 </div>`;
+                    });
+                    html += '</div>';
+                    fileList.innerHTML = html;
+                } else {
+                    fileList.innerHTML = '<p class="empty-state">Aucun fichier disponible pour le moment.</p>';
+                }
+
+                // Lien Google Drive pour les livrables
+                if (data.driveLinkLivrables) {
+                    document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
+                    document.getElementById('driveLinkDownload').style.display = 'inline-flex';
+                } else {
+                    document.getElementById('driveLinkDownload').style.display = 'none';
+                }
             }
 
-            // ===== LIENS GOOGLE DRIVE DISTINCTS =====
-            // Lien pour les livrables (téléchargement)
-            if (data.driveLinkLivrables) {
-                document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
-                document.getElementById('driveLinkDownload').style.display = 'inline-flex';
-            } else {
-                document.getElementById('driveLinkDownload').style.display = 'none';
-            }
-
-            // Lien pour les nouveaux projets (dépôt)
+            // ===== LIEN GOOGLE DRIVE POUR LES NOUVEAUX PROJETS =====
             if (data.driveLinkNouveauxProjets) {
                 document.getElementById('driveLinkUpload').href = data.driveLinkNouveauxProjets;
                 document.getElementById('driveLinkUpload').style.display = 'inline-flex';
