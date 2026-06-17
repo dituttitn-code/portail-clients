@@ -45,37 +45,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 25px;
-            flex-wrap: wrap;
         }
 
         .logo-img {
-            height: 70px;
+            height: 110px;
             width: auto;
             object-fit: contain;
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo-sub {
-            font-size: 0.5rem;
-            font-weight: 400;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-top: -4px;
         }
 
         .nav-back {
@@ -189,21 +164,22 @@
         }
 
         .footer-sub {
-            font-size: 0.5rem;
-            color: #94a3b8;
-            letter-spacing: 1.2px;
-            margin-top: -3px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #475569;
+            letter-spacing: 0.5px;
+            margin-top: -2px;
         }
 
         @media (max-width: 480px) {
             .login-card {
                 padding: 30px 20px;
             }
-            .logo-text {
-                font-size: 1.2rem;
-            }
             .logo-img {
-                height: 50px;
+                height: 80px;
+            }
+            .footer-sub {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -213,11 +189,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="logo%20CGT-2.jpeg" alt="Logo GeCoTelecom" class="logo-img">
-            <div class="logo-text-group">
-                <div class="logo-text">GeCoTelecom</div>
-                <div class="logo-sub">Compagnie Générale de Télécommunication</div>
-            </div>
+            <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img">
         </div>
         <a href="index.html" class="nav-back">← Retour à l'accueil</a>
     </header>
