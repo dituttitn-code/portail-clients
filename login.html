@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion Espace Client — CGT</title>
+    <title>Connexion — GeCoTelecom</title>
 
     <style>
         :root {
@@ -55,11 +55,27 @@
             object-fit: contain;
         }
 
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
         .logo-text {
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
             text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            font-size: 0.5rem;
+            font-weight: 400;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-top: -4px;
         }
 
         .nav-back {
@@ -159,10 +175,24 @@
 
         footer {
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px 20px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .footer-sub {
+            font-size: 0.5rem;
+            color: #94a3b8;
+            letter-spacing: 1.2px;
+            margin-top: -3px;
         }
 
         @media (max-width: 480px) {
@@ -170,7 +200,7 @@
                 padding: 30px 20px;
             }
             .logo-text {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             .logo-img {
                 height: 50px;
@@ -183,8 +213,11 @@
 
     <header>
         <div class="logo-container">
-            <img src="logo%20CGT-2.jpeg" alt="Logo CGT" class="logo-img">
-            <span class="logo-text">CGT</span>
+            <img src="logo%20CGT-2.jpeg" alt="Logo GeCoTelecom" class="logo-img">
+            <div class="logo-text-group">
+                <div class="logo-text">GeCoTelecom</div>
+                <div class="logo-sub">Compagnie Générale de Télécommunication</div>
+            </div>
         </div>
         <a href="index.html" class="nav-back">← Retour à l'accueil</a>
     </header>
@@ -217,15 +250,16 @@
     </div>
 
     <footer>
-        &copy; 2026 Compagnie Générale de Télécommunication
+        <div class="footer-brand">GeCoTelecom</div>
+        <div class="footer-sub">Compagnie Générale de Télécommunication</div>
+        <div style="margin-top: 6px;">&copy; 2026 GeCoTelecom</div>
     </footer>
 
     <script>
-        // ===== IDENTIFIANTS CLIENTS =====
         const clientCredentials = {
             'CLIENT001': { password: 'metro', nom: 'Metro Optic' },
             'CLIENT002': { password: 'Sofiene1978', nom: 'Sofiene Hosni' },
-            'CLIENT003': { password: 'gamma', nom: 'Nouvelle Société Gamma' }
+            'CLIENT003': { password: 'gamma', nom: 'Infrastructel' }
         };
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
