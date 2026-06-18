@@ -355,27 +355,29 @@
     </footer>
 
     <script>
+        // ===== DONNÉES CLIENTS AVEC NOUVEAUX LIENS =====
         const clientData = {
             'CLIENT001': {
                 nom: 'Metro Optic',
                 logo: 'logo%20metroptic.png',
-                driveLinkLivrables: 'https://drive.google.com/drive/folders/1mE6Yw2N4fOIuk3c_eVdAYHYNcUe2TNRZ?usp=drive_link',
-                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=drive_link'
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=sharing'
             },
             'CLIENT002': {
                 nom: 'Sofiene Hosni',
                 logo: null,
                 driveLinkLivrables: null,
-                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=drive_link'
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=sharing'
             },
             'CLIENT003': {
                 nom: 'Infrastructel',
                 logo: 'logo%20infra.jpg',
-                driveLinkLivrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=drive_link',
-                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1CY03ggtbYtdkkTHAxY-mJI8QY4z1RGTa?usp=drive_link'
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1CY03ggtbYtdkkTHAxY-mJI8QY4z1RGTa?usp=sharing'
             }
         };
 
+        // ===== RÉCUPÉRATION DU CODE =====
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code')?.toUpperCase();
 
@@ -384,6 +386,7 @@
         } else {
             const data = clientData[code];
 
+            // ===== BADGE CLIENT =====
             const badge = document.getElementById('clientBadge');
             let badgeHtml = `Client : ${data.nom} (${code})`;
             if (data.logo) {
@@ -391,6 +394,7 @@
             }
             badge.innerHTML = badgeHtml;
 
+            // ===== LIEN GOOGLE DRIVE POUR LES LIVRABLES =====
             if (data.driveLinkLivrables) {
                 document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
                 document.getElementById('driveLinkDownload').style.display = 'inline-flex';
@@ -401,6 +405,7 @@
                 instructions.forEach(el => el.style.display = 'none');
             }
 
+            // ===== LIEN GOOGLE DRIVE POUR LES NOUVEAUX PROJETS =====
             if (data.driveLinkNouveauxProjets) {
                 document.getElementById('driveLinkUpload').href = data.driveLinkNouveauxProjets;
                 document.getElementById('driveLinkUpload').style.display = 'inline-flex';
