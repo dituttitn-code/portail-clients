@@ -19,7 +19,7 @@
 
         /* ===== HEADER ===== */
         header {
-            background: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
             box-shadow: 0 4px 20px rgba(37,99,235,0.08);
             padding: 16px 5%;
             display: flex;
@@ -36,10 +36,21 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .logo img {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            background: transparent; /* Fond totalement transparent */
+            padding: 0;
+        }
+        .logo-img {
             height: 180px;
-            filter: drop-shadow(0 2px 8px rgba(37,99,235,0.15));
+            width: auto;
+            object-fit: contain;
+            /* Supprime le fond blanc de l'image PNG */
             mix-blend-mode: multiply;
+            /* Ombre légère pour intégration */
+            filter: drop-shadow(0 2px 8px rgba(37,99,235,0.10));
+            display: block;
         }
         .status-badge {
             background: linear-gradient(135deg, #2563eb, #3b82f6);
@@ -278,6 +289,14 @@
             width: 100%;
             max-width: 420px;
         }
+        .login-card .login-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-card .login-logo img {
+            height: 120px;
+            mix-blend-mode: multiply;
+        }
         .login-card h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 8px; }
         .login-card p { color: #64748b; margin-bottom: 25px; font-size: 1.1rem; }
         .login-card .form-group { margin-bottom: 20px; }
@@ -444,7 +463,7 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body { font-size: 1.1rem; }
-            .logo img { height: 120px; }
+            .logo-img { height: 120px; }
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.2rem; }
             .hero-image { max-height: 45vh; }
@@ -457,13 +476,15 @@
             .dashboard-header h1 { font-size: 2rem; }
             .file-item { flex-direction: column; align-items: flex-start; gap: 8px; }
             .map-container iframe { height: 280px; }
+            .login-card .login-logo img { height: 90px; }
         }
         @media (max-width: 480px) {
-            .logo img { height: 90px; }
+            .logo-img { height: 90px; }
             .hero-content h1 { font-size: 2.2rem; }
             .nav-links { gap: 10px; }
             .nav-item { font-size: 0.8rem; }
             .login-card { padding: 30px 20px; }
+            .login-card .login-logo img { height: 80px; }
             .btn-submit { width: 100%; text-align: center; }
             .map-container iframe { height: 220px; }
         }
@@ -477,8 +498,8 @@
 <!-- ============================================================ -->
 <header>
     <div class="header-top">
-        <div class="logo">
-            <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" />
+        <div class="logo-container">
+            <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img" />
         </div>
         <div class="status-badge">● Consultant en Télécommunication</div>
     </div>
@@ -621,8 +642,8 @@
 <section id="page-login" class="page">
     <div id="login-page" class="active">
         <div class="login-card">
-            <div style="text-align:center; margin-bottom:20px;">
-                <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" style="height:120px;" />
+            <div class="login-logo">
+                <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" />
             </div>
             <h1>🔐 Espace Client</h1>
             <p>Entrez vos identifiants</p>
@@ -764,35 +785,31 @@
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
+        const livrablesContent = document.getElementById('livrablesContent');
 
         let currentPage = 'home';
-        let loggedInClient = null; // stocke l'objet client connecté
+        let loggedInClient = null;
 
         // ============================================================
         // FONCTIONS DE NAVIGATION
         // ============================================================
         function showPage(pageId) {
-            // Masquer toutes les pages
             Object.keys(pages).forEach(id => {
                 pages[id].classList.remove('active');
             });
-            // Afficher la page cible
             if (pages[pageId]) {
                 pages[pageId].classList.add('active');
             }
-            // Mettre à jour les onglets (sauf pour login/dashboard qui sont spéciaux)
             navItems.forEach(item => {
                 const p = item.dataset.page;
                 item.classList.toggle('active', p === pageId);
             });
-            // Si on est sur login ou dashboard, désactiver les autres onglets
             if (pageId === 'login' || pageId === 'dashboard') {
                 navItems.forEach(item => {
                     if (item.dataset.page !== 'login' && item.dataset.page !== 'dashboard') {
                         item.classList.remove('active');
                     }
                 });
-                // Mettre en surbrillance "Espace Client" si sur login ou dashboard
                 clientNavBtn.classList.add('active');
             } else {
                 clientNavBtn.classList.remove('active');
@@ -807,7 +824,6 @@
             const client = clients[username];
             if (client && client.password === password) {
                 loggedInClient = client;
-                // Sauvegarder en sessionStorage pour persister
                 sessionStorage.setItem('loggedInClient', JSON.stringify(client));
                 showDashboard();
                 return true;
@@ -821,22 +837,19 @@
             loggedInClient = null;
             sessionStorage.removeItem('loggedInClient');
             showPage('home');
-            // Revenir à l'accueil après déconnexion
         }
 
         function showDashboard() {
             if (!loggedInClient) return;
-            // Mettre à jour le badge
             dashboardClientBadge.textContent = `👤 ${loggedInClient.nom} (${loggedInClient.code})`;
 
-            // Mettre à jour les liens Drive
             if (loggedInClient.livrables) {
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
-                document.querySelector('#livrablesContent').innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
+                livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
             } else {
                 livrablesDriveLink.style.display = 'none';
-                document.querySelector('#livrablesContent').innerHTML = `<p style="color:#94a3b8;">Aucun livrable disponible pour le moment.</p>`;
+                livrablesContent.innerHTML = `<p style="color:#94a3b8;">Aucun livrable disponible pour le moment.</p>`;
             }
 
             if (loggedInClient.depots) {
@@ -846,7 +859,6 @@
                 depotsDriveLink.style.display = 'none';
             }
 
-            // Afficher la page dashboard
             showPage('dashboard');
         }
 
@@ -858,7 +870,6 @@
             if (stored) {
                 try {
                     const client = JSON.parse(stored);
-                    // Vérifier que le client existe toujours
                     if (clients[client.nom] && clients[client.nom].password === client.password) {
                         loggedInClient = client;
                         showDashboard();
@@ -874,13 +885,10 @@
         // ============================================================
         // ÉVÉNEMENTS
         // ============================================================
-
-        // Navigation par onglets
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 const page = this.dataset.page;
                 if (page === 'login') {
-                    // Si déjà connecté, aller au dashboard
                     if (loggedInClient) {
                         showDashboard();
                     } else {
@@ -890,38 +898,30 @@
                         document.getElementById('password').value = '';
                     }
                 } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
-                    // Si on est sur login ou dashboard, on revient à l'accueil
                     showPage(page);
                 }
             });
         });
 
-        // Formulaire de login
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
             if (login(username, password)) {
                 loginError.classList.remove('show');
-                // Le dashboard s'affiche
-            } else {
-                // erreur déjà gérée
             }
         });
 
-        // Déconnexion
         logoutLink.addEventListener('click', function(e) {
             e.preventDefault();
             logout();
         });
 
-        // Retour à l'accueil depuis login
         backToHomeFromLogin.addEventListener('click', function(e) {
             e.preventDefault();
             showPage('home');
         });
 
-        // Retour à l'accueil depuis dashboard
         backToHomeFromDashboard.addEventListener('click', function(e) {
             e.preventDefault();
             showPage('home');
@@ -930,13 +930,10 @@
         // ============================================================
         // INITIALISATION
         // ============================================================
-        // Tenter de restaurer la session
         if (!restoreSession()) {
-            // Si pas de session, afficher l'accueil
             showPage('home');
         }
 
-        // Forcer l'onglet actif si on est sur home après restauration
         if (currentPage === 'home') {
             navItems.forEach(item => {
                 if (item.dataset.page === 'home') item.classList.add('active');
@@ -945,7 +942,6 @@
             clientNavBtn.classList.remove('active');
         }
 
-        // Si on est sur dashboard mais que pour une raison la session est perdue, logout
         if (currentPage === 'dashboard' && !loggedInClient) {
             logout();
         }
