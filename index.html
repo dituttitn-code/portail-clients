@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeCoTelecom — Expertise Réseaux</title>
-
     <style>
         /* ===== RESET & BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,18 +38,20 @@
         .logo-container {
             display: flex;
             align-items: center;
-            background: transparent; /* Fond totalement transparent */
+            background: transparent;
             padding: 0;
+            margin: 0;
+            border: none;
         }
         .logo-img {
             height: 180px;
             width: auto;
             object-fit: contain;
-            /* Supprime le fond blanc de l'image PNG */
-            mix-blend-mode: multiply;
-            /* Ombre légère pour intégration */
-            filter: drop-shadow(0 2px 8px rgba(37,99,235,0.10));
             display: block;
+            /* Forcer la transparence */
+            mix-blend-mode: darken;
+            filter: drop-shadow(0 2px 8px rgba(37,99,235,0.10)) brightness(1.05) contrast(1.1);
+            background: transparent;
         }
         .status-badge {
             background: linear-gradient(135deg, #2563eb, #3b82f6);
@@ -162,7 +163,7 @@
             line-height: 1.9;
         }
 
-        /* ===== PAGES INTÉRIEURES (propos, services, contact) ===== */
+        /* ===== PAGES INTÉRIEURES ===== */
         .page-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -278,9 +279,7 @@
             padding: 40px 20px;
             background: #f0f9ff;
         }
-        #login-page.active {
-            display: flex;
-        }
+        #login-page.active { display: flex; }
         .login-card {
             background: #fff;
             padding: 40px;
@@ -295,7 +294,8 @@
         }
         .login-card .login-logo img {
             height: 120px;
-            mix-blend-mode: multiply;
+            mix-blend-mode: darken;
+            filter: brightness(1.05) contrast(1.1);
         }
         .login-card h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 8px; }
         .login-card p { color: #64748b; margin-bottom: 25px; font-size: 1.1rem; }
@@ -434,10 +434,7 @@
             border-radius: 8px;
             margin: 15px 0;
         }
-        .notification-box a {
-            color: #2563eb;
-            font-weight: 600;
-        }
+        .notification-box a { color: #2563eb; font-weight: 600; }
 
         .back-link {
             display: inline-block;
@@ -490,7 +487,6 @@
         }
     </style>
 </head>
-
 <body>
 
 <!-- ============================================================ -->
@@ -731,15 +727,12 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT UNIQUE -->
+<!-- SCRIPT UNIQUE (inchangé) -->
 <!-- ============================================================ -->
 <script>
     (function() {
         'use strict';
 
-        // ============================================================
-        // DONNÉES CLIENTS
-        // ============================================================
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
@@ -764,9 +757,6 @@
             }
         };
 
-        // ============================================================
-        // ÉLÉMENTS DOM
-        // ============================================================
         const navItems = document.querySelectorAll('.nav-item[data-page]');
         const pages = {
             home: document.getElementById('page-home'),
@@ -790,9 +780,6 @@
         let currentPage = 'home';
         let loggedInClient = null;
 
-        // ============================================================
-        // FONCTIONS DE NAVIGATION
-        // ============================================================
         function showPage(pageId) {
             Object.keys(pages).forEach(id => {
                 pages[id].classList.remove('active');
@@ -817,9 +804,6 @@
             currentPage = pageId;
         }
 
-        // ============================================================
-        // GESTION DE LA CONNEXION
-        // ============================================================
         function login(username, password) {
             const client = clients[username];
             if (client && client.password === password) {
@@ -842,7 +826,6 @@
         function showDashboard() {
             if (!loggedInClient) return;
             dashboardClientBadge.textContent = `👤 ${loggedInClient.nom} (${loggedInClient.code})`;
-
             if (loggedInClient.livrables) {
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
@@ -851,20 +834,15 @@
                 livrablesDriveLink.style.display = 'none';
                 livrablesContent.innerHTML = `<p style="color:#94a3b8;">Aucun livrable disponible pour le moment.</p>`;
             }
-
             if (loggedInClient.depots) {
                 depotsDriveLink.href = loggedInClient.depots;
                 depotsDriveLink.style.display = 'inline-block';
             } else {
                 depotsDriveLink.style.display = 'none';
             }
-
             showPage('dashboard');
         }
 
-        // ============================================================
-        // RESTAURER LA SESSION
-        // ============================================================
         function restoreSession() {
             const stored = sessionStorage.getItem('loggedInClient');
             if (stored) {
@@ -882,9 +860,6 @@
             return false;
         }
 
-        // ============================================================
-        // ÉVÉNEMENTS
-        // ============================================================
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 const page = this.dataset.page;
@@ -927,9 +902,6 @@
             showPage('home');
         });
 
-        // ============================================================
-        // INITIALISATION
-        // ============================================================
         if (!restoreSession()) {
             showPage('home');
         }
