@@ -34,7 +34,7 @@
         header {
             background-color: white;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            padding: 20px 5%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -48,7 +48,7 @@
         }
 
         .logo-img {
-            height: 110px;
+            height: 130px;
             width: auto;
             object-fit: contain;
         }
@@ -58,7 +58,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: color 0.2s;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .nav-back:hover {
@@ -75,50 +75,96 @@
 
         .login-card {
             background: white;
-            border-radius: 16px;
-            padding: 40px 35px;
-            max-width: 450px;
+            border-radius: 20px;
+            padding: 50px 45px;
+            max-width: 520px;
             width: 100%;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.12);
             border: 1px solid #e2e8f0;
         }
 
         .login-card h1 {
-            font-size: 1.8rem;
+            font-size: 2.4rem;
             color: var(--primary-color);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .login-card p {
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
             font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
         }
 
-        .form-group input {
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px 50px 14px 18px;
             border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 10px;
+            font-size: 1.15rem;
             font-family: inherit;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: white;
         }
 
-        .form-group input:focus {
+        .password-wrapper input:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: white;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 8px;
+            color: #94a3b8;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-color);
         }
 
         .btn-submit {
@@ -126,12 +172,13 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
+            padding: 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: background-color 0.2s;
+            margin-top: 8px;
         }
 
         .btn-submit:hover {
@@ -140,9 +187,13 @@
 
         .error-msg {
             color: #dc2626;
-            font-size: 0.9rem;
-            margin-top: 10px;
+            font-size: 1rem;
+            margin-top: 12px;
             display: none;
+            padding: 12px 16px;
+            background-color: #fee2e2;
+            border-radius: 8px;
+            border: 1px solid #fca5a5;
         }
 
         .error-msg.show {
@@ -151,21 +202,21 @@
 
         footer {
             text-align: center;
-            padding: 20px 20px;
+            padding: 25px 20px;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             border-top: 1px solid #e2e8f0;
         }
 
         .footer-brand {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
             letter-spacing: 1px;
         }
 
         .footer-sub {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             color: #475569;
             letter-spacing: 0.5px;
@@ -176,11 +227,26 @@
             .login-card {
                 padding: 30px 20px;
             }
+            .login-card h1 {
+                font-size: 1.8rem;
+            }
             .logo-img {
                 height: 80px;
             }
             .footer-sub {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
+            }
+            .password-wrapper input {
+                padding: 12px 44px 12px 14px;
+                font-size: 1rem;
+            }
+            .form-group input[type="text"] {
+                padding: 12px 14px;
+                font-size: 1rem;
+            }
+            .btn-submit {
+                font-size: 1rem;
+                padding: 14px;
             }
         }
     </style>
@@ -200,15 +266,22 @@
             <h1>🔐 Espace Client</h1>
             <p>Entrez votre identifiant et votre mot de passe.</p>
 
-            <form id="loginForm">
+            <form id="loginForm" autocomplete="off">
                 <div class="form-group">
                     <label for="clientUsername">Identifiant</label>
                     <input type="text" id="clientUsername" placeholder="Ex: Metroptic" required autofocus>
                 </div>
+
                 <div class="form-group">
                     <label for="clientPassword">Mot de passe</label>
-                    <input type="password" id="clientPassword" placeholder="Votre mot de passe" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="clientPassword" placeholder="Votre mot de passe" required>
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher/masquer le mot de passe">
+                            👁️
+                        </button>
+                    </div>
                 </div>
+
                 <button type="submit" class="btn-submit">Se connecter</button>
                 <div id="errorMsg" class="error-msg">❌ Identifiant ou mot de passe invalide. Veuillez réessayer.</div>
             </form>
@@ -229,6 +302,18 @@
             'Infra': { code: 'CLIENT003', password: 'InfraS9300!' }
         };
 
+        // ===== AFFICHAGE / MASQUAGE DU MOT DE PASSE =====
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('clientPassword');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            // Changer l'icône selon l'état
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
+
+        // ===== GESTION DU FORMULAIRE =====
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('clientUsername').value.trim();
@@ -241,7 +326,10 @@
                 window.location.href = `dashboard.html?code=${encodeURIComponent(code)}`;
             } else {
                 errorMsg.classList.add('show');
-                setTimeout(() => errorMsg.classList.remove('show'), 3000);
+                // Réinitialiser le champ mot de passe pour plus de sécurité
+                passwordInput.value = '';
+                passwordInput.focus();
+                setTimeout(() => errorMsg.classList.remove('show'), 4000);
             }
         });
     </script>
