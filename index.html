@@ -107,31 +107,34 @@
             display: block;
         }
 
-        /* ===== ACCUEIL : photo en haut, texte en bas ===== */
+        /* ===== ACCUEIL : photo pleine largeur en haut, texte en bas ===== */
         .hero {
             display: flex;
             flex-direction: column;
             gap: 40px;
             background-color: #0f172a;
             color: white;
-            padding: 40px 5%;
+            padding: 0;
             border-radius: 20px;
             margin-bottom: 30px;
+            overflow: hidden;
         }
 
         .hero-image {
             width: 100%;
-            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
         .hero-image img {
             width: 100%;
             height: auto;
-            max-height: 500px;
+            max-height: 600px;
             object-fit: cover;
             display: block;
+        }
+
+        .hero-text {
+            padding: 0 5% 50px 5%;
         }
 
         .hero-text h1 {
@@ -372,8 +375,8 @@
         }
 
         @media (max-width: 768px) {
-            .hero {
-                padding: 30px 5%;
+            .hero-text {
+                padding: 0 5% 30px 5%;
             }
             .hero-text h1 {
                 font-size: 2.6rem;
@@ -382,7 +385,7 @@
                 font-size: 1.2rem;
             }
             .hero-image img {
-                max-height: 300px;
+                max-height: 350px;
             }
             .logo-img {
                 height: 100px;
@@ -441,7 +444,7 @@
                 height: 250px;
             }
             .hero-image img {
-                max-height: 200px;
+                max-height: 250px;
             }
         }
     </style>
@@ -466,7 +469,7 @@
         </div>
     </header>
 
-    <!-- ===== PAGE ACCUEIL (photo en haut, texte en bas) ===== -->
+    <!-- ===== PAGE ACCUEIL (photo pleine largeur en haut, texte en dessous) ===== -->
     <section id="page-accueil" class="page active">
         <div class="hero">
             <div class="hero-image">
