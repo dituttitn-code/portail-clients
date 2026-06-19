@@ -208,8 +208,8 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px;
             margin-top: 25px;
         }
 
@@ -220,6 +220,8 @@
             border-top: 4px solid var(--accent-color);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
@@ -229,7 +231,7 @@
 
         .service-card h3 {
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--primary-color);
             font-size: 1.2rem;
         }
@@ -239,6 +241,7 @@
             padding-left: 20px;
             color: var(--text-muted);
             font-size: 0.95rem;
+            flex: 1;
         }
 
         .service-card ul li {
@@ -452,6 +455,9 @@
             .contact-form .form-row {
                 grid-template-columns: 1fr;
             }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -557,18 +563,44 @@
                     </ul>
                 </div>
 
-                <!-- ===== AUTRES SERVICES (conservés) ===== -->
+                <!-- ===== DEMANDE DE PERMIS DDP ===== -->
                 <div class="service-card">
                     <h3>Demande de Permis DDP</h3>
-                    <p>Prise en charge, montage technique et suivi complet des dossiers administratifs et formulaires officiels de Demande de Permis de Structure.</p>
+                    <ul>
+                        <li><strong>Prise en charge réglementaire :</strong> Constitution des dossiers et obtention des autorisations auprès des autorités compétentes et des ministères (Transports, Municipalités, réseaux ferroviaires et lignes haute tension).</li>
+                        <li><strong>Traitement des demandes de permis (DDP) sur l'application DUSS :</strong> Pilotage intégral des demandes de permis via la plateforme DUSS pour le compte des grands opérateurs (Hydro-Québec, Bell, Télébec, Telus).</li>
+                        <li><strong>Coordination tiers :</strong> Gestion et suivi des requêtes auprès des entreprises de télécommunications partenaires.</li>
+                        <li><strong>Suivi opérationnel :</strong> Accompagnement et contrôle des dossiers, du dépôt initial jusqu'au feu vert pour le déploiement des travaux de construction.</li>
+                        <li><strong>Gestion des litiges et arbitrages :</strong> Analyse rigoureuse des refus de permis, ingénierie de solutions alternatives et ajustement des dossiers pour garantir la conformité et décrocher les validations.</li>
+                    </ul>
                 </div>
+
+                <!-- ===== SURVEILLANCE DE CHANTIER ===== -->
                 <div class="service-card">
                     <h3>Surveillance de chantier</h3>
-                    <p>Suivi technique des travaux sur site, contrôle de la conformité aux plans d'ingénierie approuvés et application stricte des normes de sécurité.</p>
+                    <ul>
+                        <li><strong>Supervision technique :</strong> Suivi rigoureux des travaux sur le terrain afin d'assurer la conformité de l'installation aux plans d'ingénierie approuvés, aux permis émis ainsi qu'aux exigences des différents intervenants.</li>
+                        <li><strong>Contrôle de la qualité :</strong> Vérification continue de la qualité des travaux exécutés, contrôle des matériaux utilisés et validation du respect des méthodes d'installation prescrites.</li>
+                        <li><strong>Vérification de conformité :</strong> Validation des dégagements, des hauteurs, des ancrages, des charges, des équipements installés et des configurations réalisées sur les structures existantes.</li>
+                        <li><strong>Inspection TQC :</strong> Inspection des travaux afin d'assurer la conformité aux plans « Tel Que Construit » (TQC) et à la documentation technique finale.</li>
+                        <li><strong>Coordination terrain :</strong> Coordination avec les entrepreneurs, les releveurs, les concepteurs, les chargés de projet et les représentants du client afin de résoudre efficacement les problématiques techniques rencontrées sur le chantier.</li>
+                        <li><strong>Prévention des non-conformités :</strong> Détection rapide des écarts entre les conditions réelles du terrain et les plans approuvés afin de minimiser les impacts sur les coûts, les délais et la qualité des travaux.</li>
+                        <li><strong>Production de rapports :</strong> Production de rapports d'inspection détaillés, documentation photographique des travaux et recommandations techniques permettant d'assurer le suivi et la traçabilité du projet.</li>
+                        <li><strong>Vérification finale :</strong> Vérification finale des installations avant la fermeture du projet afin de confirmer la conformité des travaux réalisés et de limiter les reprises ou corrections ultérieures.</li>
+                    </ul>
                 </div>
+
+                <!-- ===== GESTION DE PROJET ===== -->
                 <div class="service-card">
                     <h3>Gestion de projet</h3>
-                    <p>Coordination globale, planification stratégique, liaison entre intervenants et optimisation des ressources pour garantir le respect des budgets et échéanciers.</p>
+                    <ul>
+                        <li><strong>Planification et coordination :</strong> Planification, organisation et coordination de l'ensemble des activités du projet afin d'assurer son bon déroulement de la phase de conception jusqu'à la livraison finale.</li>
+                        <li><strong>Gestion des ressources :</strong> Gestion des ressources humaines, matérielles et financières, élaboration des échéanciers, suivi de l'avancement des travaux et contrôle des coûts.</li>
+                        <li><strong>Coordination des intervenants :</strong> Coordination efficace entre les différents intervenants, clients, fournisseurs et partenaires pour assurer une communication fluide et une prise de décision rapide.</li>
+                        <li><strong>Analyse des risques :</strong> Réalisation d'analyses de risques techniques et opérationnels afin d'identifier rapidement les obstacles potentiels et de mettre en place des solutions adaptées.</li>
+                        <li><strong>Optimisation des ressources :</strong> Mise en place de stratégies d'optimisation des ressources, gestion des risques et résolution efficace des problématiques afin de garantir le respect des objectifs, des budgets, des échéanciers et des exigences du client.</li>
+                        <li><strong>Approche proactive :</strong> Approche proactive permettant d'anticiper les embûches techniques, de réduire les délais d'intervention et d'accélérer l'exécution des travaux tout en maintenant les plus hauts standards de qualité et de sécurité.</li>
+                    </ul>
                 </div>
 
             </div>
