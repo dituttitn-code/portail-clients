@@ -17,8 +17,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f9ff;
             color: #0f172a;
-            line-height: 1.8;
-            font-size: 1.2rem;
+            line-height: 1.9;
+            font-size: 1.3rem;
+            /* Taille de base augmentée */
             min-height: 100vh;
         }
 
@@ -48,12 +49,16 @@
         .logo-container {
             display: flex;
             align-items: center;
+            background: transparent;
+            /* Fond transparent */
         }
 
         .logo-img {
             height: 180px;
             width: auto;
             object-fit: contain;
+            /* Si l'image a un fond blanc, ce filtre le rend transparent */
+            mix-blend-mode: multiply;
             filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.15));
         }
 
@@ -62,7 +67,7 @@
             color: white;
             padding: 10px 24px;
             border-radius: 40px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
             white-space: nowrap;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
@@ -80,7 +85,7 @@
             color: #475569;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             padding-bottom: 4px;
@@ -106,6 +111,7 @@
             border-bottom: none;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
             transition: all 0.3s ease;
+            font-size: 1.05rem;
         }
 
         .nav-item.client:hover {
@@ -168,7 +174,7 @@
         }
 
         .hero-content h1 {
-            font-size: 3.8rem;
+            font-size: 4.2rem;
             line-height: 1.2;
             margin-bottom: 20px;
             font-weight: 700;
@@ -188,7 +194,7 @@
 
         .hero-content p {
             color: #cbd5e1;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             max-width: 850px;
             margin: 0 auto;
             text-align: justify;
@@ -207,7 +213,7 @@
         }
 
         .page-content h2 {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             color: #1e293b;
             margin-bottom: 20px;
             position: relative;
@@ -226,7 +232,7 @@
         }
 
         .page-content p {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             color: #334155;
             line-height: 1.9;
             margin-bottom: 20px;
@@ -255,15 +261,19 @@
         }
 
         .about-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: #1e293b;
             margin-bottom: 10px;
+        }
+
+        .about-card p {
+            font-size: 1.15rem;
         }
 
         /* ===== SERVICES ===== */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
@@ -285,19 +295,21 @@
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: #1e293b;
             margin-bottom: 15px;
         }
 
         .service-card ul {
             padding-left: 22px;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
+            /* Taille des listes augmentée */
             color: #475569;
         }
 
         .service-card ul li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            line-height: 1.8;
         }
 
         /* ===== CONTACT ===== */
@@ -316,7 +328,7 @@
             display: flex;
             align-items: center;
             gap: 18px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .contact-item strong {
@@ -350,7 +362,7 @@
             font-weight: 600;
             color: #1e293b;
             margin-bottom: 8px;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
         }
 
         .contact-form input,
@@ -359,7 +371,7 @@
             padding: 16px 20px;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-family: inherit;
             transition: border-color 0.3s, box-shadow 0.3s;
             background: white;
@@ -384,7 +396,7 @@
             padding: 16px 48px;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
@@ -421,13 +433,13 @@
 
         .footer-brand {
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: white;
             letter-spacing: 0px;
         }
 
         .footer-sub {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 400;
             color: #94a3b8;
             letter-spacing: 0.5px;
@@ -435,7 +447,7 @@
         }
 
         .footer-url {
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-top: 6px;
         }
 
@@ -452,14 +464,17 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            body {
+                font-size: 1.1rem;
+            }
             .logo-img {
                 height: 120px;
             }
             .hero-content h1 {
-                font-size: 2.6rem;
+                font-size: 2.8rem;
             }
             .hero-content p {
-                font-size: 1.15rem;
+                font-size: 1.2rem;
             }
             .hero-image {
                 max-height: 45vh;
@@ -468,15 +483,24 @@
                 gap: 15px;
             }
             .nav-item {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
             .nav-item.client {
                 padding: 6px 16px;
-                font-size: 0.85rem;
+                font-size: 0.9rem;
             }
             .status-badge {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
                 padding: 6px 16px;
+            }
+            .page-content h2 {
+                font-size: 2.4rem;
+            }
+            .service-card ul {
+                font-size: 1rem;
+            }
+            .service-card h3 {
+                font-size: 1.4rem;
             }
             .services-grid {
                 grid-template-columns: 1fr;
@@ -502,9 +526,6 @@
                 padding: 40px 5%;
                 border-radius: 16px 16px 0 0;
             }
-            .page-content h2 {
-                font-size: 2.2rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -512,13 +533,13 @@
                 height: 90px;
             }
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .nav-links {
                 gap: 10px;
             }
             .nav-item {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
             .btn-submit {
                 width: 100%;
@@ -529,6 +550,12 @@
             }
             .hero-image {
                 max-height: 35vh;
+            }
+            .page-content h2 {
+                font-size: 2rem;
+            }
+            .service-card ul {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -597,6 +624,7 @@
             <h2>Nos Services</h2>
             <div class="services-grid">
 
+                <!-- ===== INSPECTIONS ET RELEVÉS ===== -->
                 <div class="service-card">
                     <h3>🔍 Inspections et relevés</h3>
                     <ul>
@@ -610,6 +638,7 @@
                     </ul>
                 </div>
 
+                <!-- ===== CONCEPTION ===== -->
                 <div class="service-card">
                     <h3>📐 Conception</h3>
                     <ul>
@@ -620,6 +649,7 @@
                     </ul>
                 </div>
 
+                <!-- ===== DEMANDE DE PERMIS DDP ===== -->
                 <div class="service-card">
                     <h3>📄 Demande de Permis DDP</h3>
                     <ul>
@@ -631,6 +661,7 @@
                     </ul>
                 </div>
 
+                <!-- ===== SURVEILLANCE DE CHANTIER ===== -->
                 <div class="service-card">
                     <h3>🛠️ Surveillance de chantier</h3>
                     <ul>
@@ -645,6 +676,7 @@
                     </ul>
                 </div>
 
+                <!-- ===== GESTION DE PROJET ===== -->
                 <div class="service-card">
                     <h3>📊 Gestion de projet</h3>
                     <ul>
@@ -684,7 +716,7 @@
             </div>
 
             <div class="contact-form">
-                <h3 style="font-size:1.8rem; color:#1e293b; margin-bottom:25px;">Envoyez-nous un message</h3>
+                <h3 style="font-size:2rem; color:#1e293b; margin-bottom:25px;">Envoyez-nous un message</h3>
                 <form action="#">
                     <div class="form-row">
                         <div class="form-group">
@@ -730,7 +762,7 @@
         <div class="footer-url">
             <a href="https://www.gecotelecom.com" target="_blank">www.gecotelecom.com</a>
         </div>
-        <div style="margin-top: 8px; font-size:0.8rem; color:#64748b;">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
+        <div style="margin-top: 8px; font-size:0.85rem; color:#64748b;">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
     </footer>
 
     <script>
