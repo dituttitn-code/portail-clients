@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8faff;
+            background: #f5f9ff;
             color: #0f172a;
             line-height: 1.9;
             font-size: 1.3rem;
@@ -276,7 +276,7 @@
             align-items: center;
             min-height: 70vh;
             padding: 40px 20px;
-            background: #f8faff;
+            background: #f5f9ff;
         }
         #login-page.active { display: flex; }
         .login-card {
@@ -495,8 +495,19 @@
             color: #94a3b8;
             margin-top: 60px;
         }
-        .footer-brand { font-weight: 700; font-size: 2rem; color: #fff; }
-        .footer-sub { font-size: 1.1rem; color: #94a3b8; margin-top: -2px; }
+        .footer-brand {
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .footer-sub {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+            margin-top: -2px;
+        }
         .footer-copy { font-size: 0.9rem; color: #64748b; margin-top: 8px; }
 
         /* ===== RESPONSIVE ===== */
@@ -518,6 +529,8 @@
             .login-card .login-logo img { height: 90px; }
             .login-card h1 { font-size: 2rem; }
             .dashboard-actions { width: 100%; justify-content: flex-end; }
+            .footer-brand { font-size: 1.8rem; }
+            .footer-sub { font-size: 1rem; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -530,6 +543,8 @@
             .btn-submit { width: 100%; text-align: center; }
             .map-container iframe { height: 220px; }
             .dashboard-actions { flex-direction: row; gap: 10px; }
+            .footer-brand { font-size: 1.5rem; }
+            .footer-sub { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -541,7 +556,7 @@
 <header>
     <div class="header-top">
         <div class="logo-container">
-            <img src="logo-3%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img" />
+            <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img" />
         </div>
         <div class="status-badge">● Consultant en Télécommunication</div>
     </div>
@@ -685,7 +700,7 @@
     <div id="login-page" class="active">
         <div class="login-card">
             <div class="login-logo">
-                <img src="logo-3%20GeCoTelecom.png" alt="GeCoTelecom" />
+                <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" />
             </div>
             <h1>🔐 Espace Client</h1>
             <p>Entrez vos identifiants</p>
