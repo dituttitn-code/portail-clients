@@ -107,17 +107,31 @@
             display: block;
         }
 
-        /* ===== ACCUEIL ===== */
+        /* ===== ACCUEIL : photo en haut, texte en bas ===== */
         .hero {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 50px;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
             background-color: #0f172a;
             color: white;
-            padding: 60px 5%;
+            padding: 40px 5%;
             border-radius: 20px;
             margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
         }
 
         .hero-text h1 {
@@ -135,20 +149,6 @@
             color: #cbd5e1;
             font-size: 1.4rem;
             text-align: justify;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         /* ===== AUTRES PAGES ===== */
@@ -373,8 +373,7 @@
 
         @media (max-width: 768px) {
             .hero {
-                grid-template-columns: 1fr;
-                padding: 40px 5%;
+                padding: 30px 5%;
             }
             .hero-text h1 {
                 font-size: 2.6rem;
@@ -382,8 +381,8 @@
             .hero-text p {
                 font-size: 1.2rem;
             }
-            .hero-image {
-                height: 250px;
+            .hero-image img {
+                max-height: 300px;
             }
             .logo-img {
                 height: 100px;
@@ -441,6 +440,9 @@
             .map-container iframe {
                 height: 250px;
             }
+            .hero-image img {
+                max-height: 200px;
+            }
         }
     </style>
 </head>
@@ -464,20 +466,20 @@
         </div>
     </header>
 
-    <!-- PAGE ACCUEIL -->
+    <!-- ===== PAGE ACCUEIL (photo en haut, texte en bas) ===== -->
     <section id="page-accueil" class="page active">
         <div class="hero">
+            <div class="hero-image">
+                <img src="poteau%20HQ-Bell.jpg" alt="Poteau HQ-Bell">
+            </div>
             <div class="hero-text">
                 <h1>EXPERTISE EN RÉSEAUX DE <br><span>TÉLÉCOMMUNICATIONS</span></h1>
                 <p>GeCoTelecom est une compagnie spécialisée dans le domaine de télécommunications, relevées, calcul de charge et conception extérieure de structure aérienne et souterraine en réseau unique ou conjoint. Notre expertise dans le domaine de l'ingénierie de détail assure des services professionnels et de qualité, tant au niveau du respect des échéanciers.</p>
             </div>
-            <div class="hero-image">
-                <img src="poteau%20HQ-Bell.jpg" alt="Poteau HQ-Bell">
-            </div>
         </div>
     </section>
 
-    <!-- PAGE À PROPOS -->
+    <!-- ===== PAGE À PROPOS ===== -->
     <section id="page-propos" class="page">
         <h2>À propos de nous</h2>
         <p>Fondée sur de solides compétences techniques et une connaissance approfondie des infrastructures réseaux, la <strong>Compagnie Générale de Télécommunication (GeCoTelecom)</strong> se positionne comme un partenaire stratégique de confiance pour les opérateurs et entreprises de télécommunication. Nous transformons les contraintes du terrain en solutions d'ingénierie viables, précises et durables.</p>
@@ -493,10 +495,11 @@
         </div>
     </section>
 
-    <!-- PAGE SERVICES -->
+    <!-- ===== PAGE SERVICES ===== -->
     <section id="page-services" class="page">
         <h2>Nos Services</h2>
         <div class="services-grid">
+
             <div class="service-card">
                 <h3>Inspections et relevés</h3>
                 <ul>
@@ -509,6 +512,7 @@
                     <li>Relevé d'équipement coaxial.</li>
                 </ul>
             </div>
+
             <div class="service-card">
                 <h3>Conception</h3>
                 <ul>
@@ -518,6 +522,7 @@
                     <li>Calcul de charge, calcul de flèche, plan scellé pour les compagnies ferroviaires.</li>
                 </ul>
             </div>
+
             <div class="service-card">
                 <h3>Demande de Permis DDP</h3>
                 <ul>
@@ -528,6 +533,7 @@
                     <li><strong>Gestion des litiges :</strong> Analyse des refus de permis et ingénierie de solutions alternatives.</li>
                 </ul>
             </div>
+
             <div class="service-card">
                 <h3>Surveillance de chantier</h3>
                 <ul>
@@ -541,6 +547,7 @@
                     <li><strong>Vérification finale :</strong> Vérification des installations avant la fermeture du projet.</li>
                 </ul>
             </div>
+
             <div class="service-card">
                 <h3>Gestion de projet</h3>
                 <ul>
@@ -552,12 +559,14 @@
                     <li><strong>Approche proactive :</strong> Anticipation des embûches techniques.</li>
                 </ul>
             </div>
+
         </div>
     </section>
 
-    <!-- PAGE CONTACT -->
+    <!-- ===== PAGE CONTACT ===== -->
     <section id="page-contact" class="page">
         <h2>Contact</h2>
+
         <div class="contact-info">
             <div class="contact-item">
                 <strong>📍 Adresse</strong>
@@ -572,6 +581,7 @@
                 <a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a>
             </div>
         </div>
+
         <div class="contact-form">
             <h3 style="font-size:1.8rem; color:#1e293b; margin-bottom:25px;">Envoyez-nous un message</h3>
             <form action="#">
@@ -596,6 +606,8 @@
                 <button type="submit" class="btn-submit">📩 Envoyer</button>
             </form>
         </div>
+
+        <!-- Google Maps en mode SATELLITE -->
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.248179429733!2d-73.77143112426028!3d45.58248957225453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc92f3c8c7a8e1b%3A0x1c6b1c8f3c0e8f0!2s2555%20Boulevard%20du%20Havre%20des%20Iles%2C%20Laval%2C%20QC%20H7W%204R4!5e0!3m2!1sfr!2sca!4v1740000000000&t=k"
@@ -604,6 +616,7 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
+
     </section>
 
     <footer>
@@ -639,7 +652,6 @@
             });
         });
 
-        // Force l'affichage de l'accueil au chargement
         document.addEventListener('DOMContentLoaded', function() {
             showPage('accueil');
         });
