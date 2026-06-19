@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f9ff;
+            background: #f8faff;
             color: #0f172a;
             line-height: 1.9;
             font-size: 1.3rem;
@@ -18,8 +18,8 @@
 
         /* ===== HEADER ===== */
         header {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-            box-shadow: 0 4px 20px rgba(37,99,235,0.08);
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(37,99,235,0.06);
             padding: 16px 5%;
             display: flex;
             flex-direction: column;
@@ -48,9 +48,8 @@
             width: auto;
             object-fit: contain;
             display: block;
-            /* Forcer la transparence */
             mix-blend-mode: darken;
-            filter: drop-shadow(0 2px 8px rgba(37,99,235,0.10)) brightness(1.05) contrast(1.1);
+            filter: drop-shadow(0 2px 8px rgba(37,99,235,0.08)) brightness(1.02) contrast(1.05);
             background: transparent;
         }
         .status-badge {
@@ -277,7 +276,7 @@
             align-items: center;
             min-height: 70vh;
             padding: 40px 20px;
-            background: #f0f9ff;
+            background: #f8faff;
         }
         #login-page.active { display: flex; }
         .login-card {
@@ -286,7 +285,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
         }
         .login-card .login-logo {
             text-align: center;
@@ -295,18 +294,24 @@
         .login-card .login-logo img {
             height: 120px;
             mix-blend-mode: darken;
-            filter: brightness(1.05) contrast(1.1);
+            filter: brightness(1.02) contrast(1.05);
         }
-        .login-card h1 { font-size: 2.2rem; color: #1e293b; margin-bottom: 8px; }
-        .login-card p { color: #64748b; margin-bottom: 25px; font-size: 1.1rem; }
-        .login-card .form-group { margin-bottom: 20px; }
-        .login-card .form-group label { display: block; font-weight: 600; color: #1e293b; margin-bottom: 6px; }
+        .login-card h1 { font-size: 2.4rem; color: #1e293b; margin-bottom: 8px; }
+        .login-card p { color: #64748b; margin-bottom: 25px; font-size: 1.2rem; }
+        .login-card .form-group { margin-bottom: 22px; }
+        .login-card .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
         .login-card .form-group input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px 18px;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: border 0.3s;
         }
         .login-card .form-group input:focus {
@@ -314,14 +319,35 @@
             border-color: #2563eb;
             box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
         }
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 50px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s;
+            padding: 4px;
+        }
+        .toggle-password:hover { color: #1e293b; }
         .login-card .btn-submit {
             width: 100%;
             background: linear-gradient(135deg, #2563eb, #3b82f6);
             color: #fff;
             border: none;
-            padding: 16px;
+            padding: 18px;
             border-radius: 10px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s;
@@ -367,6 +393,31 @@
             padding: 8px 20px;
             border-radius: 30px;
             font-weight: 600;
+        }
+        .dashboard-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .dashboard-actions .back-link,
+        .dashboard-actions .logout-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        .dashboard-actions .back-link:hover,
+        .dashboard-actions .logout-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        .dashboard-actions .logout-link {
+            color: #b91c1c;
+        }
+        .dashboard-actions .logout-link:hover {
+            color: #7f1d1d;
         }
 
         .section-card {
@@ -436,15 +487,6 @@
         }
         .notification-box a { color: #2563eb; font-weight: 600; }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 25px;
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .back-link:hover { text-decoration: underline; }
-
         /* ===== FOOTER ===== */
         footer {
             text-align: center;
@@ -474,6 +516,8 @@
             .file-item { flex-direction: column; align-items: flex-start; gap: 8px; }
             .map-container iframe { height: 280px; }
             .login-card .login-logo img { height: 90px; }
+            .login-card h1 { font-size: 2rem; }
+            .dashboard-actions { width: 100%; justify-content: flex-end; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -482,8 +526,10 @@
             .nav-item { font-size: 0.8rem; }
             .login-card { padding: 30px 20px; }
             .login-card .login-logo img { height: 80px; }
+            .login-card h1 { font-size: 1.8rem; }
             .btn-submit { width: 100%; text-align: center; }
             .map-container iframe { height: 220px; }
+            .dashboard-actions { flex-direction: row; gap: 10px; }
         }
     </style>
 </head>
@@ -651,7 +697,10 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
-                    <input type="password" id="password" placeholder="Votre mot de passe" required />
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Votre mot de passe" required />
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher/masquer le mot de passe">👁️</button>
+                    </div>
                 </div>
                 <button type="submit" class="btn-submit">Se connecter</button>
             </form>
@@ -669,8 +718,12 @@
     <div id="dashboard-page" class="active">
         <div class="dashboard-header">
             <h1>📂 Mes travaux</h1>
-            <span class="client-badge" id="dashboardClientBadge">Client : —</span>
+            <div class="dashboard-actions">
+                <a href="#" id="backToHomeFromDashboard" class="back-link">← Retour à l'accueil</a>
+                <a href="#" id="logoutLink" class="logout-link">🚪 Déconnexion</a>
+            </div>
         </div>
+        <span class="client-badge" id="dashboardClientBadge" style="display:inline-block; margin-bottom:20px;">Client : —</span>
 
         <!-- SECTION LIVRABLES -->
         <div class="section-card">
@@ -710,10 +763,6 @@
                 💡 <strong>Astuce :</strong> pour un nouveau projet, créez un dossier avec son nom, puis glissez‑y tous vos fichiers. Nous saurons ainsi qu'il s'agit d'une nouvelle demande.
             </p>
         </div>
-
-        <a href="#" id="logoutLink" class="back-link">🚪 Déconnexion</a>
-        <br />
-        <a href="#" id="backToHomeFromDashboard" class="back-link" style="margin-top:0;">← Retour à l'accueil</a>
     </div>
 </section>
 
@@ -733,6 +782,7 @@
     (function() {
         'use strict';
 
+        // ===== CLIENTS =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
@@ -757,6 +807,7 @@
             }
         };
 
+        // ===== DOM =====
         const navItems = document.querySelectorAll('.nav-item[data-page]');
         const pages = {
             home: document.getElementById('page-home'),
@@ -777,9 +828,21 @@
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
         const livrablesContent = document.getElementById('livrablesContent');
 
+        // Toggle password
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+            });
+        }
+
         let currentPage = 'home';
         let loggedInClient = null;
 
+        // ===== NAVIGATION =====
         function showPage(pageId) {
             Object.keys(pages).forEach(id => {
                 pages[id].classList.remove('active');
@@ -804,6 +867,7 @@
             currentPage = pageId;
         }
 
+        // ===== LOGIN / LOGOUT =====
         function login(username, password) {
             const client = clients[username];
             if (client && client.password === password) {
@@ -860,6 +924,7 @@
             return false;
         }
 
+        // ===== EVENTS =====
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 const page = this.dataset.page;
@@ -871,6 +936,8 @@
                         loginError.classList.remove('show');
                         document.getElementById('username').value = '';
                         document.getElementById('password').value = '';
+                        // Reset password toggle icon
+                        if (togglePassword) togglePassword.textContent = '👁️';
                     }
                 } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
                     showPage(page);
@@ -902,6 +969,7 @@
             showPage('home');
         });
 
+        // ===== INIT =====
         if (!restoreSession()) {
             showPage('home');
         }
@@ -918,7 +986,7 @@
             logout();
         }
 
-        console.log('✅ Site GeCoTelecom chargé avec succès !');
+        console.log('✅ GeCoTelecom chargé avec succès !');
     })();
 </script>
 
