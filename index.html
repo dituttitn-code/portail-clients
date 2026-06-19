@@ -7,14 +7,6 @@
     <title>GeCoTelecom — Expertise Réseaux</title>
 
     <style>
-        :root {
-            --primary-color: #1e293b;
-            --accent-color: #2563eb;
-            --bg-light: #f8fafc;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -23,8 +15,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: #f8fafc;
+            color: #0f172a;
             line-height: 1.8;
             font-size: 1.2rem;
         }
@@ -75,12 +67,11 @@
         .nav-links {
             display: flex;
             gap: 35px;
-            margin-top: 5px;
             flex-wrap: wrap;
         }
 
         .nav-item {
-            color: var(--text-muted);
+            color: #64748b;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.2rem;
@@ -94,16 +85,16 @@
 
         .nav-item:hover,
         .nav-item.active {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
         }
 
         .nav-item.client {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
         }
 
-        /* ===== PAGES (onglets) ===== */
+        /* ===== PAGES ===== */
         .page {
             display: none;
             padding: 40px 5% 20px;
@@ -116,7 +107,7 @@
             display: block;
         }
 
-        /* ===== PAGE ACCUEIL (exactement comme la photo) ===== */
+        /* ===== ACCUEIL ===== */
         .hero {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -160,7 +151,7 @@
             object-fit: cover;
         }
 
-        /* ===== PAGE À PROPOS ===== */
+        /* ===== AUTRES PAGES ===== */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -169,24 +160,18 @@
         }
 
         .about-card {
-            background-color: var(--bg-light);
+            background-color: #f8fafc;
             padding: 30px 35px;
             border-radius: 12px;
-            border-left: 5px solid var(--accent-color);
+            border-left: 5px solid #2563eb;
         }
 
         .about-card h3 {
             font-size: 1.5rem;
-            color: var(--primary-color);
+            color: #1e293b;
             margin-bottom: 10px;
         }
 
-        .about-card p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-
-        /* ===== PAGE SERVICES ===== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -195,10 +180,10 @@
         }
 
         .service-card {
-            background-color: var(--bg-light);
+            background-color: #f8fafc;
             padding: 30px;
             border-radius: 14px;
-            border-top: 5px solid var(--accent-color);
+            border-top: 5px solid #2563eb;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -210,29 +195,28 @@
 
         .service-card h3 {
             font-size: 1.5rem;
-            color: var(--primary-color);
+            color: #1e293b;
             margin-bottom: 15px;
         }
 
         .service-card ul {
             padding-left: 22px;
             font-size: 1.05rem;
-            color: var(--text-muted);
+            color: #64748b;
         }
 
         .service-card ul li {
             margin-bottom: 8px;
         }
 
-        /* ===== PAGE CONTACT ===== */
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            background-color: var(--bg-light);
+            background-color: #f8fafc;
             padding: 35px;
             border-radius: 14px;
-            border-left: 5px solid var(--accent-color);
+            border-left: 5px solid #2563eb;
             margin-bottom: 30px;
         }
 
@@ -246,17 +230,13 @@
         .contact-item strong {
             min-width: 110px;
             font-size: 1.15rem;
-            color: var(--primary-color);
+            color: #1e293b;
         }
 
         .contact-item a {
-            color: var(--accent-color);
+            color: #2563eb;
             text-decoration: none;
             font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
         }
 
         .contact-form .form-row {
@@ -273,7 +253,7 @@
         .contact-form label {
             display: block;
             font-weight: 600;
-            color: var(--primary-color);
+            color: #1e293b;
             margin-bottom: 8px;
             font-size: 1.1rem;
         }
@@ -292,7 +272,7 @@
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
-            border-color: var(--accent-color);
+            border-color: #2563eb;
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
@@ -302,7 +282,7 @@
         }
 
         .btn-submit {
-            background-color: var(--accent-color);
+            background-color: #2563eb;
             color: white;
             border: none;
             padding: 18px 44px;
@@ -331,10 +311,9 @@
             display: block;
         }
 
-        /* ===== TITRES DES PAGES ===== */
         .page h2 {
             font-size: 2.8rem;
-            color: var(--primary-color);
+            color: #1e293b;
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 12px;
@@ -347,22 +326,20 @@
             left: 0;
             width: 70px;
             height: 4px;
-            background-color: var(--accent-color);
+            background-color: #2563eb;
             border-radius: 2px;
         }
 
         .page p {
             font-size: 1.15rem;
-            color: var(--text-dark);
             line-height: 1.9;
             margin-bottom: 20px;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 40px 20px;
-            color: var(--text-muted);
+            color: #64748b;
             font-size: 1.1rem;
             margin-top: 80px;
             border-top: 1px solid #e2e8f0;
@@ -371,7 +348,7 @@
         .footer-brand {
             font-weight: 700;
             font-size: 1.8rem;
-            color: var(--primary-color);
+            color: #1e293b;
             letter-spacing: 0px;
         }
 
@@ -389,13 +366,9 @@
         }
 
         .footer-url a {
-            color: var(--accent-color);
+            color: #2563eb;
             text-decoration: none;
             font-weight: 500;
-        }
-
-        .footer-url a:hover {
-            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -412,10 +385,6 @@
             .hero-image {
                 height: 250px;
             }
-            .header-top {
-                flex-direction: column;
-                align-items: flex-start;
-            }
             .logo-img {
                 height: 100px;
             }
@@ -429,11 +398,11 @@
                 font-size: 0.85rem;
                 padding: 8px 16px;
             }
-            .page {
-                padding: 20px 5%;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
-            .page h2 {
-                font-size: 2.2rem;
+            .about-grid {
+                grid-template-columns: 1fr;
             }
             .contact-form .form-row {
                 grid-template-columns: 1fr;
@@ -446,17 +415,8 @@
             .contact-item strong {
                 min-width: auto;
             }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
             .map-container iframe {
                 height: 300px;
-            }
-            .footer-sub {
-                font-size: 0.95rem;
             }
         }
 
@@ -474,15 +434,9 @@
             .nav-item {
                 font-size: 0.85rem;
             }
-            .page h2 {
-                font-size: 1.8rem;
-            }
             .btn-submit {
                 width: 100%;
                 text-align: center;
-            }
-            .footer-sub {
-                font-size: 0.85rem;
             }
             .map-container iframe {
                 height: 250px;
@@ -510,9 +464,7 @@
         </div>
     </header>
 
-    <!-- ============================================================ -->
     <!-- PAGE ACCUEIL -->
-    <!-- ============================================================ -->
     <section id="page-accueil" class="page active">
         <div class="hero">
             <div class="hero-text">
@@ -525,13 +477,10 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- PAGE À PROPOS -->
-    <!-- ============================================================ -->
     <section id="page-propos" class="page">
         <h2>À propos de nous</h2>
         <p>Fondée sur de solides compétences techniques et une connaissance approfondie des infrastructures réseaux, la <strong>Compagnie Générale de Télécommunication (GeCoTelecom)</strong> se positionne comme un partenaire stratégique de confiance pour les opérateurs et entreprises de télécommunication. Nous transformons les contraintes du terrain en solutions d'ingénierie viables, précises et durables.</p>
-
         <div class="about-grid">
             <div class="about-card">
                 <h3>Notre Engagement</h3>
@@ -544,14 +493,10 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- PAGE SERVICES -->
-    <!-- ============================================================ -->
     <section id="page-services" class="page">
         <h2>Nos Services</h2>
-
         <div class="services-grid">
-
             <div class="service-card">
                 <h3>Inspections et relevés</h3>
                 <ul>
@@ -564,7 +509,6 @@
                     <li>Relevé d'équipement coaxial.</li>
                 </ul>
             </div>
-
             <div class="service-card">
                 <h3>Conception</h3>
                 <ul>
@@ -574,23 +518,21 @@
                     <li>Calcul de charge, calcul de flèche, plan scellé pour les compagnies ferroviaires.</li>
                 </ul>
             </div>
-
             <div class="service-card">
                 <h3>Demande de Permis DDP</h3>
                 <ul>
-                    <li><strong>Prise en charge réglementaire :</strong> Constitution des dossiers et obtention des autorisations auprès des autorités compétentes et des ministères.</li>
-                    <li><strong>Traitement des demandes de permis (DDP) sur l'application DUSS :</strong> Pilotage intégral des demandes de permis via la plateforme DUSS.</li>
-                    <li><strong>Coordination tiers :</strong> Gestion et suivi des requêtes auprès des entreprises de télécommunications partenaires.</li>
-                    <li><strong>Suivi opérationnel :</strong> Accompagnement et contrôle des dossiers, du dépôt initial jusqu'au feu vert.</li>
-                    <li><strong>Gestion des litiges et arbitrages :</strong> Analyse rigoureuse des refus de permis, ingénierie de solutions alternatives.</li>
+                    <li><strong>Prise en charge réglementaire :</strong> Constitution des dossiers et obtention des autorisations.</li>
+                    <li><strong>Traitement DUSS :</strong> Pilotage intégral des demandes de permis via la plateforme DUSS.</li>
+                    <li><strong>Coordination tiers :</strong> Gestion et suivi des requêtes auprès des entreprises partenaires.</li>
+                    <li><strong>Suivi opérationnel :</strong> Accompagnement et contrôle des dossiers du dépôt initial au feu vert.</li>
+                    <li><strong>Gestion des litiges :</strong> Analyse des refus de permis et ingénierie de solutions alternatives.</li>
                 </ul>
             </div>
-
             <div class="service-card">
                 <h3>Surveillance de chantier</h3>
                 <ul>
-                    <li><strong>Supervision technique :</strong> Suivi rigoureux des travaux sur le terrain pour assurer la conformité.</li>
-                    <li><strong>Contrôle de la qualité :</strong> Vérification continue de la qualité des travaux exécutés.</li>
+                    <li><strong>Supervision technique :</strong> Suivi rigoureux des travaux sur le terrain.</li>
+                    <li><strong>Contrôle qualité :</strong> Vérification continue de la qualité des travaux exécutés.</li>
                     <li><strong>Vérification de conformité :</strong> Validation des dégagements, hauteurs, ancrages, charges.</li>
                     <li><strong>Inspection TQC :</strong> Conformité aux plans « Tel Que Construit ».</li>
                     <li><strong>Coordination terrain :</strong> Collaboration avec entrepreneurs, releveurs, concepteurs.</li>
@@ -599,7 +541,6 @@
                     <li><strong>Vérification finale :</strong> Vérification des installations avant la fermeture du projet.</li>
                 </ul>
             </div>
-
             <div class="service-card">
                 <h3>Gestion de projet</h3>
                 <ul>
@@ -611,16 +552,12 @@
                     <li><strong>Approche proactive :</strong> Anticipation des embûches techniques.</li>
                 </ul>
             </div>
-
         </div>
     </section>
 
-    <!-- ============================================================ -->
     <!-- PAGE CONTACT -->
-    <!-- ============================================================ -->
     <section id="page-contact" class="page">
         <h2>Contact</h2>
-
         <div class="contact-info">
             <div class="contact-item">
                 <strong>📍 Adresse</strong>
@@ -635,10 +572,9 @@
                 <a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a>
             </div>
         </div>
-
         <div class="contact-form">
-            <h3 style="font-size: 1.8rem; color: var(--primary-color); margin-bottom: 25px;">Envoyez-nous un message</h3>
-            <form action="#" method="post">
+            <h3 style="font-size:1.8rem; color:#1e293b; margin-bottom:25px;">Envoyez-nous un message</h3>
+            <form action="#">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contactName">Nom</label>
@@ -660,8 +596,6 @@
                 <button type="submit" class="btn-submit">📩 Envoyer</button>
             </form>
         </div>
-
-        <!-- Google Maps en mode SATELLITE -->
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.248179429733!2d-73.77143112426028!3d45.58248957225453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc92f3c8c7a8e1b%3A0x1c6b1c8f3c0e8f0!2s2555%20Boulevard%20du%20Havre%20des%20Iles%2C%20Laval%2C%20QC%20H7W%204R4!5e0!3m2!1sfr!2sca!4v1740000000000&t=k"
@@ -670,25 +604,18 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
-
     </section>
 
-    <!-- ============================================================ -->
-    <!-- FOOTER -->
-    <!-- ============================================================ -->
     <footer>
         <div class="footer-brand">GeCoTelecom</div>
         <div class="footer-sub">Compagnie Générale de Télécommunication</div>
         <div class="footer-url">
             <a href="https://www.gecotelecom.com" target="_blank">www.gecotelecom.com</a>
         </div>
-        <div style="margin-top: 12px;">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
+        <div style="margin-top:12px;">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
     </footer>
 
     <script>
-        // ================================================================
-        // NAVIGATION PAR ONGLETS (affichage d'une seule page à la fois)
-        // ================================================================
         const navItems = document.querySelectorAll('.nav-item[data-page]');
         const pages = {
             accueil: document.getElementById('page-accueil'),
@@ -698,39 +625,23 @@
         };
 
         function showPage(pageId) {
-            // Masquer toutes les pages
             Object.values(pages).forEach(p => p.classList.remove('active'));
-
-            // Afficher la page cible
-            if (pages[pageId]) {
-                pages[pageId].classList.add('active');
-            }
-
-            // Mettre à jour les classes actives des onglets
+            if (pages[pageId]) pages[pageId].classList.add('active');
             navItems.forEach(item => {
                 item.classList.toggle('active', item.dataset.page === pageId);
             });
         }
 
-        // Écoute des clics sur les onglets
         navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function() {
                 const pageId = this.dataset.page;
-                if (pageId) {
-                    showPage(pageId);
-                }
+                if (pageId) showPage(pageId);
             });
         });
 
-        // Par défaut : page Accueil (déjà active au chargement)
+        // Force l'affichage de l'accueil au chargement
         document.addEventListener('DOMContentLoaded', function() {
-            const activePage = document.querySelector('.page.active');
-            if (activePage) {
-                const id = activePage.id.replace('page-', '');
-                navItems.forEach(item => {
-                    item.classList.toggle('active', item.dataset.page === id);
-                });
-            }
+            showPage('accueil');
         });
     </script>
 
