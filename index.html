@@ -116,7 +116,7 @@
             display: block;
         }
 
-        /* ===== PAGE ACCUEIL ===== */
+        /* ===== PAGE ACCUEIL (grille texte + image côte à côte) ===== */
         .hero {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -391,15 +391,6 @@
             border-radius: 2px;
         }
 
-        .page h2.centered {
-            text-align: center;
-        }
-
-        .page h2.centered::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
         .page p {
             font-size: 1.15rem;
             color: var(--text-dark);
@@ -520,7 +511,7 @@
     </header>
 
     <!-- ============================================================ -->
-    <!-- PAGE ACCUEIL -->
+    <!-- PAGE ACCUEIL (grille texte + image côte à côte) -->
     <!-- ============================================================ -->
     <section id="page-accueil" class="page active">
         <div class="hero">
@@ -732,10 +723,7 @@
         });
 
         // Par défaut : page Accueil (déjà active au chargement)
-        // Si vous voulez forcer l'affichage de l'accueil au chargement (déjà fait avec la classe "active")
-        // On synchronise juste l'onglet actif
         document.addEventListener('DOMContentLoaded', function() {
-            // Trouver l'onglet correspondant à la page active
             const activePage = document.querySelector('.page.active');
             if (activePage) {
                 const id = activePage.id.replace('page-', '');
