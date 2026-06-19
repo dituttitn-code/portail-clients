@@ -15,12 +15,14 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8fafc;
+            background-color: #0f172a;
             color: #0f172a;
             line-height: 1.8;
             font-size: 1.2rem;
+            min-height: 100vh;
         }
 
+        /* ===== HEADER ===== */
         header {
             background-color: white;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -94,47 +96,48 @@
             border-bottom: 2px solid #2563eb;
         }
 
-        /* ===== PAGES ===== */
+        /* ===== PAGES (onglets) ===== */
         .page {
             display: none;
-            padding: 40px 5% 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 60vh;
+            min-height: calc(100vh - 200px); /* pour remplir l'écran */
         }
 
         .page.active {
             display: block;
         }
 
-        /* ===== ACCUEIL : photo pleine largeur en haut, texte en bas ===== */
+        /* ===== ACCUEIL PLEINE PAGE ===== */
         .hero {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            justify-content: center;
+            align-items: center;
             background-color: #0f172a;
             color: white;
-            padding: 0;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            overflow: hidden;
+            min-height: calc(100vh - 200px);
+            padding: 0 5%;
+            width: 100%;
         }
 
         .hero-image {
             width: 100%;
-            overflow: hidden;
+            max-width: 1200px;
+            margin-bottom: 40px;
         }
 
         .hero-image img {
             width: 100%;
             height: auto;
-            max-height: 600px;
+            max-height: 60vh;
             object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
             display: block;
         }
 
         .hero-text {
-            padding: 0 5% 50px 5%;
+            max-width: 900px;
+            text-align: center;
         }
 
         .hero-text h1 {
@@ -154,7 +157,42 @@
             text-align: justify;
         }
 
-        /* ===== AUTRES PAGES ===== */
+        /* ===== AUTRES PAGES (À propos, Services, Contact) ===== */
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            background: white;
+            border-radius: 20px;
+            min-height: 60vh;
+        }
+
+        .page-content h2 {
+            font-size: 2.8rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .page-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: #2563eb;
+            border-radius: 2px;
+        }
+
+        .page-content p {
+            font-size: 1.15rem;
+            color: #0f172a;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -314,78 +352,49 @@
             display: block;
         }
 
-        .page h2 {
-            font-size: 2.8rem;
-            color: #1e293b;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 12px;
-        }
-
-        .page h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background-color: #2563eb;
-            border-radius: 2px;
-        }
-
-        .page p {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            margin-bottom: 20px;
-        }
-
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 40px 20px;
-            color: #64748b;
-            font-size: 1.1rem;
-            margin-top: 80px;
-            border-top: 1px solid #e2e8f0;
+            padding: 30px 20px;
+            color: #94a3b8;
+            font-size: 1rem;
+            background-color: #0f172a;
+            border-top: 1px solid #1e293b;
+            margin-top: 0;
         }
 
         .footer-brand {
             font-weight: 700;
-            font-size: 1.8rem;
-            color: #1e293b;
+            font-size: 1.6rem;
+            color: white;
             letter-spacing: 0px;
         }
 
         .footer-sub {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #475569;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #94a3b8;
             letter-spacing: 0.5px;
             margin-top: -2px;
         }
 
         .footer-url {
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-top: 6px;
         }
 
         .footer-url a {
-            color: #2563eb;
+            color: #60a5fa;
             text-decoration: none;
             font-weight: 500;
         }
 
         @media (max-width: 768px) {
-            .hero-text {
-                padding: 0 5% 30px 5%;
-            }
             .hero-text h1 {
                 font-size: 2.6rem;
             }
             .hero-text p {
                 font-size: 1.2rem;
-            }
-            .hero-image img {
-                max-height: 350px;
             }
             .logo-img {
                 height: 100px;
@@ -420,6 +429,9 @@
             .map-container iframe {
                 height: 300px;
             }
+            .hero-image img {
+                max-height: 40vh;
+            }
         }
 
         @media (max-width: 480px) {
@@ -444,7 +456,7 @@
                 height: 250px;
             }
             .hero-image img {
-                max-height: 250px;
+                max-height: 30vh;
             }
         }
     </style>
@@ -452,6 +464,7 @@
 
 <body>
 
+    <!-- ===== HEADER ===== -->
     <header>
         <div class="header-top">
             <div class="logo-container">
@@ -469,7 +482,9 @@
         </div>
     </header>
 
-    <!-- ===== PAGE ACCUEIL (photo pleine largeur en haut, texte en dessous) ===== -->
+    <!-- ============================================================= -->
+    <!-- PAGE ACCUEIL – PLEINE ÉCRAN -->
+    <!-- ============================================================= -->
     <section id="page-accueil" class="page active">
         <div class="hero">
             <div class="hero-image">
@@ -482,153 +497,168 @@
         </div>
     </section>
 
-    <!-- ===== PAGE À PROPOS ===== -->
+    <!-- ============================================================= -->
+    <!-- PAGE À PROPOS -->
+    <!-- ============================================================= -->
     <section id="page-propos" class="page">
-        <h2>À propos de nous</h2>
-        <p>Fondée sur de solides compétences techniques et une connaissance approfondie des infrastructures réseaux, la <strong>Compagnie Générale de Télécommunication (GeCoTelecom)</strong> se positionne comme un partenaire stratégique de confiance pour les opérateurs et entreprises de télécommunication. Nous transformons les contraintes du terrain en solutions d'ingénierie viables, précises et durables.</p>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>Notre Engagement</h3>
-                <p>Garantir une précision absolue dans nos relevés et calculs de charge, tout en assurant une flexibilité et une rigueur totale dans le respect de vos livrables et de vos échéanciers de déploiement.</p>
-            </div>
-            <div class="about-card">
-                <h3>Notre Vision</h3>
-                <p>Propulser la performance des infrastructures aériennes et souterraines grâce à une expertise technique de pointe, un strict respect des normes en vigueur et une gestion collaborative de chaque projet.</p>
+        <div class="page-content">
+            <h2>À propos de nous</h2>
+            <p>Fondée sur de solides compétences techniques et une connaissance approfondie des infrastructures réseaux, la <strong>Compagnie Générale de Télécommunication (GeCoTelecom)</strong> se positionne comme un partenaire stratégique de confiance pour les opérateurs et entreprises de télécommunication. Nous transformons les contraintes du terrain en solutions d'ingénierie viables, précises et durables.</p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Notre Engagement</h3>
+                    <p>Garantir une précision absolue dans nos relevés et calculs de charge, tout en assurant une flexibilité et une rigueur totale dans le respect de vos livrables et de vos échéanciers de déploiement.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Notre Vision</h3>
+                    <p>Propulser la performance des infrastructures aériennes et souterraines grâce à une expertise technique de pointe, un strict respect des normes en vigueur et une gestion collaborative de chaque projet.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== PAGE SERVICES ===== -->
+    <!-- ============================================================= -->
+    <!-- PAGE SERVICES -->
+    <!-- ============================================================= -->
     <section id="page-services" class="page">
-        <h2>Nos Services</h2>
-        <div class="services-grid">
+        <div class="page-content">
+            <h2>Nos Services</h2>
+            <div class="services-grid">
 
-            <div class="service-card">
-                <h3>Inspections et relevés</h3>
-                <ul>
-                    <li>Relevé préliminaire des routes de distribution (faisabilité, coûts, échéancier, normes, sécurité).</li>
-                    <li>Identification des propriétaires et des utilisateurs de structures de soutènement.</li>
-                    <li>Relevé détaillé des poteaux avec grille d'utilisation des structures (UDS) pour Hydro-Québec.</li>
-                    <li>Localisation des puits d'accès souterrain.</li>
-                    <li>Relevé détaillé des structures traversant les chemins de fer.</li>
-                    <li>Relevé détaillé au sol pour la construction d'un conduit pour Bell, Hydro-Québec, CSEM.</li>
-                    <li>Relevé d'équipement coaxial.</li>
-                </ul>
+                <div class="service-card">
+                    <h3>Inspections et relevés</h3>
+                    <ul>
+                        <li>Relevé préliminaire des routes de distribution (faisabilité, coûts, échéancier, normes, sécurité).</li>
+                        <li>Identification des propriétaires et des utilisateurs de structures de soutènement.</li>
+                        <li>Relevé détaillé des poteaux avec grille d'utilisation des structures (UDS) pour Hydro-Québec.</li>
+                        <li>Localisation des puits d'accès souterrain.</li>
+                        <li>Relevé détaillé des structures traversant les chemins de fer.</li>
+                        <li>Relevé détaillé au sol pour la construction d'un conduit pour Bell, Hydro-Québec, CSEM.</li>
+                        <li>Relevé d'équipement coaxial.</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Conception</h3>
+                    <ul>
+                        <li>Conception extérieure de structure aérienne et conception extérieure souterraine avec sélection des câbles, boîtier, poteaux, ancres, haubans, en réseau unique ou conjoint.</li>
+                        <li>Calcul de charges de poteaux (Simpas) et de rupture de torons.</li>
+                        <li>Conception extérieure de distribution de fibre optique, cuivre, coaxial selon les normes du client.</li>
+                        <li>Calcul de charge, calcul de flèche, plan scellé pour les compagnies ferroviaires.</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Demande de Permis DDP</h3>
+                    <ul>
+                        <li><strong>Prise en charge réglementaire :</strong> Constitution des dossiers et obtention des autorisations.</li>
+                        <li><strong>Traitement DUSS :</strong> Pilotage intégral des demandes de permis via la plateforme DUSS.</li>
+                        <li><strong>Coordination tiers :</strong> Gestion et suivi des requêtes auprès des entreprises partenaires.</li>
+                        <li><strong>Suivi opérationnel :</strong> Accompagnement et contrôle des dossiers du dépôt initial au feu vert.</li>
+                        <li><strong>Gestion des litiges :</strong> Analyse des refus de permis et ingénierie de solutions alternatives.</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Surveillance de chantier</h3>
+                    <ul>
+                        <li><strong>Supervision technique :</strong> Suivi rigoureux des travaux sur le terrain.</li>
+                        <li><strong>Contrôle qualité :</strong> Vérification continue de la qualité des travaux exécutés.</li>
+                        <li><strong>Vérification de conformité :</strong> Validation des dégagements, hauteurs, ancrages, charges.</li>
+                        <li><strong>Inspection TQC :</strong> Conformité aux plans « Tel Que Construit ».</li>
+                        <li><strong>Coordination terrain :</strong> Collaboration avec entrepreneurs, releveurs, concepteurs.</li>
+                        <li><strong>Prévention des non-conformités :</strong> Détection rapide des écarts.</li>
+                        <li><strong>Production de rapports :</strong> Rapports d'inspection détaillés, documentation photographique.</li>
+                        <li><strong>Vérification finale :</strong> Vérification des installations avant la fermeture du projet.</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Gestion de projet</h3>
+                    <ul>
+                        <li><strong>Planification et coordination :</strong> De la conception à la livraison finale.</li>
+                        <li><strong>Gestion des ressources :</strong> Humaines, matérielles et financières.</li>
+                        <li><strong>Coordination des intervenants :</strong> Clients, fournisseurs, partenaires.</li>
+                        <li><strong>Analyse des risques :</strong> Identification rapide des obstacles potentiels.</li>
+                        <li><strong>Optimisation des ressources :</strong> Stratégies pour garantir les objectifs.</li>
+                        <li><strong>Approche proactive :</strong> Anticipation des embûches techniques.</li>
+                    </ul>
+                </div>
+
             </div>
-
-            <div class="service-card">
-                <h3>Conception</h3>
-                <ul>
-                    <li>Conception extérieure de structure aérienne et conception extérieure souterraine avec sélection des câbles, boîtier, poteaux, ancres, haubans, en réseau unique ou conjoint.</li>
-                    <li>Calcul de charges de poteaux (Simpas) et de rupture de torons.</li>
-                    <li>Conception extérieure de distribution de fibre optique, cuivre, coaxial selon les normes du client.</li>
-                    <li>Calcul de charge, calcul de flèche, plan scellé pour les compagnies ferroviaires.</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <h3>Demande de Permis DDP</h3>
-                <ul>
-                    <li><strong>Prise en charge réglementaire :</strong> Constitution des dossiers et obtention des autorisations.</li>
-                    <li><strong>Traitement DUSS :</strong> Pilotage intégral des demandes de permis via la plateforme DUSS.</li>
-                    <li><strong>Coordination tiers :</strong> Gestion et suivi des requêtes auprès des entreprises partenaires.</li>
-                    <li><strong>Suivi opérationnel :</strong> Accompagnement et contrôle des dossiers du dépôt initial au feu vert.</li>
-                    <li><strong>Gestion des litiges :</strong> Analyse des refus de permis et ingénierie de solutions alternatives.</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <h3>Surveillance de chantier</h3>
-                <ul>
-                    <li><strong>Supervision technique :</strong> Suivi rigoureux des travaux sur le terrain.</li>
-                    <li><strong>Contrôle qualité :</strong> Vérification continue de la qualité des travaux exécutés.</li>
-                    <li><strong>Vérification de conformité :</strong> Validation des dégagements, hauteurs, ancrages, charges.</li>
-                    <li><strong>Inspection TQC :</strong> Conformité aux plans « Tel Que Construit ».</li>
-                    <li><strong>Coordination terrain :</strong> Collaboration avec entrepreneurs, releveurs, concepteurs.</li>
-                    <li><strong>Prévention des non-conformités :</strong> Détection rapide des écarts.</li>
-                    <li><strong>Production de rapports :</strong> Rapports d'inspection détaillés, documentation photographique.</li>
-                    <li><strong>Vérification finale :</strong> Vérification des installations avant la fermeture du projet.</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <h3>Gestion de projet</h3>
-                <ul>
-                    <li><strong>Planification et coordination :</strong> De la conception à la livraison finale.</li>
-                    <li><strong>Gestion des ressources :</strong> Humaines, matérielles et financières.</li>
-                    <li><strong>Coordination des intervenants :</strong> Clients, fournisseurs, partenaires.</li>
-                    <li><strong>Analyse des risques :</strong> Identification rapide des obstacles potentiels.</li>
-                    <li><strong>Optimisation des ressources :</strong> Stratégies pour garantir les objectifs.</li>
-                    <li><strong>Approche proactive :</strong> Anticipation des embûches techniques.</li>
-                </ul>
-            </div>
-
         </div>
     </section>
 
-    <!-- ===== PAGE CONTACT ===== -->
+    <!-- ============================================================= -->
+    <!-- PAGE CONTACT -->
+    <!-- ============================================================= -->
     <section id="page-contact" class="page">
-        <h2>Contact</h2>
+        <div class="page-content">
+            <h2>Contact</h2>
 
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>📍 Adresse</strong>
-                <span>100E-2555 BOUL. Du Havre Des Iles, Laval, Québec H7W4R4, Canada</span>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>📍 Adresse</strong>
+                    <span>100E-2555 BOUL. Du Havre Des Iles, Laval, Québec H7W4R4, Canada</span>
+                </div>
+                <div class="contact-item">
+                    <strong>📞 Téléphone</strong>
+                    <a href="tel:+15145860453">514-586-0453</a>
+                </div>
+                <div class="contact-item">
+                    <strong>✉️ Email</strong>
+                    <a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a>
+                </div>
             </div>
-            <div class="contact-item">
-                <strong>📞 Téléphone</strong>
-                <a href="tel:+15145860453">514-586-0453</a>
-            </div>
-            <div class="contact-item">
-                <strong>✉️ Email</strong>
-                <a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a>
-            </div>
-        </div>
 
-        <div class="contact-form">
-            <h3 style="font-size:1.8rem; color:#1e293b; margin-bottom:25px;">Envoyez-nous un message</h3>
-            <form action="#">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="contactName">Nom</label>
-                        <input type="text" id="contactName" placeholder="Votre nom" required>
+            <div class="contact-form">
+                <h3 style="font-size:1.8rem; color:#1e293b; margin-bottom:25px;">Envoyez-nous un message</h3>
+                <form action="#">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">Nom</label>
+                            <input type="text" id="contactName" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" placeholder="votre@email.com" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="contactEmail">Email</label>
-                        <input type="email" id="contactEmail" placeholder="votre@email.com" required>
+                        <label for="contactPhone">Téléphone</label>
+                        <input type="tel" id="contactPhone" placeholder="Votre numéro de téléphone">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="contactPhone">Téléphone</label>
-                    <input type="tel" id="contactPhone" placeholder="Votre numéro de téléphone">
-                </div>
-                <div class="form-group">
-                    <label for="contactMessage">Message</label>
-                    <textarea id="contactMessage" placeholder="Votre message..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">📩 Envoyer</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">📩 Envoyer</button>
+                </form>
+            </div>
 
-        <!-- Google Maps en mode SATELLITE -->
-        <div class="map-container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.248179429733!2d-73.77143112426028!3d45.58248957225453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc92f3c8c7a8e1b%3A0x1c6b1c8f3c0e8f0!2s2555%20Boulevard%20du%20Havre%20des%20Iles%2C%20Laval%2C%20QC%20H7W%204R4!5e0!3m2!1sfr!2sca!4v1740000000000&t=k"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
+            <!-- Google Maps en mode SATELLITE -->
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.248179429733!2d-73.77143112426028!3d45.58248957225453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc92f3c8c7a8e1b%3A0x1c6b1c8f3c0e8f0!2s2555%20Boulevard%20du%20Havre%20des%20Iles%2C%20Laval%2C%20QC%20H7W%204R4!5e0!3m2!1sfr!2sca!4v1740000000000&t=k"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
 
+        </div>
     </section>
 
+    <!-- ============================================================= -->
+    <!-- FOOTER -->
+    <!-- ============================================================= -->
     <footer>
         <div class="footer-brand">GeCoTelecom</div>
         <div class="footer-sub">Compagnie Générale de Télécommunication</div>
         <div class="footer-url">
             <a href="https://www.gecotelecom.com" target="_blank">www.gecotelecom.com</a>
         </div>
-        <div style="margin-top:12px;">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
+        <div style="margin-top: 8px; font-size:0.8rem; color:#64748b;">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
     </footer>
 
     <script>
@@ -655,6 +685,7 @@
             });
         });
 
+        // Par défaut : afficher l'accueil
         document.addEventListener('DOMContentLoaded', function() {
             showPage('accueil');
         });
