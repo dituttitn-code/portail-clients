@@ -276,10 +276,75 @@
         .contact-item a { color: #2563eb; text-decoration: none; font-weight: 500; }
         .contact-item a:hover { text-decoration: underline; }
 
+        /* Formulaire de contact */
+        .contact-form {
+            margin-top: 30px;
+        }
+        .contact-form h3 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 18px 48px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37,99,235,0.4);
+        }
+
+        /* Carte Google Maps en mode satellite */
         .map-container {
             margin-top: 35px;
             border-radius: 16px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
         .map-container iframe {
             width: 100%;
@@ -412,15 +477,6 @@
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
-        }
-        .dashboard-header h1 .client-logo {
-            height: 50px;
-            width: auto;
-            object-fit: contain;
-            border-radius: 8px;
-            background: white;
-            padding: 4px 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .client-badge {
             background: #dbeafe;
@@ -579,6 +635,8 @@
             .footer-sub { font-size: 1rem; }
             .dashboard-header h1 .client-logo { height: 40px; }
             .client-logo-header { height: 40px; }
+            .contact-form .form-row { grid-template-columns: 1fr; }
+            .contact-form h3 { font-size: 1.5rem; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -725,16 +783,45 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE CONTACT -->
+<!-- PAGE CONTACT (avec formulaire et carte satellite) -->
 <!-- ============================================================ -->
 <section id="page-contact" class="page">
     <div class="page-content">
         <h2>Contact</h2>
+
         <div class="contact-info">
             <div class="contact-item"><strong>📍 Adresse</strong><span>100E-2555 BOUL. Du Havre Des Iles, Laval, Québec H7W4R4, Canada</span></div>
             <div class="contact-item"><strong>📞 Téléphone</strong><a href="tel:+15145860453">514-586-0453</a></div>
             <div class="contact-item"><strong>✉️ Email</strong><a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a></div>
         </div>
+
+        <!-- Formulaire de contact -->
+        <div class="contact-form">
+            <h3>Envoyez-nous un message</h3>
+            <form action="#" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">Nom</label>
+                        <input type="text" id="contactName" placeholder="Votre nom" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" placeholder="votre@email.com" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Téléphone</label>
+                    <input type="tel" id="contactPhone" placeholder="Votre numéro de téléphone" />
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" placeholder="Votre message..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">📩 Envoyer</button>
+            </form>
+        </div>
+
+        <!-- Google Maps en mode satellite (paramètre &t=k) -->
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.248179429733!2d-73.77143112426028!3d45.58248957225453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc92f3c8c7a8e1b%3A0x1c6b1c8f3c0e8f0!2s2555%20Boulevard%20du%20Havre%20des%20Iles%2C%20Laval%2C%20QC%20H7W%204R4!5e0!3m2!1sfr!2sca!4v1740000000000&t=k"
@@ -743,6 +830,7 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
+
     </div>
 </section>
 
@@ -850,7 +938,7 @@
     (function() {
         'use strict';
 
-        // ===== CLIENTS (logos mis à jour) =====
+        // ===== CLIENTS =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
@@ -960,7 +1048,6 @@
         function logout() {
             loggedInClient = null;
             sessionStorage.removeItem('loggedInClient');
-            // Cacher le logo client dans le header
             clientLogoHeader.classList.remove('show');
             clientLogoHeader.innerHTML = '';
             showPage('home');
@@ -969,7 +1056,7 @@
         function showDashboard() {
             if (!loggedInClient) return;
 
-            // === Logo client dans le header (en haut à droite) ===
+            // Logo client dans le header
             if (loggedInClient.logo) {
                 clientLogoHeader.innerHTML = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" style="height:100%; width:auto; object-fit:contain;">`;
                 clientLogoHeader.classList.add('show');
@@ -978,10 +1065,8 @@
                 clientLogoHeader.innerHTML = '';
             }
 
-            // Mettre à jour le titre avec le nom du client
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
 
-            // Afficher le badge avec le logo (si disponible)
             let badgeHtml = '';
             if (loggedInClient.logo) {
                 badgeHtml = `<span class="client-badge"><img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}"> ${loggedInClient.nom} (${loggedInClient.code})</span>`;
@@ -990,7 +1075,7 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // === GESTION DES LIVRABLES ===
+            // Livrables
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
@@ -1000,7 +1085,7 @@
                 livrablesSection.style.display = 'none';
             }
 
-            // === GESTION DES DÉPÔTS (titre personnalisé pour Sofiene) ===
+            // Dépôts
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
