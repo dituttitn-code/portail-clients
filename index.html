@@ -52,6 +52,12 @@
             filter: drop-shadow(0 2px 8px rgba(37,99,235,0.08)) brightness(1.02) contrast(1.05);
             background: transparent;
         }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
         .status-badge {
             background: linear-gradient(135deg, #2563eb, #3b82f6);
             color: #fff;
@@ -61,6 +67,19 @@
             font-weight: 600;
             box-shadow: 0 4px 12px rgba(37,99,235,0.25);
             white-space: nowrap;
+        }
+        .client-logo-header {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 4px 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: none;
+        }
+        .client-logo-header.show {
+            display: block;
         }
         .nav-links {
             display: flex;
@@ -559,6 +578,7 @@
             .footer-brand { font-size: 1.8rem; }
             .footer-sub { font-size: 1rem; }
             .dashboard-header h1 .client-logo { height: 40px; }
+            .client-logo-header { height: 40px; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -574,6 +594,7 @@
             .footer-brand { font-size: 1.5rem; }
             .footer-sub { font-size: 0.9rem; }
             .dashboard-header h1 .client-logo { height: 32px; }
+            .client-logo-header { height: 32px; }
         }
     </style>
 </head>
@@ -587,7 +608,10 @@
         <div class="logo-container">
             <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img" />
         </div>
-        <div class="status-badge">● Consultant en Télécommunication</div>
+        <div class="header-right">
+            <div id="clientLogoHeader" class="client-logo-header"></div>
+            <div class="status-badge">● Consultant en Télécommunication</div>
+        </div>
     </div>
 
     <div class="nav-links" id="mainNav">
@@ -826,13 +850,13 @@
     (function() {
         'use strict';
 
-        // ===== CLIENTS =====
+        // ===== CLIENTS (logos mis à jour) =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
-                logo: 'logo%20metroptic.png',
+                logo: 'logometroptic-1.png',
                 livrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing',
                 depots: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=sharing'
             },
@@ -878,6 +902,7 @@
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
         const livrablesContent = document.getElementById('livrablesContent');
+        const clientLogoHeader = document.getElementById('clientLogoHeader');
 
         // Toggle password
         const togglePassword = document.getElementById('togglePassword');
@@ -935,11 +960,23 @@
         function logout() {
             loggedInClient = null;
             sessionStorage.removeItem('loggedInClient');
+            // Cacher le logo client dans le header
+            clientLogoHeader.classList.remove('show');
+            clientLogoHeader.innerHTML = '';
             showPage('home');
         }
 
         function showDashboard() {
             if (!loggedInClient) return;
+
+            // === Logo client dans le header (en haut à droite) ===
+            if (loggedInClient.logo) {
+                clientLogoHeader.innerHTML = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" style="height:100%; width:auto; object-fit:contain;">`;
+                clientLogoHeader.classList.add('show');
+            } else {
+                clientLogoHeader.classList.remove('show');
+                clientLogoHeader.innerHTML = '';
+            }
 
             // Mettre à jour le titre avec le nom du client
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
@@ -955,13 +992,11 @@
 
             // === GESTION DES LIVRABLES ===
             if (loggedInClient.livrables) {
-                // Afficher la section
                 livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
                 livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
             } else {
-                // Masquer complètement la section
                 livrablesSection.style.display = 'none';
             }
 
