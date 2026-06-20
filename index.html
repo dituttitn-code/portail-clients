@@ -864,7 +864,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DASHBOARD -->
+<!-- PAGE DASHBOARD (avec formulaire Tally intégré) -->
 <!-- ============================================================ -->
 <section id="page-dashboard" class="page">
     <div id="dashboard-page" class="active">
@@ -892,30 +892,41 @@
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS -->
+        <!-- SECTION DÉPÔTS avec TALLY INTÉGRÉ -->
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
-            <div style="background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px; margin:15px 0;">
+
+            <!-- ===== FORMULAIRE TALLY INTÉGRÉ ===== -->
+            <div style="margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); background: white;">
+                <iframe 
+                    src="https://tally.so/embed/684vvo?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    width="100%" 
+                    height="550" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    title="Dépôt de projets GeCoTelecom"
+                    style="display:block; width:100%; border: none;"
+                ></iframe>
+            </div>
+
+            <div style="margin-top:15px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>✅ Comment ça fonctionne ?</strong>
                 <ul style="margin:8px 0 0 20px;">
-                    <li><strong>Déposer un nouveau projet :</strong> créez un dossier avec le nom de votre projet, glissez-y vos fichiers et nous le traiterons dans le bref délais.</li>
-                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez à tout moment ajouter ou mettre à jour des documents dans votre dossier.</li>
+                    <li><strong>Déposer un nouveau projet :</strong> remplissez le formulaire ci‑dessus et joignez vos fichiers (PDF, photos, plans...).</li>
+                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez soumettre plusieurs formulaires si besoin.</li>
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
             </div>
-            <a id="depotsLink" href="#" target="_blank" class="btn-drive" style="margin-top:15px;">
-                📁 Déposer un projet
-            </a>
-            <div id="depotNote" style="margin-top:8px; font-size:0.9rem; color:#64748b; display:none;">
-                ⚠️ Compte Google requis pour déposer des fichiers volumineux.
-            </div>
+
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br />
-                Après avoir déposé vos fichiers, <a href="mailto:ingenierie@gecotelecom.com?subject=Nouveau dépôt - Espace Client&body=Bonjour,%0A%0AJe viens de déposer de nouveaux fichiers.%0A%0AMerci de traiter ma demande.%0A%0ACordialement,%0A(Client)">envoyez un email à ingenierie@gecotelecom.com</a> pour nous informer.
+                Une fois votre formulaire envoyé, nous recevrons automatiquement une notification par email.
             </div>
+
             <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
-                💡 <strong>Astuce :</strong> pour un nouveau projet, créez un dossier avec son nom, puis glissez‑y tous vos fichiers. Nous saurons ainsi qu'il s'agit d'une nouvelle demande.
+                💡 <strong>Astuce :</strong> pour un nouveau projet, nommez clairement vos fichiers (ex: « Projet_Réseau_Laval_Plan.pdf ») pour que nous sachions de quoi il s'agit.
             </p>
         </div>
     </div>
@@ -937,36 +948,28 @@
     (function() {
         'use strict';
 
-        // ===== CLIENTS (livrables modifiés pour Metroptic et Infra) =====
+        // ===== CLIENTS =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
-                // LIVRABLES MAINTENANT SUR DROPBOX
-                livrables: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
-                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
-                depotsLabel: '📁 Déposer un projet (sans compte)'
+                livrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing'
             },
             'Sofiene': {
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
                 logo: null,
-                livrables: null,
-                depots: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=sharing',
-                depotsLabel: '📁 Déposer un projet (Google Drive)'
+                livrables: null
             },
             'Infra': {
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
-                // LIVRABLES MAINTENANT SUR DROPBOX
-                livrables: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
-                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
-                depotsLabel: '📁 Déposer un projet (sans compte)'
+                livrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing'
             }
         };
 
@@ -993,9 +996,7 @@
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
         const livrablesContent = document.getElementById('livrablesContent');
         const clientLogoHeader = document.getElementById('clientLogoHeader');
-        const depotsLink = document.getElementById('depotsLink');
         const depotsTitle = document.getElementById('depotsTitle');
-        const depotNote = document.getElementById('depotNote');
 
         // Toggle password
         const togglePassword = document.getElementById('togglePassword');
@@ -1083,33 +1084,20 @@
             clientBadgeContainer.innerHTML = badgeHtml;
 
             // ===== GESTION DES LIVRABLES =====
-            // Si le client a des livrables, on affiche la section
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
-                // On adapte le libellé selon le client
-                if (loggedInClient.code === 'CLIENT001' || loggedInClient.code === 'CLIENT003') {
-                    livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans notre dossier Dropbox partagé (aucun compte requis).</p>`;
-                } else {
-                    livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
-                }
+                livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous (aucun compte requis).</p>`;
             } else {
                 livrablesSection.style.display = 'none';
             }
 
-            // ===== GESTION DU DÉPÔT (selon le client) =====
-            depotsLink.href = loggedInClient.depots;
-            depotsLink.textContent = loggedInClient.depotsLabel || '📁 Déposer un projet';
-
-            // Ajuster le titre de la section
+            // ===== GESTION DU DÉPÔT (titre adapté) =====
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
-                depotNote.style.display = 'block';
-                depotNote.innerHTML = '⚠️ Compte Google requis pour déposer des fichiers volumineux.';
             } else {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux projets et fichiers';
-                depotNote.style.display = 'none';
             }
 
             showPage('dashboard');
