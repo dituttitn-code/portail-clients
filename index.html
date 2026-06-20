@@ -769,9 +769,9 @@
         </div>
         <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
 
-        <!-- SECTION LIVRABLES -->
-        <div class="section-card">
-            <h2>📥 Télécharger vos fichiers livrables</h2>
+        <!-- SECTION LIVRABLES (masquée pour Sofiene) -->
+        <div id="livrablesSection" class="section-card">
+            <h2 id="livrablesTitle">📥 Télécharger vos fichiers livrables</h2>
             <div id="livrablesContent">
                 <p style="color:#64748b;">Chargement...</p>
             </div>
@@ -784,9 +784,9 @@
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS -->
+        <!-- SECTION DÉPÔTS (titre personnalisé pour Sofiene) -->
         <div class="section-card">
-            <h2>📤 Déposer vos nouveaux projets et fichiers</h2>
+            <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
             <div style="background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px; margin:15px 0;">
                 <strong>✅ Comment ça fonctionne ?</strong>
@@ -869,8 +869,11 @@
         const clientNavBtn = document.getElementById('clientNavBtn');
         const dashboardTitle = document.getElementById('dashboardTitle');
         const clientBadgeContainer = document.getElementById('clientBadgeContainer');
+        const livrablesSection = document.getElementById('livrablesSection');
+        const livrablesTitle = document.getElementById('livrablesTitle');
         const livrablesDriveLink = document.getElementById('livrablesDriveLink');
         const depotsDriveLink = document.getElementById('depotsDriveLink');
+        const depotsTitle = document.getElementById('depotsTitle');
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
@@ -950,17 +953,25 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // Gérer les livrables
+            // === GESTION DES LIVRABLES ===
             if (loggedInClient.livrables) {
+                // Afficher la section
+                livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
                 livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
             } else {
-                livrablesDriveLink.style.display = 'none';
-                livrablesContent.innerHTML = `<p style="color:#94a3b8;">Aucun livrable disponible pour le moment.</p>`;
+                // Masquer complètement la section
+                livrablesSection.style.display = 'none';
             }
 
-            // Gérer les dépôts
+            // === GESTION DES DÉPÔTS (titre personnalisé pour Sofiene) ===
+            if (loggedInClient.code === 'CLIENT002') {
+                depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
+            } else {
+                depotsTitle.textContent = '📤 Déposer vos nouveaux projets et fichiers';
+            }
+
             if (loggedInClient.depots) {
                 depotsDriveLink.href = loggedInClient.depots;
                 depotsDriveLink.style.display = 'inline-block';
