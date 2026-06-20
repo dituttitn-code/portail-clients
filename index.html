@@ -386,13 +386,40 @@
             gap: 15px;
             margin-bottom: 30px;
         }
-        .dashboard-header h1 { font-size: 2.6rem; color: #1e293b; }
+        .dashboard-header h1 {
+            font-size: 2.6rem;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .dashboard-header h1 .client-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 4px 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
         .client-badge {
             background: #dbeafe;
             color: #2563eb;
             padding: 8px 20px;
             border-radius: 30px;
             font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .client-badge .logo-small {
+            height: 30px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            background: white;
+            padding: 2px 6px;
         }
         .dashboard-actions {
             display: flex;
@@ -531,6 +558,7 @@
             .dashboard-actions { width: 100%; justify-content: flex-end; }
             .footer-brand { font-size: 1.8rem; }
             .footer-sub { font-size: 1rem; }
+            .dashboard-header h1 .client-logo { height: 40px; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -545,6 +573,7 @@
             .dashboard-actions { flex-direction: row; gap: 10px; }
             .footer-brand { font-size: 1.5rem; }
             .footer-sub { font-size: 0.9rem; }
+            .dashboard-header h1 .client-logo { height: 32px; }
         }
     </style>
 </head>
@@ -732,13 +761,13 @@
 <section id="page-dashboard" class="page">
     <div id="dashboard-page" class="active">
         <div class="dashboard-header">
-            <h1>📂 Mes travaux</h1>
+            <h1 id="dashboardTitle">📂 PORTAIL DE PROJETS</h1>
             <div class="dashboard-actions">
                 <a href="#" id="backToHomeFromDashboard" class="back-link">← Retour à l'accueil</a>
                 <a href="#" id="logoutLink" class="logout-link">🚪 Déconnexion</a>
             </div>
         </div>
-        <span class="client-badge" id="dashboardClientBadge" style="display:inline-block; margin-bottom:20px;">Client : —</span>
+        <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
 
         <!-- SECTION LIVRABLES -->
         <div class="section-card">
@@ -751,7 +780,7 @@
                 <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
             </div>
             <a id="livrablesDriveLink" href="#" target="_blank" class="btn-drive" style="margin-top:15px;">
-                📁 Ouvrir Google Drive (téléchargement)
+                📂 Livrables GeCoTelecom
             </a>
         </div>
 
@@ -768,7 +797,7 @@
                 </ul>
             </div>
             <a id="depotsDriveLink" href="#" target="_blank" class="btn-drive" style="margin-top:15px;">
-                📁 Ouvrir Google Drive (dépôt de nouveaux projets)
+                📁 Dépôt client
             </a>
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br />
@@ -803,6 +832,7 @@
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
+                logo: 'logo%20metroptic.png',
                 livrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing',
                 depots: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=sharing'
             },
@@ -810,6 +840,7 @@
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
+                logo: null,
                 livrables: null,
                 depots: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=sharing'
             },
@@ -817,6 +848,7 @@
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
+                logo: 'logo%20infra.jpg',
                 livrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing',
                 depots: 'https://drive.google.com/drive/folders/1CY03ggtbYtdkkTHAxY-mJI8QY4z1RGTa?usp=sharing'
             }
@@ -835,7 +867,8 @@
         const loginError = document.getElementById('loginError');
         const loginForm = document.getElementById('loginForm');
         const clientNavBtn = document.getElementById('clientNavBtn');
-        const dashboardClientBadge = document.getElementById('dashboardClientBadge');
+        const dashboardTitle = document.getElementById('dashboardTitle');
+        const clientBadgeContainer = document.getElementById('clientBadgeContainer');
         const livrablesDriveLink = document.getElementById('livrablesDriveLink');
         const depotsDriveLink = document.getElementById('depotsDriveLink');
         const logoutLink = document.getElementById('logoutLink');
@@ -904,7 +937,20 @@
 
         function showDashboard() {
             if (!loggedInClient) return;
-            dashboardClientBadge.textContent = `👤 ${loggedInClient.nom} (${loggedInClient.code})`;
+
+            // Mettre à jour le titre avec le nom du client
+            dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
+
+            // Afficher le badge avec le logo (si disponible)
+            let badgeHtml = '';
+            if (loggedInClient.logo) {
+                badgeHtml = `<span class="client-badge"><img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}"> ${loggedInClient.nom} (${loggedInClient.code})</span>`;
+            } else {
+                badgeHtml = `<span class="client-badge">👤 ${loggedInClient.nom} (${loggedInClient.code})</span>`;
+            }
+            clientBadgeContainer.innerHTML = badgeHtml;
+
+            // Gérer les livrables
             if (loggedInClient.livrables) {
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
@@ -913,12 +959,15 @@
                 livrablesDriveLink.style.display = 'none';
                 livrablesContent.innerHTML = `<p style="color:#94a3b8;">Aucun livrable disponible pour le moment.</p>`;
             }
+
+            // Gérer les dépôts
             if (loggedInClient.depots) {
                 depotsDriveLink.href = loggedInClient.depots;
                 depotsDriveLink.style.display = 'inline-block';
             } else {
                 depotsDriveLink.style.display = 'none';
             }
+
             showPage('dashboard');
         }
 
@@ -951,7 +1000,6 @@
                         loginError.classList.remove('show');
                         document.getElementById('username').value = '';
                         document.getElementById('password').value = '';
-                        // Reset password toggle icon
                         if (togglePassword) togglePassword.textContent = '👁️';
                     }
                 } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
