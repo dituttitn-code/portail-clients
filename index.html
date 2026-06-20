@@ -892,7 +892,7 @@
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS (liens dynamiques selon le client) -->
+        <!-- SECTION DÉPÔTS -->
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
@@ -904,13 +904,11 @@
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
             </div>
-            <!-- Lien dynamique (modifié par JavaScript) -->
             <a id="depotsLink" href="#" target="_blank" class="btn-drive" style="margin-top:15px;">
                 📁 Déposer un projet
             </a>
-            <!-- Note supplémentaire pour Sofiene (Google Drive) -->
             <div id="depotNote" style="margin-top:8px; font-size:0.9rem; color:#64748b; display:none;">
-                ⚠️ Pour les fichiers volumineux, utilisez Google Drive (compte requis).
+                ⚠️ Compte Google requis pour déposer des fichiers volumineux.
             </div>
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br />
@@ -939,15 +937,15 @@
     (function() {
         'use strict';
 
-        // ===== CLIENTS =====
+        // ===== CLIENTS (livrables modifiés pour Metroptic et Infra) =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
-                livrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing',
-                // Dropbox (sans compte)
+                // LIVRABLES MAINTENANT SUR DROPBOX
+                livrables: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
                 depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
                 depotsLabel: '📁 Déposer un projet (sans compte)'
             },
@@ -957,7 +955,6 @@
                 password: 'SH1975!',
                 logo: null,
                 livrables: null,
-                // Google Drive (pour les gros fichiers)
                 depots: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=sharing',
                 depotsLabel: '📁 Déposer un projet (Google Drive)'
             },
@@ -966,8 +963,8 @@
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
-                livrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing',
-                // Dropbox (sans compte)
+                // LIVRABLES MAINTENANT SUR DROPBOX
+                livrables: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
                 depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
                 depotsLabel: '📁 Déposer un projet (sans compte)'
             }
@@ -1086,17 +1083,22 @@
             clientBadgeContainer.innerHTML = badgeHtml;
 
             // ===== GESTION DES LIVRABLES =====
+            // Si le client a des livrables, on affiche la section
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
                 livrablesDriveLink.style.display = 'inline-block';
-                livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
+                // On adapte le libellé selon le client
+                if (loggedInClient.code === 'CLIENT001' || loggedInClient.code === 'CLIENT003') {
+                    livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans notre dossier Dropbox partagé (aucun compte requis).</p>`;
+                } else {
+                    livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous.</p>`;
+                }
             } else {
                 livrablesSection.style.display = 'none';
             }
 
             // ===== GESTION DU DÉPÔT (selon le client) =====
-            // Mettre à jour le lien et le texte
             depotsLink.href = loggedInClient.depots;
             depotsLink.textContent = loggedInClient.depotsLabel || '📁 Déposer un projet';
 
