@@ -783,7 +783,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE CONTACT (avec formulaire et carte satellite) -->
+<!-- PAGE CONTACT (avec formulaire Formspree) -->
 <!-- ============================================================ -->
 <section id="page-contact" class="page">
     <div class="page-content">
@@ -795,27 +795,27 @@
             <div class="contact-item"><strong>✉️ Email</strong><a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a></div>
         </div>
 
-        <!-- Formulaire de contact -->
+        <!-- Formulaire de contact avec Formspree -->
         <div class="contact-form">
             <h3>Envoyez-nous un message</h3>
-            <form action="#" method="post">
+            <form action="https://formspree.io/f/meebjqwy" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="contactName">Nom</label>
-                        <input type="text" id="contactName" placeholder="Votre nom" required />
+                        <input type="text" id="contactName" name="nom" placeholder="Votre nom" required />
                     </div>
                     <div class="form-group">
                         <label for="contactEmail">Email</label>
-                        <input type="email" id="contactEmail" placeholder="votre@email.com" required />
+                        <input type="email" id="contactEmail" name="email" placeholder="votre@email.com" required />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="contactPhone">Téléphone</label>
-                    <input type="tel" id="contactPhone" placeholder="Votre numéro de téléphone" />
+                    <input type="tel" id="contactPhone" name="telephone" placeholder="Votre numéro de téléphone" />
                 </div>
                 <div class="form-group">
                     <label for="contactMessage">Message</label>
-                    <textarea id="contactMessage" placeholder="Votre message..." required></textarea>
+                    <textarea id="contactMessage" name="message" placeholder="Votre message..." required></textarea>
                 </div>
                 <button type="submit" class="btn-submit">📩 Envoyer</button>
             </form>
@@ -1056,7 +1056,6 @@
         function showDashboard() {
             if (!loggedInClient) return;
 
-            // Logo client dans le header
             if (loggedInClient.logo) {
                 clientLogoHeader.innerHTML = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" style="height:100%; width:auto; object-fit:contain;">`;
                 clientLogoHeader.classList.add('show');
@@ -1075,7 +1074,6 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // Livrables
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
@@ -1085,7 +1083,6 @@
                 livrablesSection.style.display = 'none';
             }
 
-            // Dépôts
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
@@ -1163,7 +1160,6 @@
             showPage('home');
         });
 
-        // ===== INIT =====
         if (!restoreSession()) {
             showPage('home');
         }
