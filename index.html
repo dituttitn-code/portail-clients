@@ -892,7 +892,7 @@
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS (avec le nouveau lien Dropbox) -->
+        <!-- SECTION DÉPÔTS (liens dynamiques selon le client) -->
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
@@ -904,13 +904,17 @@
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
             </div>
-            <!-- Lien Dropbox pour le dépôt (sans compte requis) -->
-            <a href="https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm" target="_blank" class="btn-drive" style="margin-top:15px;">
-                📁 Déposer un projet (sans compte)
+            <!-- Lien dynamique (modifié par JavaScript) -->
+            <a id="depotsLink" href="#" target="_blank" class="btn-drive" style="margin-top:15px;">
+                📁 Déposer un projet
             </a>
+            <!-- Note supplémentaire pour Sofiene (Google Drive) -->
+            <div id="depotNote" style="margin-top:8px; font-size:0.9rem; color:#64748b; display:none;">
+                ⚠️ Pour les fichiers volumineux, utilisez Google Drive (compte requis).
+            </div>
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br />
-                Après avoir déposé vos fichiers, <a href="mailto:ingenierie@gecotelecom.com?subject=Nouveau dépôt - Espace Client&body=Bonjour,%0A%0AJe viens de déposer de nouveaux fichiers dans mon dossier Dropbox partagé.%0A%0AMerci de traiter ma demande.%0A%0ACordialement,%0A(Client)">envoyez un email à ingenierie@gecotelecom.com</a> pour nous informer.
+                Après avoir déposé vos fichiers, <a href="mailto:ingenierie@gecotelecom.com?subject=Nouveau dépôt - Espace Client&body=Bonjour,%0A%0AJe viens de déposer de nouveaux fichiers.%0A%0AMerci de traiter ma demande.%0A%0ACordialement,%0A(Client)">envoyez un email à ingenierie@gecotelecom.com</a> pour nous informer.
             </div>
             <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
                 💡 <strong>Astuce :</strong> pour un nouveau projet, créez un dossier avec son nom, puis glissez‑y tous vos fichiers. Nous saurons ainsi qu'il s'agit d'une nouvelle demande.
@@ -929,7 +933,7 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT UNIQUE (modifié pour utiliser le même lien Dropbox pour tous) -->
+<!-- SCRIPT UNIQUE -->
 <!-- ============================================================ -->
 <script>
     (function() {
@@ -943,8 +947,9 @@
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
                 livrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing',
-                // Même lien Dropbox pour tous
-                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm'
+                // Dropbox (sans compte)
+                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
+                depotsLabel: '📁 Déposer un projet (sans compte)'
             },
             'Sofiene': {
                 code: 'CLIENT002',
@@ -952,7 +957,9 @@
                 password: 'SH1975!',
                 logo: null,
                 livrables: null,
-                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm'
+                // Google Drive (pour les gros fichiers)
+                depots: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=sharing',
+                depotsLabel: '📁 Déposer un projet (Google Drive)'
             },
             'Infra': {
                 code: 'CLIENT003',
@@ -960,7 +967,9 @@
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
                 livrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing',
-                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm'
+                // Dropbox (sans compte)
+                depots: 'https://www.dropbox.com/request/gbjzmlk2udlx1lan6qnm',
+                depotsLabel: '📁 Déposer un projet (sans compte)'
             }
         };
 
@@ -987,6 +996,9 @@
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
         const livrablesContent = document.getElementById('livrablesContent');
         const clientLogoHeader = document.getElementById('clientLogoHeader');
+        const depotsLink = document.getElementById('depotsLink');
+        const depotsTitle = document.getElementById('depotsTitle');
+        const depotNote = document.getElementById('depotNote');
 
         // Toggle password
         const togglePassword = document.getElementById('togglePassword');
@@ -1052,6 +1064,7 @@
         function showDashboard() {
             if (!loggedInClient) return;
 
+            // Logo client dans le header
             if (loggedInClient.logo) {
                 clientLogoHeader.innerHTML = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" style="height:100%; width:auto; object-fit:contain;">`;
                 clientLogoHeader.classList.add('show');
@@ -1060,8 +1073,10 @@
                 clientLogoHeader.innerHTML = '';
             }
 
+            // Titre du portail
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
 
+            // Badge client
             let badgeHtml = '';
             if (loggedInClient.logo) {
                 badgeHtml = `<span class="client-badge"><img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}"> ${loggedInClient.nom} (${loggedInClient.code})</span>`;
@@ -1070,7 +1085,7 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // Gestion des livrables
+            // ===== GESTION DES LIVRABLES =====
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesDriveLink.href = loggedInClient.livrables;
@@ -1080,12 +1095,19 @@
                 livrablesSection.style.display = 'none';
             }
 
-            // Le lien de dépôt est maintenant statique dans le HTML, on n'a pas besoin de le modifier ici
-            // Mais on peut adapter le titre de la section si nécessaire
+            // ===== GESTION DU DÉPÔT (selon le client) =====
+            // Mettre à jour le lien et le texte
+            depotsLink.href = loggedInClient.depots;
+            depotsLink.textContent = loggedInClient.depotsLabel || '📁 Déposer un projet';
+
+            // Ajuster le titre de la section
             if (loggedInClient.code === 'CLIENT002') {
-                document.getElementById('depotsTitle').textContent = '📤 Déposer vos nouveaux relevés';
+                depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
+                depotNote.style.display = 'block';
+                depotNote.innerHTML = '⚠️ Compte Google requis pour déposer des fichiers volumineux.';
             } else {
-                document.getElementById('depotsTitle').textContent = '📤 Déposer vos nouveaux projets et fichiers';
+                depotsTitle.textContent = '📤 Déposer vos nouveaux projets et fichiers';
+                depotNote.style.display = 'none';
             }
 
             showPage('dashboard');
