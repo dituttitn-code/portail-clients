@@ -240,9 +240,8 @@
         <div class="logo">📦 <span>MonEspace</span>Client</div>
         <div class="header-actions">
             <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <!-- 🏠 BOUTON RETOUR AU SITE (modifiez le href) -->
-            <a href="https://votresite.com" class="btn-header btn-home">🏠 Retour au site</a>
-            <!-- 🚪 BOUTON DÉCONNEXION -->
+            <!-- ✅ LIEN RETOUR MIS À JOUR VERS GECOTELECOM -->
+            <a href="https://www.gecotelecom.com" class="btn-header btn-home">🏠 Retour au site</a>
             <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
         </div>
     </header>
@@ -250,7 +249,6 @@
     <!-- ===== CONTENU PRINCIPAL ===== -->
     <main class="container">
 
-        <!-- Carte de bienvenue -->
         <section class="welcome-card" id="welcomeCard">
             <h1>Bonjour, <span class="client-name" id="clientNameDisplay">Client</span> 👋</h1>
             <p id="welcomeMessage">
@@ -263,10 +261,8 @@
             </p>
         </section>
 
-        <!-- Grille des actions -->
         <div class="actions-grid">
 
-            <!-- Carte 1 : Envoyer -->
             <div class="action-card">
                 <div class="icon">📤</div>
                 <h3>Envoyer un projet</h3>
@@ -277,7 +273,6 @@
                 <span class="footnote">Ouvre dans un nouvel onglet · Aucune inscription</span>
             </div>
 
-            <!-- Carte 2 : Lien de dépôt -->
             <div class="action-card">
                 <div class="icon">🔗</div>
                 <h3>Lien de dépôt</h3>
@@ -289,7 +284,6 @@
                 <span class="footnote">Le lien est valable 30 jours</span>
             </div>
 
-            <!-- Carte 3 : Suivi -->
             <div class="action-card">
                 <div class="icon">📊</div>
                 <h3>Suivi des envois</h3>
@@ -302,61 +296,41 @@
 
         </div>
 
-        <!-- Info client -->
         <div class="info-client-bottom">
             <p style="color:#64748b; font-size:0.95rem;">
                 📌 <strong>Votre code projet :</strong> 
                 <span id="clientCodeDisplay" style="background:#f1f5f9; padding:0.2rem 1rem; border-radius:20px; font-family:monospace; font-weight:600;">-</span>
                 <br />
                 <span style="font-size:0.85rem; color:#94a3b8;">
-                    Si vous avez besoin d'aide, contactez-nous à support@votresite.com
+                    Si vous avez besoin d'aide, contactez-nous à support@gecotelecom.com
                 </span>
             </p>
         </div>
 
     </main>
 
-    <!-- ===== PIED DE PAGE ===== -->
     <footer class="footer">
         &copy; 2026 MonEspaceClient — Transfert sécurisé via SwissTransfer (Infomaniak)
     </footer>
 
-    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        /**
-         * ═══════════════════════════════════════════════════
-         *  VÉRIFICATION DE SESSION
-         *  Si le client n'est PAS connecté, on le renvoie
-         *  vers la page de connexion.
-         * ═══════════════════════════════════════════════════
-         */
         (function verifierSession() {
             const loggedIn = sessionStorage.getItem('loggedIn');
             if (loggedIn !== 'true') {
-                // Pas de session → retour au login
                 window.location.href = 'index.html';
                 return;
             }
-
-            // Récupérer le nom depuis la session
             const nom = sessionStorage.getItem('clientName');
             if (!nom) {
                 window.location.href = 'index.html';
                 return;
             }
-
-            // Si l'URL n'a pas le paramètre client, on le met
             const urlParams = new URLSearchParams(window.location.search);
             if (!urlParams.has('client')) {
                 window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
             }
         })();
 
-        /**
-         * ═══════════════════════════════════════════════════
-         *  PERSONNALISATION DE LA PAGE
-         * ═══════════════════════════════════════════════════
-         */
         function getClientNameFromURL() {
             const params = new URLSearchParams(window.location.search);
             return params.get('client') ? decodeURIComponent(params.get('client')) : null;
@@ -399,11 +373,6 @@
             `;
         }
 
-        /**
-         * ═══════════════════════════════════════════════════
-         *  FONCTIONS : LIEN DE DÉPÔT & DÉCONNEXION
-         * ═══════════════════════════════════════════════════
-         */
         function genererLienDepot() {
             const nomClient = sessionStorage.getItem('clientName') || 'Client';
             const id = Math.random().toString(36).substring(2, 10);
@@ -424,13 +393,10 @@
         }
 
         function deconnexion() {
-            // Effacer la session
             sessionStorage.clear();
-            // Rediriger vers la page de login
             window.location.href = 'index.html';
         }
 
-        // Lancer la personnalisation
         document.addEventListener('DOMContentLoaded', personaliserPage);
     </script>
 
