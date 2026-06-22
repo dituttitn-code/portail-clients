@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Espace Client</title>
     <style>
-        /* styles identiques à la version précédente */
+        /* (styles identiques aux précédents) */
         * {
             margin: 0;
             padding: 0;
@@ -48,6 +48,18 @@
         }
         .header .brand .client-name {
             color: #38bdf8;
+        }
+        .header .brand .initials-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2563eb;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 8px;
         }
         .header-actions {
             display: flex;
@@ -257,12 +269,12 @@
     <!-- ===== EN-TÊTE PERSONNALISÉ ===== -->
     <header class="header">
         <div class="brand" id="headerBrand">
-            <!-- Sera injecté dynamiquement par JavaScript -->
+            <!-- Sera injecté dynamiquement -->
         </div>
         <div class="header-actions">
             <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <!-- 🔽 LIEN "Retour à l'accueil" pointant vers la racine -->
             <a href="/" class="btn-header btn-home">🏠 Retour à l'accueil</a>
+            <!-- ✅ Le bouton Déconnexion utilise la fonction mise à jour -->
             <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
         </div>
     </header>
@@ -373,15 +385,20 @@
             const nomClient = getClientNameFromURL() || sessionStorage.getItem('clientName') || 'Client';
             const logoClient = sessionStorage.getItem('clientLogo') || '';
 
-            // 1. En-tête : logo + nom
+            // 1. En-tête : logo ou fallback avec initiales
             const brandDiv = document.getElementById('headerBrand');
             if (logoClient) {
                 brandDiv.innerHTML = `
-                    <img src="${logoClient}" alt="${nomClient}" />
+                    <img src="${logoClient}" alt="${nomClient}" 
+                         onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=\\'initials-fallback\\'>${nomClient.charAt(0)}</span>';" />
                     <span class="client-name">${nomClient}</span>
                 `;
             } else {
-                brandDiv.innerHTML = `<span>📦 <span class="client-name">${nomClient}</span></span>`;
+                // Si aucun logo n'est stocké, on affiche les initiales
+                brandDiv.innerHTML = `
+                    <span class="initials-fallback">${nomClient.charAt(0)}</span>
+                    <span class="client-name">${nomClient}</span>
+                `;
             }
 
             // 2. Badge
@@ -390,10 +407,10 @@
             // 3. Code projet
             document.getElementById('clientCodeDisplay').textContent = genererCodeProjet(nomClient);
 
-            // 4. Titre de la page
+            // 4. Titre
             document.title = `Espace Client - ${nomClient}`;
 
-            // 5. Message de bienvenue
+            // 5. Message
             const msg = document.getElementById('welcomeMessage');
             msg.innerHTML = `
                 Bienvenue dans votre espace client dédié, <strong>${nomClient}</strong>. 
@@ -405,7 +422,6 @@
                 🔒 crypté et hébergé en Suisse.
             `;
 
-            // 6. Afficher le nom dans le titre "Bonjour, X"
             document.getElementById('clientNameDisplay').textContent = nomClient;
         }
 
@@ -429,13 +445,14 @@
             `;
         }
 
+        // ✅ DÉCONNEXION MODIFIÉE : redirige vers l'accueil du site
         function deconnexion() {
             sessionStorage.clear();
-            window.location.href = 'index.html';
+            window.location.href = '/'; // ← Redirection vers la racine (accueil du site)
         }
 
-        // Lancer la personnalisation au chargement
         document.addEventListener('DOMContentLoaded', personaliserPage);
     </script>
+
 </body>
 </html>
