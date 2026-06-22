@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeCoTelecom — Expertise Réseaux</title>
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ===== RESET & BASE (inchangé) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -120,7 +120,7 @@
         .page { display: none; }
         .page.active { display: block; }
 
-        /* ===== ACCUEIL ===== */
+        /* ===== ACCUEIL (inchangé) ===== */
         .hero {
             display: flex;
             flex-direction: column;
@@ -179,7 +179,7 @@
             line-height: 1.9;
         }
 
-        /* ===== PAGES INTÉRIEURES ===== */
+        /* ===== PAGES INTÉRIEURES (inchangé) ===== */
         .page-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -212,7 +212,7 @@
             margin-bottom: 20px;
         }
 
-        /* ===== À PROPOS ===== */
+        /* ===== À PROPOS (inchangé) ===== */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
@@ -228,7 +228,7 @@
         .about-card h3 { font-size: 1.6rem; color: #1e293b; margin-bottom: 10px; }
         .about-card p { font-size: 1.15rem; }
 
-        /* ===== SERVICES ===== */
+        /* ===== SERVICES (inchangé) ===== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px,1fr));
@@ -253,7 +253,7 @@
         }
         .service-card ul li { margin-bottom: 10px; }
 
-        /* ===== CONTACT ===== */
+        /* ===== CONTACT (inchangé) ===== */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -274,7 +274,6 @@
         .contact-item a { color: #2563eb; text-decoration: none; font-weight: 500; }
         .contact-item a:hover { text-decoration: underline; }
 
-        /* Formulaire de contact (public) */
         .contact-form {
             margin-top: 30px;
         }
@@ -337,7 +336,6 @@
             box-shadow: 0 8px 30px rgba(37,99,235,0.4);
         }
 
-        /* Carte Google Maps en mode satellite */
         .map-container {
             margin-top: 35px;
             border-radius: 16px;
@@ -451,7 +449,7 @@
         }
         .login-card .footer-link a { color: #2563eb; text-decoration: none; }
 
-        /* ===== DASHBOARD ===== */
+        /* ===== DASHBOARD (modifié pour SwissTransfer) ===== */
         #dashboard-page {
             display: none;
             max-width: 1200px;
@@ -507,6 +505,7 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.2s;
+            cursor: pointer;
         }
         .dashboard-actions .back-link:hover,
         .dashboard-actions .logout-link:hover {
@@ -546,26 +545,6 @@
             border-radius: 4px;
         }
 
-        .file-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f8fafc;
-            padding: 15px 20px;
-            border-radius: 12px;
-            border-left: 4px solid #3b82f6;
-        }
-        .file-item .file-name { font-weight: 600; color: #1e293b; }
-        .file-item .file-meta { font-size: 0.9rem; color: #64748b; }
-        .file-item a { color: #2563eb; text-decoration: none; font-weight: 500; }
-        .file-item a:hover { text-decoration: underline; }
-
         .btn-drive {
             display: inline-block;
             background: #1a73e8;
@@ -588,103 +567,28 @@
         }
         .notification-box a { color: #2563eb; font-weight: 600; }
 
-        /* ===== FORMULAIRE DE DÉPÔT (intégré) ===== */
-        .depot-form {
-            margin-top: 20px;
-        }
-        .depot-form .form-group {
-            margin-bottom: 20px;
-        }
-        .depot-form label {
-            display: block;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 8px;
-            font-size: 1.15rem;
-        }
-        .depot-form input,
-        .depot-form textarea,
-        .depot-form select {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-family: inherit;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            background: white;
-        }
-        .depot-form input:focus,
-        .depot-form textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
-        }
-        .depot-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .depot-form .file-input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .depot-form .file-input-wrapper input[type="file"] {
-            flex: 1;
-            padding: 14px;
-            border: 2px dashed #e2e8f0;
-            border-radius: 12px;
-            cursor: pointer;
-            min-width: 200px;
-        }
-        .depot-form .file-input-wrapper input[type="file"]:hover {
-            border-color: #3b82f6;
-        }
-        .depot-form .btn-depot {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
-            width: 100%;
-            margin-top: 10px;
-        }
-        .depot-form .btn-depot:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(37,99,235,0.4);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #94a3b8;
-            margin-top: 60px;
-        }
-        .footer-brand {
-            font-weight: 700;
-            font-size: 2.2rem;
+        /* ===== NOUVEAU : bouton SwissTransfer ===== */
+        .btn-swiss {
+            display: inline-block;
+            background: #0f172a;
             color: #fff;
-            letter-spacing: 0.5px;
+            padding: 14px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(15,23,42,0.25);
         }
-        .footer-sub {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #cbd5e1;
-            letter-spacing: 0.5px;
-            margin-top: -2px;
+        .btn-swiss:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
         }
-        .footer-copy { font-size: 0.9rem; color: #64748b; margin-top: 8px; }
+        .btn-swiss img { height: 24px; vertical-align: middle; margin-right: 8px; }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE (inchangé) ===== */
         @media (max-width: 768px) {
             body { font-size: 1.1rem; }
             .logo-img { height: 120px; }
@@ -698,7 +602,6 @@
             .about-grid { grid-template-columns: 1fr; }
             .contact-item { flex-direction: column; align-items: flex-start; }
             .dashboard-header h1 { font-size: 2rem; }
-            .file-item { flex-direction: column; align-items: flex-start; gap: 8px; }
             .map-container iframe { height: 280px; }
             .login-card .login-logo img { height: 90px; }
             .login-card h1 { font-size: 2rem; }
@@ -707,8 +610,6 @@
             .footer-sub { font-size: 1rem; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
-            .depot-form input,
-            .depot-form textarea { font-size: 1rem; padding: 14px; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -723,14 +624,13 @@
             .dashboard-actions { flex-direction: row; gap: 10px; }
             .footer-brand { font-size: 1.5rem; }
             .footer-sub { font-size: 0.9rem; }
-            .depot-form .btn-depot { font-size: 1rem; padding: 14px; }
         }
     </style>
 </head>
 <body>
 
 <!-- ============================================================ -->
-<!-- HEADER -->
+<!-- HEADER (inchangé) -->
 <!-- ============================================================ -->
 <header>
     <div class="header-top">
@@ -753,7 +653,7 @@
 </header>
 
 <!-- ============================================================ -->
-<!-- PAGE ACCUEIL -->
+<!-- PAGE ACCUEIL (inchangé) -->
 <!-- ============================================================ -->
 <section id="page-home" class="page active">
     <div class="hero">
@@ -768,7 +668,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE À PROPOS -->
+<!-- PAGE À PROPOS (inchangé) -->
 <!-- ============================================================ -->
 <section id="page-propos" class="page">
     <div class="page-content">
@@ -788,13 +688,12 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE SERVICES -->
+<!-- PAGE SERVICES (inchangé) -->
 <!-- ============================================================ -->
 <section id="page-services" class="page">
     <div class="page-content">
         <h2>Nos Services</h2>
         <div class="services-grid">
-            <!-- Services... (inchangés) -->
             <div class="service-card">
                 <h3>🔍 Inspections et relevés</h3>
                 <ul>
@@ -855,7 +754,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE CONTACT -->
+<!-- PAGE CONTACT (inchangé) -->
 <!-- ============================================================ -->
 <section id="page-contact" class="page">
     <div class="page-content">
@@ -901,7 +800,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE LOGIN -->
+<!-- PAGE LOGIN (inchangé) -->
 <!-- ============================================================ -->
 <section id="page-login" class="page">
     <div id="login-page" class="active">
@@ -934,7 +833,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DASHBOARD -->
+<!-- PAGE DASHBOARD (MODIFIÉE AVEC SWISSTRANSFER) -->
 <!-- ============================================================ -->
 <section id="page-dashboard" class="page">
     <div id="dashboard-page" class="active">
@@ -947,9 +846,9 @@
         </div>
         <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
 
-        <!-- SECTION LIVRABLES -->
+        <!-- SECTION LIVRABLES (liens SwissTransfer) -->
         <div id="livrablesSection" class="section-card">
-            <h2 id="livrablesTitle">📥 Télécharger vos fichiers livrables</h2>
+            <h2 id="livrablesTitle">📥 Télécharger vos livrables</h2>
             <div id="livrablesContent">
                 <p style="color:#64748b;">Chargement...</p>
             </div>
@@ -957,63 +856,34 @@
                 <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce dossier les livrables finaux
                 <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
             </div>
-            <a id="livrablesDriveLink" href="#" target="_blank" class="btn-drive" style="margin-top:15px;">
-                📂 Livrables GeCoTelecom
+            <!-- Lien dynamique vers SwissTransfer (livrables) -->
+            <a id="livrablesSwissLink" href="#" target="_blank" class="btn-swiss" style="margin-top:15px;">
+                🚀 Accéder aux livrables sur SwissTransfer
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS avec FORMULAIRE HTML PUR -->
+        <!-- SECTION DÉPÔTS (liens SwissTransfer) -->
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
 
-            <form class="depot-form" action="https://formspree.io/f/meebjqwy" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="_subject" value="Nouveau dépôt de projet - GeCoTelecom" />
-                <input type="hidden" name="_replyto" value="ingenierie@gecotelecom.com" />
-
-                <div class="form-group">
-                    <label for="depotName">Votre nom</label>
-                    <input type="text" id="depotName" name="Nom" placeholder="Votre nom ou celui de votre entreprise" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="depotEmail">Email</label>
-                    <input type="email" id="depotEmail" name="Email" placeholder="Votre adresse email" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="depotProject">Nom du projet</label>
-                    <input type="text" id="depotProject" name="Projet" placeholder="Ex: Réseau Laval" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="depotDescription">Description du projet</label>
-                    <textarea id="depotDescription" name="Description" placeholder="Décrivez votre besoin, les échéances, les contraintes..." required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="depotFile">Joindre vos fichiers</label>
-                    <div class="file-input-wrapper">
-                        <input type="file" id="depotFile" name="Fichiers" multiple required />
-                        <span style="font-size:0.9rem; color:#64748b;">(PDF, photos, plans, ZIP...)</span>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-depot">📩 Envoyer</button>
-            </form>
+            <!-- Bouton de dépôt vers SwissTransfer -->
+            <a id="depotSwissLink" href="#" target="_blank" class="btn-swiss" style="margin-top:10px;">
+                📤 Déposer via SwissTransfer
+            </a>
 
             <div style="margin-top:20px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>✅ Comment ça fonctionne ?</strong>
                 <ul style="margin:8px 0 0 20px;">
-                    <li><strong>Déposer un nouveau projet :</strong> remplissez le formulaire ci‑dessus et joignez vos fichiers (PDF, photos, plans...).</li>
-                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez soumettre plusieurs formulaires si besoin.</li>
+                    <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers SwissTransfer pour envoyer vos fichiers.</li>
+                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez utiliser le même lien de dépôt à tout moment.</li>
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
             </div>
 
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br />
-                Une fois votre formulaire envoyé, nous recevrons automatiquement une notification par email.
+                Une fois vos fichiers déposés, vous pouvez nous contacter par email pour nous prévenir.
             </div>
 
             <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
@@ -1024,7 +894,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- FOOTER -->
+<!-- FOOTER (inchangé) -->
 <!-- ============================================================ -->
 <footer>
     <div class="footer-brand">GeCoTelecom</div>
@@ -1033,34 +903,38 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT UNIQUE -->
+<!-- SCRIPT UNIQUE (MODIFIÉ) -->
 <!-- ============================================================ -->
 <script>
     (function() {
         'use strict';
 
-        // ===== CLIENTS =====
+        // ===== CLIENTS AVEC MOTS DE PASSE, LOGOS ET LIENS SWISSTRANSFER =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
-                logo: 'logometroptic-1.png',
-                livrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing'
+                logo: '/logos/logometroptic-1.png',          // chemin vers votre logo
+                // ➡️ Remplacez ces URLs par vos vrais liens SwissTransfer
+                livrables: 'https://www.swisstransfer.com/d/1234567890',  // lien vers le dossier livrables
+                depot: 'https://www.swisstransfer.com/d/0987654321'       // lien de dépôt
             },
             'Sofiene': {
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
-                logo: null,
-                livrables: null
+                logo: '/logos/sofiene.png',
+                livrables: null,   // si pas de livrables spécifiques
+                depot: 'https://www.swisstransfer.com/d/abcdefghij'
             },
             'Infra': {
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
-                logo: 'logo%20infra.jpg',
-                livrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing'
+                logo: '/logos/logo%20infra.jpg',   // espace encodé en %20
+                livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
+                depot: 'https://www.swisstransfer.com/d/uvwxyz1234'
             }
         };
 
@@ -1080,7 +954,8 @@
         const dashboardTitle = document.getElementById('dashboardTitle');
         const clientBadgeContainer = document.getElementById('clientBadgeContainer');
         const livrablesSection = document.getElementById('livrablesSection');
-        const livrablesDriveLink = document.getElementById('livrablesDriveLink');
+        const livrablesSwissLink = document.getElementById('livrablesSwissLink');
+        const depotSwissLink = document.getElementById('depotSwissLink');
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
@@ -1173,17 +1048,25 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // ===== GESTION DES LIVRABLES =====
+            // ===== GESTION DES LIVRABLES (SwissTransfer) =====
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
-                livrablesDriveLink.href = loggedInClient.livrables;
-                livrablesDriveLink.style.display = 'inline-block';
-                livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier Google Drive ci-dessous (aucun compte requis).</p>`;
+                livrablesSwissLink.href = loggedInClient.livrables;
+                livrablesSwissLink.style.display = 'inline-block';
+                livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier SwissTransfer ci-dessous (aucun compte requis).</p>`;
             } else {
                 livrablesSection.style.display = 'none';
             }
 
-            // ===== GESTION DU DÉPÔT (titre adapté) =====
+            // ===== GESTION DU DÉPÔT (SwissTransfer) =====
+            if (loggedInClient.depot) {
+                depotSwissLink.href = loggedInClient.depot;
+                depotSwissLink.style.display = 'inline-block';
+            } else {
+                depotSwissLink.style.display = 'none';
+            }
+
+            // Ajustement du titre de la section Dépôt
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
@@ -1198,8 +1081,10 @@
             if (stored) {
                 try {
                     const client = JSON.parse(stored);
-                    if (clients[client.nom] && clients[client.nom].password === client.password) {
-                        loggedInClient = client;
+                    // Vérifier que le client existe toujours dans la liste
+                    const found = Object.values(clients).find(c => c.nom === client.nom && c.password === client.password);
+                    if (found) {
+                        loggedInClient = found;
                         showDashboard();
                         return true;
                     } else {
@@ -1259,6 +1144,7 @@
             showPage('home');
         }
 
+        // Si la page courante est 'home' on s'assure que les éléments sont cohérents
         if (currentPage === 'home') {
             navItems.forEach(item => {
                 if (item.dataset.page === 'home') item.classList.add('active');
@@ -1267,11 +1153,12 @@
             clientNavBtn.classList.remove('active');
         }
 
+        // Si on est sur dashboard sans être connecté, on redirige
         if (currentPage === 'dashboard' && !loggedInClient) {
             logout();
         }
 
-        console.log('✅ GeCoTelecom chargé avec succès !');
+        console.log('✅ GeCoTelecom avec SwissTransfer intégré !');
     })();
 </script>
 
