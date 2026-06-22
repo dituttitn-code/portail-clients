@@ -132,11 +132,10 @@
                 <label for="clientSelect">👤 Choisissez votre nom</label>
                 <select id="clientSelect" required>
                     <option value="">-- Sélectionnez --</option>
-                    <!-- ⚠️ LISTE DES CLIENTS : Ajoutez/modifiez ici -->
-                    <option value="Jean Dupont">Jean Dupont</option>
-                    <option value="Marie Martin">Marie Martin</option>
-                    <option value="SARL Alpha">SARL Alpha</option>
-                    <option value="Projet Beta">Projet Beta</option>
+                    <!-- ✅ LISTE DES CLIENTS (METTRE À JOUR ICI) -->
+                    <option value="Metro Optic">Metro Optic</option>
+                    <option value="Infrastructel">Infrastructel</option>
+                    <option value="Sofiene">Sofiene</option>
                 </select>
             </div>
 
@@ -167,17 +166,15 @@
         /**
          * ═══════════════════════════════════════════════════
          *  LISTE DES CLIENTS ET MOTS DE PASSE
-         *  ⚠️ À MODIFIER ICI pour ajouter vos clients
-         *  ⚠️ Attention : ces mots de passe sont visibles
-         *     dans le code source (inspecteur).
-         *  Pour une vraie sécurité → solution serveur (PHP)
+         *  ✅ À MODIFIER ICI pour ajouter/modifier des clients
+         *  ⚠️ Ces mots de passe sont en clair dans le code.
+         *     Pour une sécurité réelle → solution serveur (PHP)
          * ═══════════════════════════════════════════════════
          */
         const CLIENTS = {
-            'Jean Dupont': '1234',
-            'Marie Martin': '5678',
-            'SARL Alpha': 'alpha2026',
-            'Projet Beta': 'beta2026'
+            'Metro Optic': 'MO9300!',
+            'Infrastructel': 'InfraS9300!',
+            'Sofiene': 'SH1975!'
         };
 
         function handleLogin(event) {
@@ -192,7 +189,6 @@
                 // Vérifier le mot de passe
                 if (CLIENTS[nom] === motDePasse) {
                     // ⭐ CONNEXION RÉUSSIE
-                    // Stocker la session dans le navigateur (sessionStorage)
                     sessionStorage.setItem('loggedIn', 'true');
                     sessionStorage.setItem('clientName', nom);
 
@@ -209,7 +205,7 @@
             return false;
         }
 
-        // Petit plus : si le client est DÉJÀ connecté, on le redirige direct
+        // Si le client est DÉJÀ connecté, on le redirige direct
         window.addEventListener('DOMContentLoaded', function() {
             if (sessionStorage.getItem('loggedIn') === 'true') {
                 const nom = sessionStorage.getItem('clientName');
