@@ -24,7 +24,7 @@
             background: #ffffff;
             border-radius: 32px;
             padding: 3rem 2.5rem;
-            max-width: 480px;
+            max-width: 520px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9edf4;
@@ -55,8 +55,86 @@
             margin-bottom: 0.4rem;
             font-size: 0.95rem;
         }
-        .form-group select,
-        .form-group input {
+
+        /* ----- Sélecteur personnalisé avec logos ----- */
+        .custom-select-wrapper {
+            position: relative;
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            background: #f8fafc;
+            transition: border 0.2s;
+        }
+        .custom-select-wrapper:hover,
+        .custom-select-wrapper.active {
+            border-color: #0f172a;
+        }
+        .custom-select-trigger {
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            color: #1e293b;
+        }
+        .custom-select-trigger .arrow {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            transition: transform 0.2s;
+        }
+        .custom-select-trigger .arrow.open {
+            transform: rotate(180deg);
+        }
+        .custom-select-trigger .placeholder {
+            color: #94a3b8;
+        }
+        .custom-select-options {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            z-index: 100;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        .custom-select-options.open {
+            display: block;
+        }
+        .custom-select-options .option {
+            padding: 0.7rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            color: #1e293b;
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+        .custom-select-options .option:hover {
+            background: #f1f5f9;
+        }
+        .custom-select-options .option.selected {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+        .custom-select-options .option img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        .option .client-name {
+            flex: 1;
+        }
+
+        /* --- Champ mot de passe --- */
+        .form-group input[type="password"] {
             width: 100%;
             padding: 0.8rem 1rem;
             border: 2px solid #e2e8f0;
@@ -64,14 +142,13 @@
             font-size: 1rem;
             background: #f8fafc;
             transition: border 0.2s;
-            appearance: none;
         }
-        .form-group select:focus,
-        .form-group input:focus {
+        .form-group input[type="password"]:focus {
             border-color: #0f172a;
             outline: none;
             background: #ffffff;
         }
+
         .btn-login {
             width: 100%;
             padding: 0.9rem;
@@ -118,87 +195,195 @@
             text-align: center;
             margin-top: 1.5rem;
         }
+        @media (max-width: 480px) {
+            .login-container { padding: 2rem 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <div class="logo">📦 <span>MonEspace</span>Client</div>
-        <p class="subtitle">Connectez-vous à votre espace sécurisé</p>
+<div class="login-container">
+    <div class="logo">📦 <span>MonEspace</span>Client</div>
+    <p class="subtitle">Connectez-vous à votre espace sécurisé</p>
 
-        <!-- Formulaire de connexion -->
-        <form id="loginForm" onsubmit="return handleLogin(event)">
-            <div class="form-group">
-                <label for="clientSelect">👤 Choisissez votre nom</label>
-                <select id="clientSelect" required>
-                    <option value="">-- Sélectionnez --</option>
-                    <option value="Metro Optic">Metro Optic</option>
-                    <option value="Infrastructel">Infrastructel</option>
-                    <option value="Sofiene">Sofiene</option>
-                </select>
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+        <div class="form-group">
+            <label>👤 Choisissez votre société</label>
+
+            <!-- Sélecteur personnalisé -->
+            <div class="custom-select-wrapper" id="customSelect">
+                <div class="custom-select-trigger" id="selectTrigger">
+                    <span class="placeholder">-- Sélectionnez --</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="custom-select-options" id="selectOptions">
+                    <!-- Les options seront injectées par JavaScript -->
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="passwordInput">🔑 Mot de passe</label>
-                <input type="password" id="passwordInput" placeholder="Entrez votre mot de passe" required />
-            </div>
-
-            <button type="submit" class="btn-login">🚀 Accéder à mon espace</button>
-
-            <div id="errorMessage" class="error-message">
-                ⚠️ Nom ou mot de passe incorrect. Veuillez réessayer.
-            </div>
-        </form>
-
-        <div class="security-badge">
-            🔒 <strong>Protection légère</strong> · Pour une sécurité renforcée, 
-            <a href="#" style="color:#854d0e; font-weight:600;">contactez-nous</a>.
+            <!-- Champ caché pour stocker la valeur sélectionnée -->
+            <input type="hidden" id="selectedClient" value="" />
         </div>
 
-        <!-- ✅ LIEN RETOUR MIS À JOUR VERS GECOTELECOM -->
-        <div class="footer-login">
-            <a href="https://www.gecotelecom.com">🏠 Retour au site principal</a>
+        <div class="form-group">
+            <label for="passwordInput">🔑 Mot de passe</label>
+            <input type="password" id="passwordInput" placeholder="Entrez votre mot de passe" required />
         </div>
+
+        <button type="submit" class="btn-login">🚀 Accéder à mon espace</button>
+
+        <div id="errorMessage" class="error-message">
+            ⚠️ Nom ou mot de passe incorrect. Veuillez réessayer.
+        </div>
+    </form>
+
+    <div class="security-badge">
+        🔒 <strong>Protection légère</strong> · Pour une sécurité renforcée, 
+        <a href="#" style="color:#854d0e; font-weight:600;">contactez-nous</a>.
     </div>
 
-    <script>
-        const CLIENTS = {
-            'Metro Optic': 'MO9300!',
-            'Infrastructel': 'InfraS9300!',
-            'Sofiene': 'SH1975!'
-        };
+    <!-- 🔽 REMPLACEZ l'URL ci-dessous par l'URL DE VOTRE SITE ACTUEL -->
+    <div class="footer-login">
+        <a href="https://www.monsiteprincipal.com">🏠 Retour au site principal</a>
+    </div>
+</div>
 
-        function handleLogin(event) {
-            event.preventDefault();
+<script>
+    /**
+     * ═══════════════════════════════════════════════════
+     *  LISTE DES CLIENTS AVEC LEURS LOGOS ET MOTS DE PASSE
+     *  ✅ Remplacez les URLs des images par les vôtres.
+     *  Les images doivent être accessibles en ligne.
+     * ═══════════════════════════════════════════════════
+     */
+    const CLIENTS = [
+        {
+            id: 'Metro Optic',
+            nom: 'Metro Optic',
+            logo: 'https://via.placeholder.com/32/1e293b/ffffff?text=MO', // Remplacez par votre vrai logo
+            motDePasse: 'MO9300!'
+        },
+        {
+            id: 'Infrastructel',
+            nom: 'Infrastructel',
+            logo: 'https://via.placeholder.com/32/0f172a/ffffff?text=IS', // Remplacez par votre vrai logo
+            motDePasse: 'InfraS9300!'
+        },
+        {
+            id: 'Sofiene',
+            nom: 'Sofiene',
+            logo: 'https://via.placeholder.com/32/4338ca/ffffff?text=SH', // Remplacez par votre vrai logo
+            motDePasse: 'SH1975!'
+        }
+    ];
 
-            const nom = document.getElementById('clientSelect').value;
-            const motDePasse = document.getElementById('passwordInput').value;
-            const errorDiv = document.getElementById('errorMessage');
+    // ---------- INITIALISATION DU SÉLECTEUR PERSONNALISÉ ----------
+    const trigger = document.getElementById('selectTrigger');
+    const optionsContainer = document.getElementById('selectOptions');
+    const hiddenInput = document.getElementById('selectedClient');
 
-            if (nom && CLIENTS.hasOwnProperty(nom)) {
-                if (CLIENTS[nom] === motDePasse) {
-                    sessionStorage.setItem('loggedIn', 'true');
-                    sessionStorage.setItem('clientName', nom);
-                    window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
-                    return false;
-                }
-            }
+    function buildOptions() {
+        optionsContainer.innerHTML = '';
+        CLIENTS.forEach((client, index) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.dataset.value = client.id;
+            div.dataset.index = index;
+            div.innerHTML = `
+                <img src="${client.logo}" alt="${client.nom}" />
+                <span class="client-name">${client.nom}</span>
+            `;
+            div.addEventListener('click', function(e) {
+                e.stopPropagation();
+                selectOption(client.id);
+            });
+            optionsContainer.appendChild(div);
+        });
+    }
+    buildOptions();
 
+    function selectOption(value) {
+        const client = CLIENTS.find(c => c.id === value);
+        if (!client) return;
+
+        // Mettre à jour le trigger
+        trigger.innerHTML = `
+            <img src="${client.logo}" style="width:28px;height:28px;object-fit:contain;border-radius:4px;" />
+            <span>${client.nom}</span>
+            <span class="arrow">▼</span>
+        `;
+
+        // Mettre à jour le champ caché
+        hiddenInput.value = value;
+
+        // Marquer l'option sélectionnée
+        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+        const selectedOpt = optionsContainer.querySelector(`.option[data-value="${value}"]`);
+        if (selectedOpt) selectedOpt.classList.add('selected');
+
+        // Fermer la liste
+        optionsContainer.classList.remove('open');
+        document.getElementById('customSelect').classList.remove('active');
+        document.querySelector('.arrow')?.classList.remove('open');
+    }
+
+    // Toggle de la liste déroulante
+    trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const wrapper = document.getElementById('customSelect');
+        const isOpen = optionsContainer.classList.toggle('open');
+        wrapper.classList.toggle('active');
+        const arrow = this.querySelector('.arrow');
+        if (arrow) arrow.classList.toggle('open');
+    });
+
+    // Fermer la liste si on clique ailleurs
+    document.addEventListener('click', function() {
+        optionsContainer.classList.remove('open');
+        document.getElementById('customSelect').classList.remove('active');
+        const arrow = trigger.querySelector('.arrow');
+        if (arrow) arrow.classList.remove('open');
+    });
+
+    // ---------- GESTION DU FORMULAIRE ----------
+    function handleLogin(event) {
+        event.preventDefault();
+
+        const nom = hiddenInput.value;
+        const motDePasse = document.getElementById('passwordInput').value;
+        const errorDiv = document.getElementById('errorMessage');
+
+        if (!nom) {
+            errorDiv.textContent = '⚠️ Veuillez sélectionner votre société.';
             errorDiv.style.display = 'block';
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordInput').focus();
             return false;
         }
 
-        window.addEventListener('DOMContentLoaded', function() {
-            if (sessionStorage.getItem('loggedIn') === 'true') {
-                const nom = sessionStorage.getItem('clientName');
-                if (nom && CLIENTS.hasOwnProperty(nom)) {
-                    window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
-                }
+        const client = CLIENTS.find(c => c.id === nom);
+        if (client && client.motDePasse === motDePasse) {
+            // Connexion réussie
+            sessionStorage.setItem('loggedIn', 'true');
+            sessionStorage.setItem('clientName', nom);
+            window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
+            return false;
+        }
+
+        errorDiv.textContent = '⚠️ Nom ou mot de passe incorrect. Veuillez réessayer.';
+        errorDiv.style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+        return false;
+    }
+
+    // Si déjà connecté, redirection directe
+    window.addEventListener('DOMContentLoaded', function() {
+        if (sessionStorage.getItem('loggedIn') === 'true') {
+            const nom = sessionStorage.getItem('clientName');
+            if (nom && CLIENTS.some(c => c.id === nom)) {
+                window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
             }
-        });
-    </script>
+        }
+    });
+</script>
 
 </body>
 </html>
