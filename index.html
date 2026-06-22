@@ -78,9 +78,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             display: none;
         }
-        .client-logo-header.show {
-            display: block;
-        }
+        .client-logo-header.show { display: block; }
         .nav-links {
             display: flex;
             gap: 30px;
@@ -118,7 +116,7 @@
             color: #fff;
         }
 
-        /* ===== SECTIONS GÉNÉRALES ===== */
+        /* ===== PAGES ===== */
         .page { display: none; }
         .page.active { display: block; }
 
@@ -276,7 +274,7 @@
         .contact-item a { color: #2563eb; text-decoration: none; font-weight: 500; }
         .contact-item a:hover { text-decoration: underline; }
 
-        /* Formulaire de contact */
+        /* Formulaire de contact (public) */
         .contact-form {
             margin-top: 30px;
         }
@@ -547,6 +545,7 @@
             background: linear-gradient(90deg, #fbbf24, #2563eb);
             border-radius: 4px;
         }
+
         .file-list {
             display: flex;
             flex-direction: column;
@@ -588,6 +587,79 @@
             margin: 15px 0;
         }
         .notification-box a { color: #2563eb; font-weight: 600; }
+
+        /* ===== FORMULAIRE DE DÉPÔT (intégré) ===== */
+        .depot-form {
+            margin-top: 20px;
+        }
+        .depot-form .form-group {
+            margin-bottom: 20px;
+        }
+        .depot-form label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+        .depot-form input,
+        .depot-form textarea,
+        .depot-form select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+        .depot-form input:focus,
+        .depot-form textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+        }
+        .depot-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .depot-form .file-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .depot-form .file-input-wrapper input[type="file"] {
+            flex: 1;
+            padding: 14px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .depot-form .file-input-wrapper input[type="file"]:hover {
+            border-color: #3b82f6;
+        }
+        .depot-form .btn-depot {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+            width: 100%;
+            margin-top: 10px;
+        }
+        .depot-form .btn-depot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37,99,235,0.4);
+        }
 
         /* ===== FOOTER ===== */
         footer {
@@ -633,10 +705,10 @@
             .dashboard-actions { width: 100%; justify-content: flex-end; }
             .footer-brand { font-size: 1.8rem; }
             .footer-sub { font-size: 1rem; }
-            .dashboard-header h1 .client-logo { height: 40px; }
-            .client-logo-header { height: 40px; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
+            .depot-form input,
+            .depot-form textarea { font-size: 1rem; padding: 14px; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -651,8 +723,7 @@
             .dashboard-actions { flex-direction: row; gap: 10px; }
             .footer-brand { font-size: 1.5rem; }
             .footer-sub { font-size: 0.9rem; }
-            .dashboard-header h1 .client-logo { height: 32px; }
-            .client-logo-header { height: 32px; }
+            .depot-form .btn-depot { font-size: 1rem; padding: 14px; }
         }
     </style>
 </head>
@@ -723,6 +794,7 @@
     <div class="page-content">
         <h2>Nos Services</h2>
         <div class="services-grid">
+            <!-- Services... (inchangés) -->
             <div class="service-card">
                 <h3>🔍 Inspections et relevés</h3>
                 <ul>
@@ -793,7 +865,6 @@
             <div class="contact-item"><strong>📞 Téléphone</strong><a href="tel:+15145860453">514-586-0453</a></div>
             <div class="contact-item"><strong>✉️ Email</strong><a href="mailto:info@gecotelecom.com">info@gecotelecom.com</a></div>
         </div>
-
         <div class="contact-form">
             <h3>Envoyez-nous un message</h3>
             <form action="https://formspree.io/f/meebjqwy" method="POST">
@@ -818,7 +889,6 @@
                 <button type="submit" class="btn-submit">📩 Envoyer</button>
             </form>
         </div>
-
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.248179429733!2d-73.77143112426028!3d45.58248957225453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc92f3c8c7a8e1b%3A0x1c6b1c8f3c0e8f0!2s2555%20Boulevard%20du%20Havre%20des%20Iles%2C%20Laval%2C%20QC%20H7W%204R4!5e0!3m2!1sfr!2sca!4v1740000000000&t=k"
@@ -864,7 +934,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DASHBOARD (avec formulaire Tally intégré) -->
+<!-- PAGE DASHBOARD -->
 <!-- ============================================================ -->
 <section id="page-dashboard" class="page">
     <div id="dashboard-page" class="active">
@@ -892,26 +962,47 @@
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS avec TALLY INTÉGRÉ -->
+        <!-- SECTION DÉPÔTS avec FORMULAIRE HTML PUR -->
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
 
-            <!-- ===== FORMULAIRE TALLY INTÉGRÉ ===== -->
-            <div style="margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); background: white;">
-                <iframe 
-                    src="https://tally.so/embed/684vvo?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                    width="100%" 
-                    height="550" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0" 
-                    title="Dépôt de projets GeCoTelecom"
-                    style="display:block; width:100%; border: none;"
-                ></iframe>
-            </div>
+            <form class="depot-form" action="https://formspree.io/f/meebjqwy" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="Nouveau dépôt de projet - GeCoTelecom" />
+                <input type="hidden" name="_replyto" value="ingenierie@gecotelecom.com" />
 
-            <div style="margin-top:15px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
+                <div class="form-group">
+                    <label for="depotName">Votre nom</label>
+                    <input type="text" id="depotName" name="Nom" placeholder="Votre nom ou celui de votre entreprise" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="depotEmail">Email</label>
+                    <input type="email" id="depotEmail" name="Email" placeholder="Votre adresse email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="depotProject">Nom du projet</label>
+                    <input type="text" id="depotProject" name="Projet" placeholder="Ex: Réseau Laval" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="depotDescription">Description du projet</label>
+                    <textarea id="depotDescription" name="Description" placeholder="Décrivez votre besoin, les échéances, les contraintes..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="depotFile">Joindre vos fichiers</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="depotFile" name="Fichiers" multiple required />
+                        <span style="font-size:0.9rem; color:#64748b;">(PDF, photos, plans, ZIP...)</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-depot">📩 Envoyer</button>
+            </form>
+
+            <div style="margin-top:20px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>✅ Comment ça fonctionne ?</strong>
                 <ul style="margin:8px 0 0 20px;">
                     <li><strong>Déposer un nouveau projet :</strong> remplissez le formulaire ci‑dessus et joignez vos fichiers (PDF, photos, plans...).</li>
@@ -989,7 +1080,6 @@
         const dashboardTitle = document.getElementById('dashboardTitle');
         const clientBadgeContainer = document.getElementById('clientBadgeContainer');
         const livrablesSection = document.getElementById('livrablesSection');
-        const livrablesTitle = document.getElementById('livrablesTitle');
         const livrablesDriveLink = document.getElementById('livrablesDriveLink');
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
