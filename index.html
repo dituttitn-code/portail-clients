@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeCoTelecom — Expertise Réseaux</title>
     <style>
-        /* ===== RESET & BASE (inchangé) ===== */
+        /* ===== RESET & BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +16,7 @@
             min-height: 100vh;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER (inchangé) ===== */
         header {
             background: #ffffff;
             box-shadow: 0 4px 20px rgba(37,99,235,0.06);
@@ -120,7 +120,7 @@
         .page { display: none; }
         .page.active { display: block; }
 
-        /* ===== ACCUEIL (inchangé) ===== */
+        /* ===== ACCUEIL ===== */
         .hero {
             display: flex;
             flex-direction: column;
@@ -179,7 +179,7 @@
             line-height: 1.9;
         }
 
-        /* ===== PAGES INTÉRIEURES (inchangé) ===== */
+        /* ===== PAGES INTÉRIEURES ===== */
         .page-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -212,7 +212,7 @@
             margin-bottom: 20px;
         }
 
-        /* ===== À PROPOS (inchangé) ===== */
+        /* ===== À PROPOS ===== */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
@@ -228,7 +228,7 @@
         .about-card h3 { font-size: 1.6rem; color: #1e293b; margin-bottom: 10px; }
         .about-card p { font-size: 1.15rem; }
 
-        /* ===== SERVICES (inchangé) ===== */
+        /* ===== SERVICES ===== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px,1fr));
@@ -253,7 +253,7 @@
         }
         .service-card ul li { margin-bottom: 10px; }
 
-        /* ===== CONTACT (inchangé) ===== */
+        /* ===== CONTACT ===== */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -449,7 +449,7 @@
         }
         .login-card .footer-link a { color: #2563eb; text-decoration: none; }
 
-        /* ===== DASHBOARD (modifié pour SwissTransfer) ===== */
+        /* ===== DASHBOARD ===== */
         #dashboard-page {
             display: none;
             max-width: 1200px;
@@ -545,29 +545,6 @@
             border-radius: 4px;
         }
 
-        .btn-drive {
-            display: inline-block;
-            background: #1a73e8;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-            margin-top: 10px;
-        }
-        .btn-drive:hover { background: #1557b0; }
-
-        .notification-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        .notification-box a { color: #2563eb; font-weight: 600; }
-
-        /* ===== NOUVEAU : bouton SwissTransfer ===== */
         .btn-swiss {
             display: inline-block;
             background: #0f172a;
@@ -586,9 +563,55 @@
             background: #1e293b;
             transform: translateY(-2px);
         }
-        .btn-swiss img { height: 24px; vertical-align: middle; margin-right: 8px; }
 
-        /* ===== RESPONSIVE (inchangé) ===== */
+        .notification-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .notification-box a { color: #2563eb; font-weight: 600; }
+
+        /* ============================================================ */
+        /* ===== NOUVEAU FOOTER CENTRÉ ET ÉPURÉ ===== */
+        /* ============================================================ */
+        footer {
+            text-align: center;
+            padding: 30px 20px 25px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #cbd5e1;
+            margin-top: 60px;
+            border-top: 2px solid rgba(37,99,235,0.15);
+        }
+        .footer-brand {
+            font-weight: 600;
+            font-size: 1.4rem;          /* ← plus petite */
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .footer-sub {
+            font-weight: 400;
+            font-size: 1rem;            /* ← plus petite */
+            color: #94a3b8;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+        .footer-copy {
+            font-size: 0.8rem;           /* ← plus petite */
+            color: #64748b;
+            letter-spacing: 0.2px;
+        }
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #fbbf24, #2563eb);
+            margin: 8px auto 12px;
+            border-radius: 4px;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body { font-size: 1.1rem; }
             .logo-img { height: 120px; }
@@ -606,8 +629,8 @@
             .login-card .login-logo img { height: 90px; }
             .login-card h1 { font-size: 2rem; }
             .dashboard-actions { width: 100%; justify-content: flex-end; }
-            .footer-brand { font-size: 1.8rem; }
-            .footer-sub { font-size: 1rem; }
+            .footer-brand { font-size: 1.2rem; }
+            .footer-sub { font-size: 0.9rem; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
         }
@@ -622,8 +645,9 @@
             .btn-submit { width: 100%; text-align: center; }
             .map-container iframe { height: 220px; }
             .dashboard-actions { flex-direction: row; gap: 10px; }
-            .footer-brand { font-size: 1.5rem; }
-            .footer-sub { font-size: 0.9rem; }
+            .footer-brand { font-size: 1rem; }
+            .footer-sub { font-size: 0.8rem; }
+            .footer-copy { font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -833,7 +857,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DASHBOARD (MODIFIÉE AVEC SWISSTRANSFER) -->
+<!-- PAGE DASHBOARD (inchangé) -->
 <!-- ============================================================ -->
 <section id="page-dashboard" class="page">
     <div id="dashboard-page" class="active">
@@ -846,32 +870,24 @@
         </div>
         <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
 
-        <!-- SECTION LIVRABLES (liens SwissTransfer) -->
         <div id="livrablesSection" class="section-card">
             <h2 id="livrablesTitle">📥 Télécharger vos livrables</h2>
-            <div id="livrablesContent">
-                <p style="color:#64748b;">Chargement...</p>
-            </div>
+            <div id="livrablesContent"><p style="color:#64748b;">Chargement...</p></div>
             <div style="margin-top:15px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce dossier les livrables finaux
                 <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
             </div>
-            <!-- Lien dynamique vers SwissTransfer (livrables) -->
             <a id="livrablesSwissLink" href="#" target="_blank" class="btn-swiss" style="margin-top:15px;">
                 🚀 Accéder aux livrables sur SwissTransfer
             </a>
         </div>
 
-        <!-- SECTION DÉPÔTS (liens SwissTransfer) -->
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
-
-            <!-- Bouton de dépôt vers SwissTransfer -->
             <a id="depotSwissLink" href="#" target="_blank" class="btn-swiss" style="margin-top:10px;">
                 📤 Déposer via SwissTransfer
             </a>
-
             <div style="margin-top:20px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>✅ Comment ça fonctionne ?</strong>
                 <ul style="margin:8px 0 0 20px;">
@@ -880,12 +896,10 @@
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
             </div>
-
             <div class="notification-box">
                 <strong>📢 Besoin de nous avertir ?</strong><br />
                 Une fois vos fichiers déposés, vous pouvez nous contacter par email pour nous prévenir.
             </div>
-
             <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
                 💡 <strong>Astuce :</strong> pour un nouveau projet, nommez clairement vos fichiers (ex: « Projet_Réseau_Laval_Plan.pdf ») pour que nous sachions de quoi il s'agit.
             </p>
@@ -894,51 +908,49 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- FOOTER (inchangé) -->
+<!-- ===== NOUVEAU FOOTER ===== -->
 <!-- ============================================================ -->
 <footer>
     <div class="footer-brand">GeCoTelecom</div>
     <div class="footer-sub">Compagnie Générale de Télécommunication</div>
+    <div class="footer-divider"></div>
     <div class="footer-copy">&copy; 2026 GeCoTelecom. Tous droits réservés.</div>
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT UNIQUE (MODIFIÉ) -->
+<!-- SCRIPT (inchangé) -->
 <!-- ============================================================ -->
 <script>
     (function() {
         'use strict';
 
-        // ===== CLIENTS AVEC MOTS DE PASSE, LOGOS ET LIENS SWISSTRANSFER =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
-                logo: '/logos/logometroptic-1.png',          // chemin vers votre logo
-                // ➡️ Remplacez ces URLs par vos vrais liens SwissTransfer
-                livrables: 'https://www.swisstransfer.com/d/1234567890',  // lien vers le dossier livrables
-                depot: 'https://www.swisstransfer.com/d/0987654321'       // lien de dépôt
+                logo: '/logos/logometroptic-1.png',
+                livrables: 'https://www.swisstransfer.com/d/1234567890',
+                depot: 'https://www.swisstransfer.com/d/0987654321'
             },
             'Sofiene': {
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
                 logo: '/logos/sofiene.png',
-                livrables: null,   // si pas de livrables spécifiques
+                livrables: null,
                 depot: 'https://www.swisstransfer.com/d/abcdefghij'
             },
             'Infra': {
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
-                logo: '/logos/logo%20infra.jpg',   // espace encodé en %20
+                logo: '/logos/logo%20infra.jpg',
                 livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
                 depot: 'https://www.swisstransfer.com/d/uvwxyz1234'
             }
         };
 
-        // ===== DOM =====
         const navItems = document.querySelectorAll('.nav-item[data-page]');
         const pages = {
             home: document.getElementById('page-home'),
@@ -963,7 +975,6 @@
         const clientLogoHeader = document.getElementById('clientLogoHeader');
         const depotsTitle = document.getElementById('depotsTitle');
 
-        // Toggle password
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
         if (togglePassword && passwordInput) {
@@ -977,7 +988,6 @@
         let currentPage = 'home';
         let loggedInClient = null;
 
-        // ===== NAVIGATION =====
         function showPage(pageId) {
             Object.keys(pages).forEach(id => {
                 pages[id].classList.remove('active');
@@ -1002,7 +1012,6 @@
             currentPage = pageId;
         }
 
-        // ===== LOGIN / LOGOUT =====
         function login(username, password) {
             const client = clients[username];
             if (client && client.password === password) {
@@ -1027,7 +1036,6 @@
         function showDashboard() {
             if (!loggedInClient) return;
 
-            // Logo client dans le header
             if (loggedInClient.logo) {
                 clientLogoHeader.innerHTML = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" style="height:100%; width:auto; object-fit:contain;">`;
                 clientLogoHeader.classList.add('show');
@@ -1036,10 +1044,8 @@
                 clientLogoHeader.innerHTML = '';
             }
 
-            // Titre du portail
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
 
-            // Badge client
             let badgeHtml = '';
             if (loggedInClient.logo) {
                 badgeHtml = `<span class="client-badge"><img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}"> ${loggedInClient.nom} (${loggedInClient.code})</span>`;
@@ -1048,7 +1054,6 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // ===== GESTION DES LIVRABLES (SwissTransfer) =====
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesSwissLink.href = loggedInClient.livrables;
@@ -1058,7 +1063,6 @@
                 livrablesSection.style.display = 'none';
             }
 
-            // ===== GESTION DU DÉPÔT (SwissTransfer) =====
             if (loggedInClient.depot) {
                 depotSwissLink.href = loggedInClient.depot;
                 depotSwissLink.style.display = 'inline-block';
@@ -1066,7 +1070,6 @@
                 depotSwissLink.style.display = 'none';
             }
 
-            // Ajustement du titre de la section Dépôt
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
@@ -1081,7 +1084,6 @@
             if (stored) {
                 try {
                     const client = JSON.parse(stored);
-                    // Vérifier que le client existe toujours dans la liste
                     const found = Object.values(clients).find(c => c.nom === client.nom && c.password === client.password);
                     if (found) {
                         loggedInClient = found;
@@ -1095,7 +1097,6 @@
             return false;
         }
 
-        // ===== EVENTS =====
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 const page = this.dataset.page;
@@ -1139,12 +1140,10 @@
             showPage('home');
         });
 
-        // ===== INIT =====
         if (!restoreSession()) {
             showPage('home');
         }
 
-        // Si la page courante est 'home' on s'assure que les éléments sont cohérents
         if (currentPage === 'home') {
             navItems.forEach(item => {
                 if (item.dataset.page === 'home') item.classList.add('active');
@@ -1153,7 +1152,6 @@
             clientNavBtn.classList.remove('active');
         }
 
-        // Si on est sur dashboard sans être connecté, on redirige
         if (currentPage === 'dashboard' && !loggedInClient) {
             logout();
         }
