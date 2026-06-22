@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace Client - Transfert de fichiers</title>
-    <!-- Styles CSS pour un rendu professionnel -->
+    <title>Espace Client - Transfert sécurisé</title>
     <style>
-        /* ----- Réinitialisation & base ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
             background: #f4f6fa;
             color: #1e293b;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-
-        /* ----- En-tête ----- */
         .header {
             background: #0f172a;
             color: #ffffff;
@@ -37,29 +32,25 @@
         .header .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
         }
         .header .logo span {
             color: #38bdf8;
         }
         .header .badge {
             background: #1e293b;
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 1.2rem;
             border-radius: 30px;
             font-size: 0.85rem;
             color: #94a3b8;
             border: 1px solid #334155;
         }
-
-        /* ----- Conteneur principal ----- */
         .container {
             max-width: 1100px;
             margin: 2rem auto;
             padding: 0 1.5rem;
             flex: 1;
+            width: 100%;
         }
-
-        /* ----- Carte d'accueil ----- */
         .welcome-card {
             background: #ffffff;
             border-radius: 24px;
@@ -69,9 +60,15 @@
             border: 1px solid #e9edf4;
         }
         .welcome-card h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
+        }
+        .welcome-card h1 .client-name {
+            color: #2563eb;
+            background: #eef2ff;
+            padding: 0.1rem 0.8rem;
+            border-radius: 12px;
         }
         .welcome-card p {
             color: #475569;
@@ -85,15 +82,12 @@
             border-radius: 6px;
             font-weight: 500;
         }
-
-        /* ----- Grille des actions ----- */
         .actions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.8rem;
             margin-top: 0.5rem;
         }
-
         .action-card {
             background: #ffffff;
             border-radius: 20px;
@@ -134,9 +128,7 @@
             font-size: 0.95rem;
             border: none;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            background: #f1f5f9;
-            color: #1e293b;
+            transition: background 0.2s;
         }
         .action-card .btn-primary {
             background: #0f172a;
@@ -169,51 +161,16 @@
             color: #94a3b8;
             margin-top: 0.8rem;
         }
-
-        /* ----- Section iframe ----- */
-        .iframe-section {
-            margin-top: 2.5rem;
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 1.8rem;
-            border: 1px solid #e9edf4;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-        }
-        .iframe-section summary {
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            color: #0f172a;
-            padding: 0.5rem 0;
-        }
-        .iframe-section summary:hover {
-            color: #2563eb;
-        }
-        .iframe-wrapper {
-            margin-top: 1rem;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-            min-height: 500px;
-        }
-        .iframe-wrapper iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            display: block;
-        }
-        .iframe-alert {
-            background: #fef9c3;
-            border-left: 4px solid #eab308;
-            padding: 0.8rem 1.2rem;
+        .action-card .client-code {
+            background: #f1f5f9;
+            padding: 0.5rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: #854d0e;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            border: 1px dashed #cbd5e1;
+            word-break: break-all;
         }
-
-        /* ----- Pied de page ----- */
         .footer {
             background: #f8fafc;
             border-top: 1px solid #e2e8f0;
@@ -223,13 +180,17 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
-
-        /* ----- Responsive ----- */
         @media (max-width: 640px) {
-            .header { flex-direction: column; align-items: flex-start; }
-            .welcome-card { padding: 1.5rem; }
-            .actions-grid { grid-template-columns: 1fr; }
-            .iframe-wrapper iframe { height: 400px; }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .welcome-card {
+                padding: 1.5rem;
+            }
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -238,19 +199,18 @@
     <!-- ===== EN-TÊTE ===== -->
     <header class="header">
         <div class="logo">📦 <span>MonEspace</span>Client</div>
-        <div class="badge">🔒 Espace sécurisé · Client n°12345</div>
+        <div class="badge" id="headerBadge">🔒 Espace sécurisé</div>
     </header>
 
     <!-- ===== CONTENU PRINCIPAL ===== -->
     <main class="container">
 
-        <!-- Carte de bienvenue -->
-        <section class="welcome-card">
-            <h1>Bonjour, 👋</h1>
-            <p>
-                Bienvenue dans votre espace client. Vous pouvez ici 
-                <span class="highlight">transférer vos fichiers</span> 
-                en toute sécurité via <strong>SwissTransfer</strong>.
+        <!-- Carte de bienvenue PERSONNALISÉE -->
+        <section class="welcome-card" id="welcomeCard">
+            <h1>Bonjour, <span class="client-name" id="clientNameDisplay">Client</span> 👋</h1>
+            <p id="welcomeMessage">
+                Bienvenue dans votre espace client dédié. Vous pouvez ici 
+                <span class="highlight">transférer vos fichiers</span> en toute sécurité via <strong>SwissTransfer</strong>.
                 <br />
                 ⚡ <strong>50 Go</strong> maximum par transfert · 
                 📅 disponible pendant <strong>30 jours</strong> · 
@@ -261,7 +221,7 @@
         <!-- Grille des actions -->
         <div class="actions-grid">
 
-            <!-- Carte 1 : Envoyer un nouveau projet -->
+            <!-- Carte 1 : Envoyer un projet -->
             <div class="action-card">
                 <div class="icon">📤</div>
                 <h3>Envoyer un projet</h3>
@@ -269,7 +229,8 @@
                     Déposez vos fichiers (photos, vidéos, documents) et 
                     générez un lien de téléchargement pour nous les transmettre.
                 </p>
-                <a href="https://www.swisstransfer.com/fr-fr" target="_blank" rel="noopener" class="btn btn-primary">
+                <!-- Le lien SwissTransfer s'ouvre dans un nouvel onglet -->
+                <a href="https://www.swisstransfer.com/fr-fr" target="_blank" rel="noopener" class="btn btn-primary" id="btnSwissTransfer">
                     🚀 Utiliser SwissTransfer
                 </a>
                 <span class="footnote">Ouvre dans un nouvel onglet · Aucune inscription</span>
@@ -280,14 +241,14 @@
                 <div class="icon">🔗</div>
                 <h3>Lien de dépôt</h3>
                 <p>
-                    Créez un lien sur mesure pour vos clients ou collaborateurs. 
-                    Ils pourront déposer leurs fichiers sans avoir à créer de compte.
+                    Utilisez ce lien pour nous envoyer vos fichiers. 
+                    Copiez-le et partagez-le avec nous par email.
                 </p>
                 <button class="btn btn-outline btn-sm" onclick="genererLienDepot()">
-                    📋 Générer un lien
+                    📋 Générer un lien de dépôt
                 </button>
-                <div id="lienDepotResultat" style="margin-top:0.8rem; font-size:0.9rem; word-break:break-all; background:#f1f5f9; padding:0.5rem; border-radius:8px; display:none;"></div>
-                <span class="footnote">Le lien sera valable 30 jours</span>
+                <div id="lienDepotResultat" style="margin-top:0.8rem; display:none;"></div>
+                <span class="footnote">Le lien est valable 30 jours</span>
             </div>
 
             <!-- Carte 3 : Suivi des envois -->
@@ -295,8 +256,7 @@
                 <div class="icon">📊</div>
                 <h3>Suivi des envois</h3>
                 <p>
-                    Consultez l'état de vos transferts récents. 
-                    (Fonctionnalité disponible via votre compte SwissTransfer Premium).
+                    Consultez l'état de vos transferts récents.
                 </p>
                 <a href="https://www.swisstransfer.com/fr-fr/history" target="_blank" rel="noopener" class="btn btn-outline">
                     📈 Voir l'historique
@@ -306,50 +266,131 @@
 
         </div>
 
-        <!-- ===== SECTION IFRAME (optionnel) ===== -->
-        <details class="iframe-section">
-            <summary>🖥️ Utiliser SwissTransfer directement dans la page (iframe)</summary>
-            <div class="iframe-alert">
-                ⚠️ <strong>Attention :</strong> L'intégration en iframe n'est pas officiellement supportée. 
-                Elle peut présenter des problèmes d'affichage ou de performance pour les gros fichiers. 
-                Nous vous conseillons d'utiliser le lien ci-dessus.
-            </div>
-            <div class="iframe-wrapper">
-                <iframe src="https://www.swisstransfer.com/fr-fr" title="SwissTransfer" loading="lazy"></iframe>
-            </div>
-        </details>
+        <!-- ===== SECTION POUR LE CLIENT (INFO PROJET) ===== -->
+        <div style="margin-top:2.5rem; background:#ffffff; border-radius:24px; padding:1.8rem; border:1px solid #e9edf4; text-align:center;">
+            <p style="color:#64748b; font-size:0.95rem;">
+                📌 <strong>Votre code projet :</strong> 
+                <span id="clientCodeDisplay" style="background:#f1f5f9; padding:0.2rem 1rem; border-radius:20px; font-family:monospace; font-weight:600;">-</span>
+                <br />
+                <span style="font-size:0.85rem; color:#94a3b8;">
+                    Si vous avez besoin d'aide, contactez-nous à support@votresite.com
+                </span>
+            </p>
+        </div>
 
     </main>
 
     <!-- ===== PIED DE PAGE ===== -->
     <footer class="footer">
-        &copy; 2026 MonEspaceClient — Transfert sécurisé via SwissTransfer (Infomaniak) · 
-        <a href="#" style="color:#0f172a; text-decoration:none; font-weight:500;">Mentions légales</a>
+        &copy; 2026 MonEspaceClient — Transfert sécurisé via SwissTransfer (Infomaniak)
     </footer>
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
         /**
-         * Génère un lien de dépôt factice (car SwissTransfer ne fournit pas d'API publique).
-         * Dans la réalité, vous devriez créer manuellement un lien sur le site SwissTransfer
-         * et le stocker ici pour chaque client.
+         * 1. RÉCUPÉRER LE NOM DU CLIENT DANS L'URL
+         *    Exemple : ?client=Jean%20Dupont
+         */
+        function getClientName() {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('client');
+            if (name) {
+                return decodeURIComponent(name);
+            }
+            // Si aucun nom n'est passé, on affiche un message par défaut
+            return null;
+        }
+
+        /**
+         * 2. GÉNÉRER UN CODE PROJET UNIQUE (basé sur le nom du client + date)
+         */
+        function genererCodeProjet(nom) {
+            if (!nom) return 'PROJET-001';
+            const initiales = nom
+                .split(' ')
+                .map(mot => mot.charAt(0).toUpperCase())
+                .join('');
+            const date = new Date();
+            const jour = String(date.getDate()).padStart(2, '0');
+            const mois = String(date.getMonth() + 1).padStart(2, '0');
+            const an = String(date.getFullYear()).slice(-2);
+            return `${initiales}-${jour}${mois}${an}`;
+        }
+
+        /**
+         * 3. PERSONNALISER LA PAGE
+         */
+        function personaliserPage() {
+            const nomClient = getClientName();
+
+            // Élément où afficher le nom
+            const nameDisplay = document.getElementById('clientNameDisplay');
+            const badge = document.getElementById('headerBadge');
+            const codeDisplay = document.getElementById('clientCodeDisplay');
+
+            if (nomClient) {
+                // Afficher le nom du client
+                nameDisplay.textContent = nomClient;
+
+                // Mettre à jour le badge de l'en-tête
+                badge.textContent = `🔒 Espace de ${nomClient}`;
+
+                // Générer un code projet unique
+                const code = genererCodeProjet(nomClient);
+                codeDisplay.textContent = code;
+
+                // Personnaliser le titre de la page (onglet du navigateur)
+                document.title = `Espace Client - ${nomClient}`;
+
+                // Option : Personnaliser le message de bienvenue
+                const msg = document.getElementById('welcomeMessage');
+                msg.innerHTML = `
+                    Bienvenue dans votre espace client dédié, <strong>${nomClient}</strong>. 
+                    Vous pouvez ici <span class="highlight">transférer vos fichiers</span> 
+                    en toute sécurité via <strong>SwissTransfer</strong>.
+                    <br />
+                    ⚡ <strong>50 Go</strong> maximum par transfert · 
+                    📅 disponible pendant <strong>30 jours</strong> · 
+                    🔒 crypté et hébergé en Suisse.
+                `;
+
+            } else {
+                // Aucun client spécifié : mode "générique"
+                nameDisplay.textContent = 'Client';
+                badge.textContent = '🔒 Espace sécurisé';
+                codeDisplay.textContent = 'PROJET-GENERIQUE';
+            }
+        }
+
+        /**
+         * 4. GÉNÉRER UN LIEN DE DÉPÔT (SIMULATION)
+         *    Pour un vrai lien, allez sur SwissTransfer, créez un lien de dépôt,
+         *    puis remplacez l'URL ci-dessous par le vrai lien.
          */
         function genererLienDepot() {
-            // Simule la création d'un lien aléatoire (uniquement pour la démonstration)
+            const nomClient = getClientName() || 'Client';
+            // Simule un lien unique basé sur le nom du client
             const id = Math.random().toString(36).substring(2, 10);
             const lien = `https://www.swisstransfer.com/depot/${id}`;
+
             const resultatDiv = document.getElementById('lienDepotResultat');
             resultatDiv.style.display = 'block';
             resultatDiv.innerHTML = `
-                <strong>Lien généré :</strong> 
-                <a href="${lien}" target="_blank" rel="noopener">${lien}</a>
-                <br />
-                <span style="font-size:0.8rem; color:#64748b;">
-                    ⚠️ Ce lien est fictif. Pour un vrai lien, créez-le sur 
-                    <a href="https://www.swisstransfer.com/fr-fr" target="_blank">SwissTransfer</a>.
+                <strong>🔗 Lien de dépôt pour ${nomClient} :</strong>
+                <div class="client-code">
+                    <a href="${lien}" target="_blank" rel="noopener">${lien}</a>
+                </div>
+                <span style="font-size:0.8rem; color:#64748b; display:block; margin-top:0.5rem;">
+                    ⚠️ Ce lien est fictif (simulation). 
+                    Pour un vrai lien, créez-le sur 
+                    <a href="https://www.swisstransfer.com/fr-fr" target="_blank">SwissTransfer</a> 
+                    puis copiez-le ici.
                 </span>
             `;
         }
+
+        // ===== LANCER LA PERSONNALISATION AU CHARGEMENT =====
+        document.addEventListener('DOMContentLoaded', personaliserPage);
     </script>
 
 </body>
