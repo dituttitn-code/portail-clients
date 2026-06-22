@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Espace Client</title>
     <style>
-        /* (styles identiques aux précédents) */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
             background: #f4f6fa;
@@ -46,9 +41,7 @@
             background: #ffffff;
             padding: 4px;
         }
-        .header .brand .client-name {
-            color: #38bdf8;
-        }
+        .header .brand .client-name { color: #38bdf8; }
         .header .brand .initials-fallback {
             display: flex;
             align-items: center;
@@ -85,16 +78,12 @@
             color: #e2e8f0;
             border: 1px solid #334155;
         }
-        .btn-home:hover {
-            background: #2d3a4f;
-        }
+        .btn-home:hover { background: #2d3a4f; }
         .btn-logout {
             background: #991b1b;
             color: white;
         }
-        .btn-logout:hover {
-            background: #7f1d1d;
-        }
+        .btn-logout:hover { background: #7f1d1d; }
         .badge-client {
             background: #1e293b;
             padding: 0.4rem 1.2rem;
@@ -161,10 +150,7 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 32px rgba(0,0,0,0.08);
         }
-        .action-card .icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
+        .action-card .icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
         .action-card h3 {
             font-size: 1.25rem;
             font-weight: 600;
@@ -193,17 +179,13 @@
             background: #0f172a;
             color: white;
         }
-        .action-card .btn-primary:hover {
-            background: #1e293b;
-        }
+        .action-card .btn-primary:hover { background: #1e293b; }
         .action-card .btn-outline {
             background: transparent;
             border: 2px solid #cbd5e1;
             color: #334155;
         }
-        .action-card .btn-outline:hover {
-            background: #f8fafc;
-        }
+        .action-card .btn-outline:hover { background: #f8fafc; }
         .action-card .btn-sm {
             font-size: 0.85rem;
             padding: 0.5rem 1rem;
@@ -241,26 +223,12 @@
             text-align: center;
         }
         @media (max-width: 640px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .header-actions {
-                width: 100%;
-                justify-content: flex-start;
-            }
-            .welcome-card {
-                padding: 1.5rem;
-            }
-            .actions-grid {
-                grid-template-columns: 1fr;
-            }
-            .header .brand {
-                font-size: 1.3rem;
-            }
-            .header .brand img {
-                height: 32px;
-            }
+            .header { flex-direction: column; align-items: flex-start; }
+            .header-actions { width: 100%; justify-content: flex-start; }
+            .welcome-card { padding: 1.5rem; }
+            .actions-grid { grid-template-columns: 1fr; }
+            .header .brand { font-size: 1.3rem; }
+            .header .brand img { height: 32px; }
         }
     </style>
 </head>
@@ -273,8 +241,8 @@
         </div>
         <div class="header-actions">
             <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <a href="/" class="btn-header btn-home">🏠 Retour à l'accueil</a>
-            <!-- ✅ Le bouton Déconnexion utilise la fonction mise à jour -->
+            <!-- ✅ LIEN CORRIGÉ : Pointage direct vers www.gecotelecom.com -->
+            <a href="https://www.gecotelecom.com" class="btn-header btn-home">🏠 Retour à l'accueil</a>
             <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
         </div>
     </header>
@@ -385,7 +353,6 @@
             const nomClient = getClientNameFromURL() || sessionStorage.getItem('clientName') || 'Client';
             const logoClient = sessionStorage.getItem('clientLogo') || '';
 
-            // 1. En-tête : logo ou fallback avec initiales
             const brandDiv = document.getElementById('headerBrand');
             if (logoClient) {
                 brandDiv.innerHTML = `
@@ -394,23 +361,16 @@
                     <span class="client-name">${nomClient}</span>
                 `;
             } else {
-                // Si aucun logo n'est stocké, on affiche les initiales
                 brandDiv.innerHTML = `
                     <span class="initials-fallback">${nomClient.charAt(0)}</span>
                     <span class="client-name">${nomClient}</span>
                 `;
             }
 
-            // 2. Badge
             document.getElementById('headerBadge').textContent = `🔒 Espace de ${nomClient}`;
-
-            // 3. Code projet
             document.getElementById('clientCodeDisplay').textContent = genererCodeProjet(nomClient);
-
-            // 4. Titre
             document.title = `Espace Client - ${nomClient}`;
 
-            // 5. Message
             const msg = document.getElementById('welcomeMessage');
             msg.innerHTML = `
                 Bienvenue dans votre espace client dédié, <strong>${nomClient}</strong>. 
@@ -445,10 +405,10 @@
             `;
         }
 
-        // ✅ DÉCONNEXION MODIFIÉE : redirige vers l'accueil du site
+        // ✅ DÉCONNEXION CORRIGÉE : redirige vers www.gecotelecom.com
         function deconnexion() {
             sessionStorage.clear();
-            window.location.href = '/'; // ← Redirection vers la racine (accueil du site)
+            window.location.href = 'https://www.gecotelecom.com';
         }
 
         document.addEventListener('DOMContentLoaded', personaliserPage);
