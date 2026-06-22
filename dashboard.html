@@ -29,11 +29,23 @@
             gap: 1rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .header .logo {
+        .header .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             font-size: 1.8rem;
             font-weight: 700;
         }
-        .header .logo span {
+        .header .brand img {
+            height: 42px;
+            width: auto;
+            max-width: 100px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: #ffffff;
+            padding: 4px;
+        }
+        .header .brand .client-name {
             color: #38bdf8;
         }
         .header-actions {
@@ -230,13 +242,22 @@
             .actions-grid {
                 grid-template-columns: 1fr;
             }
+            .header .brand {
+                font-size: 1.3rem;
+            }
+            .header .brand img {
+                height: 32px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== EN-TÊTE PERSONNALISÉ ===== -->
     <header class="header">
-        <div class="logo">📦 <span>MonEspace</span>Client</div>
+        <div class="brand" id="headerBrand">
+            <!-- Sera injecté dynamiquement par JavaScript -->
+        </div>
         <div class="header-actions">
             <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
             <!-- 🔽 REMPLACEZ l'URL ci-dessous par l'URL DE VOTRE SITE ACTUEL -->
@@ -245,8 +266,8 @@
         </div>
     </header>
 
+    <!-- ===== CONTENU PRINCIPAL ===== -->
     <main class="container">
-
         <section class="welcome-card" id="welcomeCard">
             <h1>Bonjour, <span class="client-name" id="clientNameDisplay">Client</span> 👋</h1>
             <p id="welcomeMessage">
@@ -260,7 +281,6 @@
         </section>
 
         <div class="actions-grid">
-
             <div class="action-card">
                 <div class="icon">📤</div>
                 <h3>Envoyer un projet</h3>
@@ -291,7 +311,6 @@
                 </a>
                 <span class="footnote">Nécessite une connexion SwissTransfer</span>
             </div>
-
         </div>
 
         <div class="info-client-bottom">
@@ -300,18 +319,18 @@
                 <span id="clientCodeDisplay" style="background:#f1f5f9; padding:0.2rem 1rem; border-radius:20px; font-family:monospace; font-weight:600;">-</span>
                 <br />
                 <span style="font-size:0.85rem; color:#94a3b8;">
-                    Si vous avez besoin d'aide, contactez-nous à support@gecotelecom.com
+                    Si vous avez besoin d'aide, contactez-nous à support@votresite.com
                 </span>
             </p>
         </div>
-
     </main>
 
     <footer class="footer">
-        &copy; 2026 MonEspaceClient — Transfert sécurisé via SwissTransfer (Infomaniak)
+        &copy; 2026 Espace Client — Transfert sécurisé via SwissTransfer (Infomaniak)
     </footer>
 
     <script>
+        // ---------- VÉRIFICATION DE SESSION ----------
         (function verifierSession() {
             const loggedIn = sessionStorage.getItem('loggedIn');
             if (loggedIn !== 'true') {
@@ -329,6 +348,7 @@
             }
         })();
 
+        // ---------- RÉCUPÉRATION DES INFOS ----------
         function getClientNameFromURL() {
             const params = new URLSearchParams(window.location.search);
             return params.get('client') ? decodeURIComponent(params.get('client')) : null;
@@ -347,18 +367,32 @@
             return `${initiales}-${jour}${mois}${an}`;
         }
 
+        // ---------- PERSONNALISATION DE LA PAGE ----------
         function personaliserPage() {
             const nomClient = getClientNameFromURL() || sessionStorage.getItem('clientName') || 'Client';
+            const logoClient = sessionStorage.getItem('clientLogo') || '';
 
-            const nameDisplay = document.getElementById('clientNameDisplay');
-            const badge = document.getElementById('headerBadge');
-            const codeDisplay = document.getElementById('clientCodeDisplay');
+            // 1. En-tête : logo + nom
+            const brandDiv = document.getElementById('headerBrand');
+            if (logoClient) {
+                brandDiv.innerHTML = `
+                    <img src="${logoClient}" alt="${nomClient}" />
+                    <span class="client-name">${nomClient}</span>
+                `;
+            } else {
+                brandDiv.innerHTML = `<span>📦 <span class="client-name">${nomClient}</span></span>`;
+            }
 
-            nameDisplay.textContent = nomClient;
-            badge.textContent = `🔒 Espace de ${nomClient}`;
-            codeDisplay.textContent = genererCodeProjet(nomClient);
+            // 2. Badge
+            document.getElementById('headerBadge').textContent = `🔒 Espace de ${nomClient}`;
+
+            // 3. Code projet
+            document.getElementById('clientCodeDisplay').textContent = genererCodeProjet(nomClient);
+
+            // 4. Titre de la page
             document.title = `Espace Client - ${nomClient}`;
 
+            // 5. Message de bienvenue
             const msg = document.getElementById('welcomeMessage');
             msg.innerHTML = `
                 Bienvenue dans votre espace client dédié, <strong>${nomClient}</strong>. 
@@ -369,8 +403,12 @@
                 📅 disponible pendant <strong>30 jours</strong> · 
                 🔒 crypté et hébergé en Suisse.
             `;
+
+            // 6. Afficher le nom dans le titre "Bonjour, X"
+            document.getElementById('clientNameDisplay').textContent = nomClient;
         }
 
+        // ---------- FONCTIONS UTILITAIRES ----------
         function genererLienDepot() {
             const nomClient = sessionStorage.getItem('clientName') || 'Client';
             const id = Math.random().toString(36).substring(2, 10);
@@ -395,6 +433,7 @@
             window.location.href = 'index.html';
         }
 
+        // Lancer la personnalisation au chargement
         document.addEventListener('DOMContentLoaded', personaliserPage);
     </script>
 
