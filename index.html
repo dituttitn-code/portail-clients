@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connexion - Espace Client</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
             background: #f4f6fa;
@@ -36,18 +32,14 @@
             text-align: center;
             margin-bottom: 0.2rem;
         }
-        .login-container .logo span {
-            color: #38bdf8;
-        }
+        .login-container .logo span { color: #38bdf8; }
         .login-container .subtitle {
             text-align: center;
             color: #64748b;
             margin-bottom: 2rem;
             font-size: 1rem;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
         .form-group label {
             display: block;
             font-weight: 600;
@@ -64,9 +56,7 @@
             transition: border 0.2s;
         }
         .custom-select-wrapper:hover,
-        .custom-select-wrapper.active {
-            border-color: #0f172a;
-        }
+        .custom-select-wrapper.active { border-color: #0f172a; }
         .custom-select-trigger {
             padding: 0.8rem 1rem;
             display: flex;
@@ -81,12 +71,8 @@
             color: #94a3b8;
             transition: transform 0.2s;
         }
-        .custom-select-trigger .arrow.open {
-            transform: rotate(180deg);
-        }
-        .custom-select-trigger .placeholder {
-            color: #94a3b8;
-        }
+        .custom-select-trigger .arrow.open { transform: rotate(180deg); }
+        .custom-select-trigger .placeholder { color: #94a3b8; }
         .custom-select-options {
             display: none;
             position: absolute;
@@ -101,9 +87,7 @@
             max-height: 260px;
             overflow-y: auto;
         }
-        .custom-select-options.open {
-            display: block;
-        }
+        .custom-select-options.open { display: block; }
         .custom-select-options .option {
             padding: 0.7rem 1rem;
             display: flex;
@@ -114,9 +98,7 @@
             transition: background 0.15s;
             cursor: pointer;
         }
-        .custom-select-options .option:hover {
-            background: #f1f5f9;
-        }
+        .custom-select-options .option:hover { background: #f1f5f9; }
         .custom-select-options .option.selected {
             background: #eef2ff;
             font-weight: 600;
@@ -127,9 +109,7 @@
             object-fit: contain;
             border-radius: 6px;
         }
-        .option .client-name {
-            flex: 1;
-        }
+        .option .client-name { flex: 1; }
         .initials-fallback {
             display: inline-flex;
             align-items: center;
@@ -170,9 +150,7 @@
             transition: background 0.2s;
             margin-top: 0.5rem;
         }
-        .btn-login:hover {
-            background: #1e293b;
-        }
+        .btn-login:hover { background: #1e293b; }
         .error-message {
             background: #fee2e2;
             color: #991b1b;
@@ -244,27 +222,28 @@
         <a href="#" style="color:#854d0e; font-weight:600;">contactez-nous</a>.
     </div>
 
+    <!-- ✅ LIEN CORRIGÉ : Pointage direct vers www.gecotelecom.com -->
     <div class="footer-login">
-        <a href="/">🏠 Retour à l'accueil</a>
+        <a href="https://www.gecotelecom.com">🏠 Retour à l'accueil</a>
     </div>
 </div>
 
 <script>
     // ═══════════════════════════════════════════════════
-    //  LISTE DES CLIENTS AVEC LEURS LOGOS
-    //  ✅ Vérifiez bien les chemins et les noms de fichiers !
+    //  LISTE DES CLIENTS AVEC LEURS LOGOS EXACTS
+    //  ⚠️ Espace dans "logo infra.jpg" encodé en %20
     // ═══════════════════════════════════════════════════
     const CLIENTS = [
         {
             id: 'Metro Optic',
             nom: 'Metro Optic',
-            logo: '/logos/logometroptic-1.png',  // 👈 Vérifiez le nom exact
+            logo: '/logos/logometroptic-1.png',    // Nom exact
             motDePasse: 'MO9300!'
         },
         {
             id: 'Infrastructel',
             nom: 'Infrastructel',
-            logo: '/logos/logo-infra.jpg',       // 👈 J'ai remplacé l'espace par un tiret
+            logo: '/logos/logo%20infra.jpg',       // ✅ Espace encodé en %20
             motDePasse: 'InfraS9300!'
         },
         {
