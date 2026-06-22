@@ -69,16 +69,30 @@
             white-space: nowrap;
         }
         .client-logo-header {
+            display: none;
+            align-items: center;
+            justify-content: center;
             height: 50px;
+        }
+        .client-logo-header.show { display: flex; }
+        .client-logo-header img {
+            height: 100%;
             width: auto;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 6px;
             background: white;
             padding: 4px 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            display: none;
         }
-        .client-logo-header.show { display: block; }
+        .client-logo-header .initials-fallback {
+            background: #2563eb;
+            color: white;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 1rem;
+            display: inline-block;
+        }
         .nav-links {
             display: flex;
             gap: 30px;
@@ -387,7 +401,6 @@
             font-size: 1.15rem;
         }
 
-        /* ===== SELECT AVEC LOGOS ===== */
         .login-card .form-group .select-with-logo {
             position: relative;
             display: flex;
@@ -430,14 +443,7 @@
             font-size: 1.2rem;
             pointer-events: none;
         }
-        /* style des options avec logo (ça ne s'affiche que dans certains navigateurs) */
-        .login-card .form-group select option {
-            padding: 8px;
-            display: flex;
-            align-items: center;
-        }
 
-        /* ===== PASSWORD ===== */
         .password-wrapper {
             position: relative;
             display: flex;
@@ -542,6 +548,19 @@
             border-radius: 4px;
             background: white;
             padding: 2px 6px;
+            max-width: 40px;
+        }
+        .client-badge .initials-small {
+            background: #2563eb;
+            color: white;
+            font-weight: 700;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            font-size: 0.9rem;
         }
         .dashboard-actions {
             display: flex;
@@ -660,7 +679,6 @@
             letter-spacing: 0.2px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body { font-size: 1.1rem; }
             .logo-img { height: 120px; }
@@ -873,7 +891,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE LOGIN AVEC MENU DÉROULANT ET LOGOS -->
+<!-- PAGE LOGIN -->
 <!-- ============================================================ -->
 <section id="page-login" class="page">
     <div id="login-page" class="active">
@@ -891,7 +909,7 @@
                         <img id="clientLogoPreview" src="" alt="Logo" class="logo-preview" style="display:none;" />
                         <select id="clientSelect" required>
                             <option value="">-- Sélectionnez --</option>
-                            <!-- Les options seront injectées par JavaScript -->
+                            <!-- les options seront injectées par JS -->
                         </select>
                         <span class="arrow">▼</span>
                     </div>
@@ -964,7 +982,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- FOOTER (centré, petites polices) -->
+<!-- FOOTER -->
 <!-- ============================================================ -->
 <footer>
     <div class="footer-brand">GeCoTelecom</div>
@@ -974,7 +992,7 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT UNIQUE -->
+<!-- SCRIPT -->
 <!-- ============================================================ -->
 <script>
     (function() {
@@ -1032,49 +1050,39 @@
         const livrablesContent = document.getElementById('livrablesContent');
         const clientLogoHeader = document.getElementById('clientLogoHeader');
         const depotsTitle = document.getElementById('depotsTitle');
-
-        // Éléments du select
         const clientSelect = document.getElementById('clientSelect');
         const logoPreview = document.getElementById('clientLogoPreview');
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
 
-        // ===== PEUPLE LE SELECT AVEC LES CLIENTS =====
+        // ===== PEUPLE LE SELECT =====
         function populateSelect() {
             const keys = Object.keys(clients);
             keys.forEach(key => {
                 const option = document.createElement('option');
                 option.value = key;
-                // On ajoute un attribut data-logo pour stocker le chemin du logo
                 option.dataset.logo = clients[key].logo;
-                // On peut afficher le nom dans le texte
                 option.textContent = clients[key].nom;
                 clientSelect.appendChild(option);
             });
         }
         populateSelect();
 
-        // ===== MET À JOUR L'APERÇU DU LOGO QUAND ON CHANGE DE SÉLECTION =====
+        // ===== APERÇU DU LOGO DANS LE SELECT =====
         clientSelect.addEventListener('change', function() {
             const selectedOption = this.options[this.selectedIndex];
             const logo = selectedOption.dataset.logo;
             if (logo) {
                 logoPreview.src = logo;
                 logoPreview.style.display = 'block';
-                // Si l'image ne charge pas, on cache
-                logoPreview.onerror = function() {
-                    this.style.display = 'none';
-                };
-                // Si elle charge, on l'affiche
-                logoPreview.onload = function() {
-                    this.style.display = 'block';
-                };
+                logoPreview.onerror = function() { this.style.display = 'none'; };
+                logoPreview.onload = function() { this.style.display = 'block'; };
             } else {
                 logoPreview.style.display = 'none';
             }
         });
 
         // ===== TOGGLE PASSWORD =====
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
         if (togglePassword && passwordInput) {
             togglePassword.addEventListener('click', function() {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -1111,7 +1119,7 @@
             currentPage = pageId;
         }
 
-        // ===== LOGIN / LOGOUT =====
+        // ===== LOGIN =====
         function login(username, password) {
             const client = clients[username];
             if (client && client.password === password) {
@@ -1133,27 +1141,47 @@
             showPage('home');
         }
 
+        // ===== DASHBOARD =====
         function showDashboard() {
             if (!loggedInClient) return;
 
+            // ---- Logo dans le header ----
             if (loggedInClient.logo) {
-                clientLogoHeader.innerHTML = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" style="height:100%; width:auto; object-fit:contain;">`;
+                const imgHtml = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" />`;
+                clientLogoHeader.innerHTML = imgHtml;
                 clientLogoHeader.classList.add('show');
+                // Gestion d'erreur silencieuse : si l'image ne charge pas, on affiche les initiales
+                const img = clientLogoHeader.querySelector('img');
+                if (img) {
+                    img.onerror = function() {
+                        clientLogoHeader.innerHTML = `<span class="initials-fallback">${loggedInClient.nom.charAt(0)}</span>`;
+                        clientLogoHeader.classList.add('show');
+                    };
+                }
             } else {
-                clientLogoHeader.classList.remove('show');
-                clientLogoHeader.innerHTML = '';
+                clientLogoHeader.innerHTML = `<span class="initials-fallback">${loggedInClient.nom.charAt(0)}</span>`;
+                clientLogoHeader.classList.add('show');
             }
 
-            dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
-
+            // ---- Badge client ----
             let badgeHtml = '';
             if (loggedInClient.logo) {
-                badgeHtml = `<span class="client-badge"><img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}"> ${loggedInClient.nom} (${loggedInClient.code})</span>`;
+                badgeHtml = `
+                    <span class="client-badge">
+                        <img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=\\'initials-small\\'>${loggedInClient.nom.charAt(0)}</span>';" />
+                        ${loggedInClient.nom} (${loggedInClient.code})
+                    </span>
+                `;
             } else {
                 badgeHtml = `<span class="client-badge">👤 ${loggedInClient.nom} (${loggedInClient.code})</span>`;
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
+            // ---- Titre ----
+            dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
+
+            // ---- Livrables ----
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesSwissLink.href = loggedInClient.livrables;
@@ -1163,6 +1191,7 @@
                 livrablesSection.style.display = 'none';
             }
 
+            // ---- Dépôt ----
             if (loggedInClient.depot) {
                 depotSwissLink.href = loggedInClient.depot;
                 depotSwissLink.style.display = 'inline-block';
@@ -1170,6 +1199,7 @@
                 depotSwissLink.style.display = 'none';
             }
 
+            // ---- Titre Dépôt ----
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
@@ -1179,6 +1209,7 @@
             showPage('dashboard');
         }
 
+        // ===== RESTAURATION DE SESSION =====
         function restoreSession() {
             const stored = sessionStorage.getItem('loggedInClient');
             if (stored) {
@@ -1209,7 +1240,6 @@
                         loginError.classList.remove('show');
                         passwordInput.value = '';
                         if (togglePassword) togglePassword.textContent = '👁️';
-                        // Reset du select
                         clientSelect.selectedIndex = 0;
                         logoPreview.style.display = 'none';
                     }
@@ -1260,9 +1290,8 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec SwissTransfer et menu déroulant !');
+        console.log('✅ GeCoTelecom avec logos et menu déroulant !');
     })();
 </script>
-
 </body>
 </html>
