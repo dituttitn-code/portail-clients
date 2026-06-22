@@ -232,34 +232,35 @@
         <a href="#" style="color:#854d0e; font-weight:600;">contactez-nous</a>.
     </div>
 
-    <!-- 🔽 REMPLACEZ l'URL ci-dessous par l'URL DE VOTRE SITE ACTUEL -->
+    <!-- 🔽 LIEN "Retour à l'accueil" pointant vers la racine du site -->
     <div class="footer-login">
-        <a href="https://www.monsiteprincipal.com">🏠 Retour au site principal</a>
+        <a href="/">🏠 Retour à l'accueil</a>
     </div>
 </div>
 
 <script>
     // ═══════════════════════════════════════════════════
     //  LISTE DES CLIENTS AVEC LEURS LOGOS ET MOTS DE PASSE
-    //  ✅ Remplacez les URLs des images par les vôtres.
+    //  ✅ Remplacez les chemins des images par les vôtres.
+    //  Placez vos logos dans un dossier "logos" à la racine.
     // ═══════════════════════════════════════════════════
     const CLIENTS = [
         {
             id: 'Metro Optic',
             nom: 'Metro Optic',
-            logo: 'https://via.placeholder.com/32/1e293b/ffffff?text=MO',
+            logo: '/logos/logometroptic-1.png',  // 👈 À ajuster
             motDePasse: 'MO9300!'
         },
         {
             id: 'Infrastructel',
             nom: 'Infrastructel',
-            logo: 'https://via.placeholder.com/32/0f172a/ffffff?text=IS',
+            logo: '/logos/logo infra.jpg',       // 👈 À ajuster (attention aux espaces)
             motDePasse: 'InfraS9300!'
         },
         {
             id: 'Sofiene',
             nom: 'Sofiene',
-            logo: 'https://via.placeholder.com/32/4338ca/ffffff?text=SH',
+            logo: '/logos/sofiene.png',          // 👈 À ajuster
             motDePasse: 'SH1975!'
         }
     ];
@@ -337,10 +338,9 @@
 
         const client = CLIENTS.find(c => c.id === nom);
         if (client && client.motDePasse === motDePasse) {
-            // ✅ Stocker le nom ET le logo dans la session
             sessionStorage.setItem('loggedIn', 'true');
             sessionStorage.setItem('clientName', nom);
-            sessionStorage.setItem('clientLogo', client.logo); // ⬅️ NOUVEAU
+            sessionStorage.setItem('clientLogo', client.logo);
             window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
             return false;
         }
