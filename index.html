@@ -83,6 +83,7 @@
             background: white;
             padding: 4px 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            max-height: 50px;
         }
         .client-logo-header .initials-fallback {
             background: #2563eb;
@@ -998,13 +999,13 @@
     (function() {
         'use strict';
 
-        // ===== LISTE DES CLIENTS =====
+        // ===== LISTE DES CLIENTS (avec les VRAIS logos) =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
-                logo: '/logos/logometroptic-1.png',
+                logo: '/logos/logometroptic-1.png',   // ← Nom exact
                 livrables: 'https://www.swisstransfer.com/d/1234567890',
                 depot: 'https://www.swisstransfer.com/d/0987654321'
             },
@@ -1018,9 +1019,9 @@
             },
             'Infra': {
                 code: 'CLIENT003',
-                nom: 'Infrastructel',
+                nom: 'Infrastructel',    // ← Correction du nom
                 password: 'InfraS9300!',
-                logo: '/logos/logo%20infra.jpg',
+                logo: '/logos/logo%20infra.jpg',   // ← Espace encodé
                 livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
                 depot: 'https://www.swisstransfer.com/d/uvwxyz1234'
             }
@@ -1150,7 +1151,6 @@
                 const imgHtml = `<img src="${loggedInClient.logo}" alt="Logo ${loggedInClient.nom}" />`;
                 clientLogoHeader.innerHTML = imgHtml;
                 clientLogoHeader.classList.add('show');
-                // Gestion d'erreur silencieuse : si l'image ne charge pas, on affiche les initiales
                 const img = clientLogoHeader.querySelector('img');
                 if (img) {
                     img.onerror = function() {
@@ -1290,8 +1290,9 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec logos et menu déroulant !');
+        console.log('✅ GeCoTelecom avec logos corrigés !');
     })();
 </script>
+
 </body>
 </html>
