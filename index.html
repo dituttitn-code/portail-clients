@@ -132,7 +132,6 @@
                 <label for="clientSelect">👤 Choisissez votre nom</label>
                 <select id="clientSelect" required>
                     <option value="">-- Sélectionnez --</option>
-                    <!-- ✅ LISTE DES CLIENTS (METTRE À JOUR ICI) -->
                     <option value="Metro Optic">Metro Optic</option>
                     <option value="Infrastructel">Infrastructel</option>
                     <option value="Sofiene">Sofiene</option>
@@ -151,26 +150,18 @@
             </div>
         </form>
 
-        <!-- ⚠️ AVERTISSEMENT SÉCURITÉ -->
         <div class="security-badge">
             🔒 <strong>Protection légère</strong> · Pour une sécurité renforcée, 
             <a href="#" style="color:#854d0e; font-weight:600;">contactez-nous</a>.
         </div>
 
+        <!-- ✅ LIEN RETOUR MIS À JOUR VERS GECOTELECOM -->
         <div class="footer-login">
-            <a href="https://votresite.com">🏠 Retour au site principal</a>
+            <a href="https://www.gecotelecom.com">🏠 Retour au site principal</a>
         </div>
     </div>
 
     <script>
-        /**
-         * ═══════════════════════════════════════════════════
-         *  LISTE DES CLIENTS ET MOTS DE PASSE
-         *  ✅ À MODIFIER ICI pour ajouter/modifier des clients
-         *  ⚠️ Ces mots de passe sont en clair dans le code.
-         *     Pour une sécurité réelle → solution serveur (PHP)
-         * ═══════════════════════════════════════════════════
-         */
         const CLIENTS = {
             'Metro Optic': 'MO9300!',
             'Infrastructel': 'InfraS9300!',
@@ -184,28 +175,21 @@
             const motDePasse = document.getElementById('passwordInput').value;
             const errorDiv = document.getElementById('errorMessage');
 
-            // Vérifier si le nom existe dans la liste
             if (nom && CLIENTS.hasOwnProperty(nom)) {
-                // Vérifier le mot de passe
                 if (CLIENTS[nom] === motDePasse) {
-                    // ⭐ CONNEXION RÉUSSIE
                     sessionStorage.setItem('loggedIn', 'true');
                     sessionStorage.setItem('clientName', nom);
-
-                    // Rediriger vers la page du client
                     window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
                     return false;
                 }
             }
 
-            // ⚠️ Échec de la connexion
             errorDiv.style.display = 'block';
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordInput').focus();
             return false;
         }
 
-        // Si le client est DÉJÀ connecté, on le redirige direct
         window.addEventListener('DOMContentLoaded', function() {
             if (sessionStorage.getItem('loggedIn') === 'true') {
                 const nom = sessionStorage.getItem('clientName');
