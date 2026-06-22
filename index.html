@@ -16,7 +16,7 @@
             min-height: 100vh;
         }
 
-        /* ===== HEADER (inchangé) ===== */
+        /* ===== HEADER ===== */
         header {
             background: #ffffff;
             box-shadow: 0 4px 20px rgba(37,99,235,0.06);
@@ -386,40 +386,90 @@
             margin-bottom: 8px;
             font-size: 1.15rem;
         }
-        .login-card .form-group input {
-            width: 100%;
-            padding: 16px 18px;
+
+        /* ===== SELECT AVEC LOGOS ===== */
+        .login-card .form-group .select-with-logo {
+            position: relative;
+            display: flex;
+            align-items: center;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
-            font-size: 1.2rem;
-            transition: border 0.3s;
+            background: #fff;
+            transition: border-color 0.3s;
+            padding: 4px 4px 4px 12px;
         }
-        .login-card .form-group input:focus {
-            outline: none;
+        .login-card .form-group .select-with-logo:focus-within {
             border-color: #2563eb;
             box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
         }
+        .select-with-logo .logo-preview {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        .select-with-logo select {
+            width: 100%;
+            padding: 14px 18px 14px 0;
+            border: none;
+            background: transparent;
+            font-size: 1.2rem;
+            font-family: inherit;
+            color: #1e293b;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .select-with-logo select:focus { outline: none; }
+        .select-with-logo .arrow {
+            margin-left: auto;
+            padding-right: 12px;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+        /* style des options avec logo (ça ne s'affiche que dans certains navigateurs) */
+        .login-card .form-group select option {
+            padding: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ===== PASSWORD ===== */
         .password-wrapper {
             position: relative;
             display: flex;
             align-items: center;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+        .password-wrapper:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
         }
         .password-wrapper input {
             width: 100%;
-            padding-right: 50px;
+            padding: 16px 18px;
+            border: none;
+            background: transparent;
+            font-size: 1.2rem;
+            font-family: inherit;
         }
+        .password-wrapper input:focus { outline: none; }
         .toggle-password {
-            position: absolute;
-            right: 14px;
             background: none;
             border: none;
             font-size: 1.6rem;
             cursor: pointer;
             color: #94a3b8;
             transition: color 0.2s;
-            padding: 4px;
+            padding: 8px 14px;
         }
         .toggle-password:hover { color: #1e293b; }
+
         .login-card .btn-submit {
             width: 100%;
             background: linear-gradient(135deg, #2563eb, #3b82f6);
@@ -431,6 +481,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s;
+            margin-top: 6px;
         }
         .login-card .btn-submit:hover { transform: translateY(-2px); }
         .login-card .error {
@@ -573,9 +624,7 @@
         }
         .notification-box a { color: #2563eb; font-weight: 600; }
 
-        /* ============================================================ */
-        /* ===== NOUVEAU FOOTER CENTRÉ ET ÉPURÉ ===== */
-        /* ============================================================ */
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 30px 20px 25px;
@@ -586,22 +635,17 @@
         }
         .footer-brand {
             font-weight: 600;
-            font-size: 1.4rem;          /* ← plus petite */
+            font-size: 1.4rem;
             color: #ffffff;
             letter-spacing: 0.5px;
             margin-bottom: 4px;
         }
         .footer-sub {
             font-weight: 400;
-            font-size: 1rem;            /* ← plus petite */
+            font-size: 1rem;
             color: #94a3b8;
             letter-spacing: 0.3px;
             margin-bottom: 6px;
-        }
-        .footer-copy {
-            font-size: 0.8rem;           /* ← plus petite */
-            color: #64748b;
-            letter-spacing: 0.2px;
         }
         .footer-divider {
             width: 60px;
@@ -609,6 +653,11 @@
             background: linear-gradient(90deg, #fbbf24, #2563eb);
             margin: 8px auto 12px;
             border-radius: 4px;
+        }
+        .footer-copy {
+            font-size: 0.8rem;
+            color: #64748b;
+            letter-spacing: 0.2px;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -654,7 +703,7 @@
 <body>
 
 <!-- ============================================================ -->
-<!-- HEADER (inchangé) -->
+<!-- HEADER -->
 <!-- ============================================================ -->
 <header>
     <div class="header-top">
@@ -677,7 +726,7 @@
 </header>
 
 <!-- ============================================================ -->
-<!-- PAGE ACCUEIL (inchangé) -->
+<!-- PAGE ACCUEIL -->
 <!-- ============================================================ -->
 <section id="page-home" class="page active">
     <div class="hero">
@@ -692,7 +741,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE À PROPOS (inchangé) -->
+<!-- PAGE À PROPOS -->
 <!-- ============================================================ -->
 <section id="page-propos" class="page">
     <div class="page-content">
@@ -712,7 +761,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE SERVICES (inchangé) -->
+<!-- PAGE SERVICES -->
 <!-- ============================================================ -->
 <section id="page-services" class="page">
     <div class="page-content">
@@ -778,7 +827,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE CONTACT (inchangé) -->
+<!-- PAGE CONTACT -->
 <!-- ============================================================ -->
 <section id="page-contact" class="page">
     <div class="page-content">
@@ -824,7 +873,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE LOGIN (inchangé) -->
+<!-- PAGE LOGIN AVEC MENU DÉROULANT ET LOGOS -->
 <!-- ============================================================ -->
 <section id="page-login" class="page">
     <div id="login-page" class="active">
@@ -837,8 +886,15 @@
             <div id="loginError" class="error">❌ Identifiant ou mot de passe incorrect.</div>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="username">Identifiant</label>
-                    <input type="text" id="username" placeholder="Ex: Metroptic" required />
+                    <label for="clientSelect">👤 Choisissez votre société</label>
+                    <div class="select-with-logo">
+                        <img id="clientLogoPreview" src="" alt="Logo" class="logo-preview" style="display:none;" />
+                        <select id="clientSelect" required>
+                            <option value="">-- Sélectionnez --</option>
+                            <!-- Les options seront injectées par JavaScript -->
+                        </select>
+                        <span class="arrow">▼</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
@@ -857,7 +913,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DASHBOARD (inchangé) -->
+<!-- PAGE DASHBOARD -->
 <!-- ============================================================ -->
 <section id="page-dashboard" class="page">
     <div id="dashboard-page" class="active">
@@ -908,7 +964,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- ===== NOUVEAU FOOTER ===== -->
+<!-- FOOTER (centré, petites polices) -->
 <!-- ============================================================ -->
 <footer>
     <div class="footer-brand">GeCoTelecom</div>
@@ -918,12 +974,13 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT (inchangé) -->
+<!-- SCRIPT UNIQUE -->
 <!-- ============================================================ -->
 <script>
     (function() {
         'use strict';
 
+        // ===== LISTE DES CLIENTS =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
@@ -951,6 +1008,7 @@
             }
         };
 
+        // ===== DOM =====
         const navItems = document.querySelectorAll('.nav-item[data-page]');
         const pages = {
             home: document.getElementById('page-home'),
@@ -975,6 +1033,46 @@
         const clientLogoHeader = document.getElementById('clientLogoHeader');
         const depotsTitle = document.getElementById('depotsTitle');
 
+        // Éléments du select
+        const clientSelect = document.getElementById('clientSelect');
+        const logoPreview = document.getElementById('clientLogoPreview');
+
+        // ===== PEUPLE LE SELECT AVEC LES CLIENTS =====
+        function populateSelect() {
+            const keys = Object.keys(clients);
+            keys.forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                // On ajoute un attribut data-logo pour stocker le chemin du logo
+                option.dataset.logo = clients[key].logo;
+                // On peut afficher le nom dans le texte
+                option.textContent = clients[key].nom;
+                clientSelect.appendChild(option);
+            });
+        }
+        populateSelect();
+
+        // ===== MET À JOUR L'APERÇU DU LOGO QUAND ON CHANGE DE SÉLECTION =====
+        clientSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const logo = selectedOption.dataset.logo;
+            if (logo) {
+                logoPreview.src = logo;
+                logoPreview.style.display = 'block';
+                // Si l'image ne charge pas, on cache
+                logoPreview.onerror = function() {
+                    this.style.display = 'none';
+                };
+                // Si elle charge, on l'affiche
+                logoPreview.onload = function() {
+                    this.style.display = 'block';
+                };
+            } else {
+                logoPreview.style.display = 'none';
+            }
+        });
+
+        // ===== TOGGLE PASSWORD =====
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
         if (togglePassword && passwordInput) {
@@ -985,6 +1083,7 @@
             });
         }
 
+        // ===== NAVIGATION =====
         let currentPage = 'home';
         let loggedInClient = null;
 
@@ -1012,6 +1111,7 @@
             currentPage = pageId;
         }
 
+        // ===== LOGIN / LOGOUT =====
         function login(username, password) {
             const client = clients[username];
             if (client && client.password === password) {
@@ -1097,6 +1197,7 @@
             return false;
         }
 
+        // ===== EVENTS =====
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 const page = this.dataset.page;
@@ -1106,9 +1207,11 @@
                     } else {
                         showPage('login');
                         loginError.classList.remove('show');
-                        document.getElementById('username').value = '';
-                        document.getElementById('password').value = '';
+                        passwordInput.value = '';
                         if (togglePassword) togglePassword.textContent = '👁️';
+                        // Reset du select
+                        clientSelect.selectedIndex = 0;
+                        logoPreview.style.display = 'none';
                     }
                 } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
                     showPage(page);
@@ -1118,8 +1221,8 @@
 
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+            const username = clientSelect.value;
+            const password = passwordInput.value.trim();
             if (login(username, password)) {
                 loginError.classList.remove('show');
             }
@@ -1140,6 +1243,7 @@
             showPage('home');
         });
 
+        // ===== INIT =====
         if (!restoreSession()) {
             showPage('home');
         }
@@ -1156,7 +1260,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec SwissTransfer intégré !');
+        console.log('✅ GeCoTelecom avec SwissTransfer et menu déroulant !');
     })();
 </script>
 
