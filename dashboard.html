@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Espace Client</title>
     <style>
+        /* styles identiques à la version précédente */
         * {
             margin: 0;
             padding: 0;
@@ -260,8 +261,8 @@
         </div>
         <div class="header-actions">
             <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <!-- 🔽 REMPLACEZ l'URL ci-dessous par l'URL DE VOTRE SITE ACTUEL -->
-            <a href="https://www.monsiteprincipal.com" class="btn-header btn-home">🏠 Retour au site</a>
+            <!-- 🔽 LIEN "Retour à l'accueil" pointant vers la racine -->
+            <a href="/" class="btn-header btn-home">🏠 Retour à l'accueil</a>
             <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
         </div>
     </header>
@@ -436,6 +437,5 @@
         // Lancer la personnalisation au chargement
         document.addEventListener('DOMContentLoaded', personaliserPage);
     </script>
-
 </body>
 </html>
