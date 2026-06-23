@@ -130,6 +130,10 @@
             box-shadow: 0 6px 20px rgba(37,99,235,0.4);
             color: #fff;
         }
+        /* ===== Masquer l'onglet Dépôt dans le menu ===== */
+        .nav-item.depot-nav {
+            display: none;
+        }
 
         /* ===== PAGES ===== */
         .page { display: none; }
@@ -644,6 +648,146 @@
         }
         .notification-box a { color: #2563eb; font-weight: 600; }
 
+        /* ===== PAGE DÉPÔT (accessible uniquement depuis le dashboard) ===== */
+        #page-depot {
+            display: none;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        #page-depot.active { display: block; }
+
+        .depot-container {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        .depot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #f8fafc, #eff6ff);
+            border-bottom: 2px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .depot-header .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .depot-header .left .icon {
+            font-size: 2.5rem;
+        }
+        .depot-header .left h2 {
+            font-size: 1.5rem;
+            color: #1e293b;
+        }
+        .depot-header .left h2 small {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+        .depot-back {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .depot-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            background: #ffffff;
+        }
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .depot-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 25px 30px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        .depot-info .info-item {
+            text-align: center;
+        }
+        .depot-info .info-item .label {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .depot-info .info-item .value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .depot-instructions {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+        .depot-instructions h3 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .depot-instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+        .depot-instructions ul li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .depot-instructions ul li:last-child {
+            border-bottom: none;
+        }
+        .depot-instructions ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             text-align: center;
@@ -701,6 +845,10 @@
             .footer-sub { font-size: 0.9rem; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
+            .iframe-wrapper { height: 500px; }
+            .depot-header { flex-direction: column; text-align: center; }
+            .depot-header .left { flex-direction: column; }
+            .depot-info { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -716,6 +864,9 @@
             .footer-brand { font-size: 1rem; }
             .footer-sub { font-size: 0.8rem; }
             .footer-copy { font-size: 0.7rem; }
+            .iframe-wrapper { height: 400px; }
+            .depot-info { grid-template-columns: 1fr; }
+            .depot-header { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -740,6 +891,8 @@
         <span class="nav-item" data-page="propos">À propos de nous</span>
         <span class="nav-item" data-page="services">Nos Services</span>
         <span class="nav-item" data-page="contact">Contact</span>
+        <!-- L'onglet Dépôt est masqué du menu public -->
+        <span class="nav-item depot-nav" data-page="depot">📤 Dépôt</span>
         <span class="nav-item client" id="clientNavBtn" data-page="login">🔐 Espace Client</span>
     </div>
 </header>
@@ -892,6 +1045,71 @@
 </section>
 
 <!-- ============================================================ -->
+<!-- PAGE DÉPÔT (Accessible UNIQUEMENT depuis le dashboard) -->
+<!-- ============================================================ -->
+<section id="page-depot" class="page">
+    <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+        <div class="depot-container">
+            <div class="depot-header">
+                <div class="left">
+                    <span class="icon">📂</span>
+                    <div>
+                        <h2>
+                            Espace de dépôt GeCoTelecom
+                            <small>Hébergé en Suisse 🇨🇭 — Sécurisé et confidentiel</small>
+                        </h2>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="showPage('dashboard'); return false;" class="depot-back">← Retour au dashboard</button>
+                </div>
+            </div>
+
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082"
+                    allow="camera; microphone; autoplay"
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <div class="depot-info">
+                <div class="info-item">
+                    <div class="label">Stockage</div>
+                    <div class="value">15 Go</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Sécurité</div>
+                    <div class="value">🔒 Chiffré</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Hébergement</div>
+                    <div class="value">🇨🇭 Suisse</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Support</div>
+                    <div class="value">24/7</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="depot-instructions">
+            <h3>📋 Comment déposer vos fichiers ?</h3>
+            <ul>
+                <li><strong>Étape 1 :</strong> Cliquez dans la zone de dépôt ci-dessus ou faites glisser vos fichiers</li>
+                <li><strong>Étape 2 :</strong> Vos fichiers sont automatiquement synchronisés avec notre équipe</li>
+                <li><strong>Étape 3 :</strong> Nous recevons une notification dès que vous déposez des fichiers</li>
+                <li><strong>Étape 4 :</strong> Vous pouvez suivre l'avancement de vos projets dans votre espace client</li>
+            </ul>
+            <p style="margin-top: 15px; color: #64748b; font-size: 0.95rem;">
+                💡 <strong>Astuce :</strong> Pour un nouveau projet, nommez clairement vos fichiers 
+                (ex: « Projet_Laval_Relevés_2026.pdf ») pour faciliter leur traitement.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
 <!-- PAGE LOGIN -->
 <!-- ============================================================ -->
 <section id="page-login" class="page">
@@ -959,13 +1177,13 @@
         <div class="section-card">
             <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
             <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
-            <a id="depotSwissLink" href="#" target="_blank" class="btn-swiss" style="margin-top:10px;">
-                📤 Déposer via SwissTransfer
-            </a>
+            <button onclick="showPage('depot'); return false;" class="btn-swiss" style="margin-top:10px; cursor:pointer;">
+                📤 Déposer via kDrive
+            </button>
             <div style="margin-top:20px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>✅ Comment ça fonctionne ?</strong>
                 <ul style="margin:8px 0 0 20px;">
-                    <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers SwissTransfer pour envoyer vos fichiers.</li>
+                    <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers kDrive pour envoyer vos fichiers.</li>
                     <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez utiliser le même lien de dépôt à tout moment.</li>
                     <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                 </ul>
@@ -998,31 +1216,28 @@
     (function() {
         'use strict';
 
-        // ===== LISTE DES CLIENTS =====
+        // ===== LISTE DES CLIENTS AVEC IDENTIFIANTS =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
-                livrables: 'https://www.swisstransfer.com/d/1234567890',
-                depot: 'https://www.swisstransfer.com/d/0987654321'
+                livrables: 'https://www.swisstransfer.com/d/1234567890'
             },
             'Sofiene': {
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
                 logo: 'logo-SofieneHosni.jpeg',
-                livrables: null,
-                depot: 'https://www.swisstransfer.com/d/abcdefghij'
+                livrables: null
             },
             'Infra': {
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
-                livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
-                depot: 'https://www.swisstransfer.com/d/uvwxyz1234'
+                livrables: 'https://www.swisstransfer.com/d/klmnopqrst'
             }
         };
 
@@ -1033,6 +1248,7 @@
             propos: document.getElementById('page-propos'),
             services: document.getElementById('page-services'),
             contact: document.getElementById('page-contact'),
+            depot: document.getElementById('page-depot'),
             login: document.getElementById('page-login'),
             dashboard: document.getElementById('page-dashboard')
         };
@@ -1043,7 +1259,6 @@
         const clientBadgeContainer = document.getElementById('clientBadgeContainer');
         const livrablesSection = document.getElementById('livrablesSection');
         const livrablesSwissLink = document.getElementById('livrablesSwissLink');
-        const depotSwissLink = document.getElementById('depotSwissLink');
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
@@ -1095,7 +1310,7 @@
         let currentPage = 'home';
         let loggedInClient = null;
 
-        function showPage(pageId) {
+        window.showPage = function(pageId) {
             Object.keys(pages).forEach(id => {
                 pages[id].classList.remove('active');
             });
@@ -1108,7 +1323,7 @@
             });
             if (pageId === 'login' || pageId === 'dashboard') {
                 navItems.forEach(item => {
-                    if (item.dataset.page !== 'login' && item.dataset.page !== 'dashboard') {
+                    if (item.dataset.page !== 'login' && item.dataset.page !== 'dashboard' && item.dataset.page !== 'depot') {
                         item.classList.remove('active');
                     }
                 });
@@ -1117,7 +1332,7 @@
                 clientNavBtn.classList.remove('active');
             }
             currentPage = pageId;
-        }
+        };
 
         // ===== LOGIN =====
         function login(username, password) {
@@ -1145,7 +1360,6 @@
         function showDashboard() {
             if (!loggedInClient) return;
 
-            // ---- Logo dans le header ----
             const headerEl = document.getElementById('clientLogoHeader');
             if (loggedInClient.logo) {
                 const img = document.createElement('img');
@@ -1198,7 +1412,6 @@
                 headerEl.classList.add('show');
             }
 
-            // ---- Badge client ----
             let badgeHtml = '';
             if (loggedInClient.logo) {
                 badgeHtml = `
@@ -1213,10 +1426,8 @@
             }
             clientBadgeContainer.innerHTML = badgeHtml;
 
-            // ---- Titre ----
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
 
-            // ---- Livrables ----
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesSwissLink.href = loggedInClient.livrables;
@@ -1226,15 +1437,6 @@
                 livrablesSection.style.display = 'none';
             }
 
-            // ---- Dépôt ----
-            if (loggedInClient.depot) {
-                depotSwissLink.href = loggedInClient.depot;
-                depotSwissLink.style.display = 'inline-block';
-            } else {
-                depotSwissLink.style.display = 'none';
-            }
-
-            // ---- Titre Dépôt ----
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
@@ -1280,6 +1482,13 @@
                     }
                 } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
                     showPage(page);
+                } else if (page === 'depot') {
+                    // L'onglet Dépôt n'est pas visible dans le menu, mais on garde la navigation si jamais
+                    if (loggedInClient) {
+                        showPage('depot');
+                    } else {
+                        showPage('login');
+                    }
                 }
             });
         });
@@ -1325,8 +1534,10 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom restauré avec les 5 onglets d\'origine !');
+        console.log('✅ GeCoTelecom avec espace client sécurisé !');
         console.log('📁 Logo Sofiene Hosni : logo-SofieneHosni.jpeg');
+        console.log('📁 Lien kDrive : https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082');
+        console.log('🔐 Identifiants clients : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
 
