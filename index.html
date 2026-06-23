@@ -455,7 +455,7 @@
         }
         .password-wrapper:focus-within {
             border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
         }
         .password-wrapper input {
             width: 100%;
@@ -910,7 +910,6 @@
                         <img id="clientLogoPreview" src="" alt="Logo" class="logo-preview" style="display:none;" />
                         <select id="clientSelect" required>
                             <option value="">-- Sélectionnez --</option>
-                            <!-- les options seront injectées par JS -->
                         </select>
                         <span class="arrow">▼</span>
                     </div>
@@ -993,19 +992,19 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- SCRIPT CORRIGÉ AVEC LES BONS CHEMINS -->
+<!-- SCRIPT AVEC LOGO SOFIENE HOSNI -->
 <!-- ============================================================ -->
 <script>
     (function() {
         'use strict';
 
-        // ===== LISTE DES CLIENTS (avec les VRAIS chemins, à la racine) =====
+        // ===== LISTE DES CLIENTS AVEC LE LOGO DE SOFIENE HOSNI =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
-                logo: 'logometroptic-1.png',   // ← À la racine, plus de /logos/
+                logo: 'logometroptic-1.png',
                 livrables: 'https://www.swisstransfer.com/d/1234567890',
                 depot: 'https://www.swisstransfer.com/d/0987654321'
             },
@@ -1013,7 +1012,7 @@
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
-                logo: 'logo%20metropic.png',   // ← J'ai renommé pour enlever l'espace
+                logo: 'logo-SofieneHosni.jpeg',  // ✅ Logo ajouté
                 livrables: null,
                 depot: 'https://www.swisstransfer.com/d/abcdefghij'
             },
@@ -1021,7 +1020,7 @@
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
-                logo: 'logo%20infra.jpg',      // ← Encodage de l'espace en %20
+                logo: 'logo%20infra.jpg',
                 livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
                 depot: 'https://www.swisstransfer.com/d/uvwxyz1234'
             }
@@ -1243,7 +1242,7 @@
                 depotSwissLink.style.display = 'none';
             }
 
-            // ---- Titre Dépôt ----
+            // ---- Titre Dépôt pour Sofiene Hosni ----
             if (loggedInClient.code === 'CLIENT002') {
                 depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
             } else {
@@ -1334,7 +1333,8 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec logos à la racine !');
+        console.log('✅ GeCoTelecom avec logo Sofiene Hosni !');
+        console.log('📁 Logo : logo-SofieneHosni.jpeg');
     })();
 </script>
 
