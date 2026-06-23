@@ -726,7 +726,7 @@
             border-left-color: #10b981;
         }
 
-        /* ===== PAGE DÉPÔT ===== */
+        /* ===== PAGE DÉPÔT (nouvel onglet) ===== */
         #page-depot {
             display: none;
             max-width: 1200px;
@@ -789,17 +789,53 @@
             box-shadow: 0 6px 20px rgba(37,99,235,0.4);
         }
 
-        .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            height: 700px;
-            background: #ffffff;
+        /* Zone de dépôt - Version avec bouton (pas d'iframe) */
+        .depot-content {
+            padding: 60px 40px;
+            text-align: center;
+            background: #f8fafc;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .iframe-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .depot-content .big-icon {
+            font-size: 5rem;
             display: block;
+            margin-bottom: 20px;
+        }
+        .depot-content h3 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        .depot-content p {
+            color: #64748b;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+        .depot-content .btn-open {
+            display: inline-block;
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            color: #fff;
+            padding: 18px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+        }
+        .depot-content .btn-open:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4);
+        }
+        .depot-content .secure-note {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
 
         .depot-info {
@@ -923,10 +959,11 @@
             .footer-sub { font-size: 0.9rem; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
-            .iframe-wrapper { height: 500px; }
+            .depot-content { padding: 40px 20px; }
+            .depot-content h3 { font-size: 1.5rem; }
+            .depot-info { grid-template-columns: 1fr 1fr; }
             .depot-header { flex-direction: column; text-align: center; }
             .depot-header .left { flex-direction: column; }
-            .depot-info { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -942,7 +979,9 @@
             .footer-brand { font-size: 1rem; }
             .footer-sub { font-size: 0.8rem; }
             .footer-copy { font-size: 0.7rem; }
-            .iframe-wrapper { height: 400px; }
+            .depot-content { padding: 30px 15px; }
+            .depot-content h3 { font-size: 1.2rem; }
+            .depot-content .btn-open { padding: 14px 30px; font-size: 1rem; }
             .depot-info { grid-template-columns: 1fr; }
             .depot-header { padding: 15px 20px; }
         }
@@ -1220,7 +1259,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DÉPÔT (Accessible UNIQUEMENT depuis le dashboard) -->
+<!-- PAGE DÉPÔT (avec bouton d'ouverture dans nouvel onglet) -->
 <!-- ============================================================ -->
 <section id="page-depot" class="page">
     <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
@@ -1240,12 +1279,22 @@
                 </div>
             </div>
 
-            <div class="iframe-wrapper">
-                <iframe 
-                    src="https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082"
-                    allow="camera; microphone; autoplay"
-                    loading="lazy">
-                </iframe>
+            <!-- Contenu de dépôt (pas d'iframe) -->
+            <div class="depot-content">
+                <span class="big-icon">📤</span>
+                <h3>Ouvrir l'espace de dépôt</h3>
+                <p>
+                    Cliquez sur le bouton ci-dessous pour accéder à votre espace kDrive sécurisé. 
+                    Vous pourrez y déposer vos fichiers en toute simplicité.
+                </p>
+                <a href="https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082" 
+                   target="_blank" 
+                   class="btn-open">
+                    📂 Ouvrir kDrive
+                </a>
+                <p class="secure-note">
+                    🔒 S'ouvre dans un nouvel onglet sécurisé · Aucune inscription requise
+                </p>
             </div>
 
             <div class="depot-info">
@@ -1271,10 +1320,10 @@
         <div class="depot-instructions">
             <h3>📋 Comment déposer vos fichiers ?</h3>
             <ul>
-                <li><strong>Étape 1 :</strong> Cliquez dans la zone de dépôt ci-dessus ou faites glisser vos fichiers</li>
-                <li><strong>Étape 2 :</strong> Vos fichiers sont automatiquement synchronisés avec notre équipe</li>
-                <li><strong>Étape 3 :</strong> Nous recevons une notification dès que vous déposez des fichiers</li>
-                <li><strong>Étape 4 :</strong> Vous pouvez suivre l'avancement de vos projets dans votre espace client</li>
+                <li><strong>Étape 1 :</strong> Cliquez sur le bouton "Ouvrir kDrive" ci-dessus</li>
+                <li><strong>Étape 2 :</strong> Dans la page kDrive, glissez-déposez vos fichiers</li>
+                <li><strong>Étape 3 :</strong> Vos fichiers sont automatiquement synchronisés avec notre équipe</li>
+                <li><strong>Étape 4 :</strong> Nous recevons une notification dès que vous déposez des fichiers</li>
             </ul>
             <p style="margin-top: 15px; color: #64748b; font-size: 0.95rem;">
                 💡 <strong>Astuce :</strong> Pour un nouveau projet, nommez clairement vos fichiers 
@@ -1631,7 +1680,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec 2 sections par client et bouton kDrive fonctionnel !');
+        console.log('✅ GeCoTelecom avec 2 sections par client - kDrive en nouvel onglet !');
         console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
