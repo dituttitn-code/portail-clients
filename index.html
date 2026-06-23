@@ -648,6 +648,34 @@
             border-radius: 4px;
         }
 
+        /* ===== PROJETS À FAIRE CARD (pour Sofiene) ===== */
+        .projets-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #8b5cf6;
+        }
+        .projets-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .projets-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #8b5cf6);
+            border-radius: 4px;
+        }
+
         /* ===== DÉPÔT CARD ===== */
         .depot-card {
             background: #fff;
@@ -712,6 +740,12 @@
         .btn-swiss.warning:hover {
             background: linear-gradient(135deg, #b45309, #d97706);
         }
+        .btn-swiss.purple {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+        .btn-swiss.purple:hover {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed);
+        }
 
         .notification-box {
             background: #fef3c7;
@@ -724,6 +758,10 @@
         .notification-box.green {
             background: #ecfdf5;
             border-left-color: #10b981;
+        }
+        .notification-box.purple {
+            background: #f5f3ff;
+            border-left-color: #8b5cf6;
         }
 
         /* ===== PAGE DÉPÔT ===== */
@@ -1212,21 +1250,9 @@
         </div>
         <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
 
-        <!-- ===== SECTION 1 : ACCÉDER AUX LIVRABLES ===== -->
-        <div class="livrables-card" id="livrablesSection">
-            <h2>📥 Accéder aux livrables</h2>
-            <p style="color:#64748b; margin-bottom:15px;">
-                Téléchargez vos livrables finaux : relevés, conceptions, dessins, CDC, ADR, DDP, etc.
-            </p>
-            <div id="livrablesContent">
-                <p style="color:#64748b;">Chargement...</p>
-            </div>
-            <div style="margin-top:15px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
-                <strong>📦 Livrables disponibles :</strong> nous déposons dans ce dossier tous les documents finaux de vos projets.
-            </div>
-            <a id="livrablesSwissLink" href="#" target="_blank" class="btn-swiss success" style="margin-top:15px; display:inline-block;">
-                🚀 Accéder aux livrables
-            </a>
+        <!-- ===== SECTION 1 : ACCÉDER AUX LIVRABLES / PROJETS À FAIRE ===== -->
+        <div id="livrablesSection">
+            <!-- Cette section sera remplacée dynamiquement selon le client -->
         </div>
 
         <!-- ===== SECTION 2 : DÉPOSER VOS PROJETS ===== -->
@@ -1354,15 +1380,19 @@
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
                 livrables: 'https://kdrive.infomaniak.com/app/share/3380048/dca1b243-55d5-4369-8002-e34508c03332',
-                depot: 'https://kdrive.infomaniak.com/app/share/3380048/1f5be737-3cf7-4f0e-89ec-0892fb98dc9f'
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/1f5be737-3cf7-4f0e-89ec-0892fb98dc9f',
+                livrablesLabel: '📥 Accéder aux livrables',
+                livrablesIcon: '📥'
             },
             'Sofiene': {
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
                 logo: 'logo-SofieneHosni.jpeg',
-                livrables: null,
-                depot: 'https://kdrive.infomaniak.com/app/share/3380048/118ad503-5f89-4c31-8964-9ec84e0f7022'
+                livrables: 'https://kdrive.infomaniak.com/app/share/3380048/632e8904-d4e8-4506-b279-b6c0bacf3034',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/118ad503-5f89-4c31-8964-9ec84e0f7022',
+                livrablesLabel: '📋 Projets à faire',
+                livrablesIcon: '📋'
             },
             'Infra': {
                 code: 'CLIENT003',
@@ -1370,7 +1400,9 @@
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
                 livrables: 'https://kdrive.infomaniak.com/app/share/3380048/c16ad784-fe32-4c8e-b5c4-7933f49ce0a9',
-                depot: 'https://kdrive.infomaniak.com/app/share/3380048/2393534b-2f7f-4fa7-a00d-a70821e234a2'
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/2393534b-2f7f-4fa7-a00d-a70821e234a2',
+                livrablesLabel: '📥 Accéder aux livrables',
+                livrablesIcon: '📥'
             }
         };
 
@@ -1391,8 +1423,6 @@
         const dashboardTitle = document.getElementById('dashboardTitle');
         const clientBadgeContainer = document.getElementById('clientBadgeContainer');
         const livrablesSection = document.getElementById('livrablesSection');
-        const livrablesSwissLink = document.getElementById('livrablesSwissLink');
-        const livrablesContent = document.getElementById('livrablesContent');
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
@@ -1569,25 +1599,31 @@
                 depotOpenLink.href = loggedInClient.depot;
             }
 
-            // ---- SECTION LIVRABLES ----
-            if (loggedInClient.livrables) {
-                livrablesSection.style.display = 'block';
-                livrablesSwissLink.href = loggedInClient.livrables;
-                livrablesSwissLink.style.display = 'inline-block';
-                livrablesContent.innerHTML = `
-                    <p style="color:#64748b;">📂 Vos livrables sont disponibles dans le dossier ci-dessous.</p>
-                    <p style="color:#64748b; font-size:0.95rem;">🔒 Accès sécurisé via kDrive.</p>
-                `;
-            } else {
-                livrablesSection.style.display = 'block';
-                livrablesSwissLink.style.display = 'none';
-                livrablesContent.innerHTML = `
-                    <div style="background:#fef3c7; border-left:4px solid #f59e0b; padding:15px 20px; border-radius:8px;">
-                        <strong>⏳ Aucun livrable disponible pour le moment.</strong><br />
-                        <span style="color:#64748b;">Nous vous informerons dès que vos documents seront prêts.</span>
+            // ---- SECTION LIVRABLES / PROJETS À FAIRE (personnalisée) ----
+            const isSofiene = loggedInClient.code === 'CLIENT002';
+            const cardClass = isSofiene ? 'projets-card' : 'livrables-card';
+            const icon = isSofiene ? '📋' : '📥';
+            const title = isSofiene ? 'Projets à faire' : 'Accéder aux livrables';
+            const description = isSofiene 
+                ? 'Consultez les projets à réaliser : relevés, conceptions, dessins, CDC, ADR, DDP, etc.' 
+                : 'Téléchargez vos livrables finaux : relevés, conceptions, dessins, CDC, ADR, DDP, etc.';
+
+            livrablesSection.innerHTML = `
+                <div class="${cardClass}">
+                    <h2>${icon} ${title}</h2>
+                    <p style="color:#64748b; margin-bottom:15px;">${description}</p>
+                    <div id="livrablesContent">
+                        <p style="color:#64748b;">📂 Vos documents sont disponibles dans le dossier ci-dessous.</p>
+                        <p style="color:#64748b; font-size:0.95rem;">🔒 Accès sécurisé via kDrive.</p>
                     </div>
-                `;
-            }
+                    <div style="margin-top:15px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
+                        <strong>📦 Documents disponibles :</strong> nous déposons dans ce dossier tous les documents de vos projets.
+                    </div>
+                    <a href="${loggedInClient.livrables}" target="_blank" class="btn-swiss ${isSofiene ? 'purple' : 'success'}" style="margin-top:15px; display:inline-block;">
+                        ${isSofiene ? '📋 Voir les projets à faire' : '🚀 Accéder aux livrables'}
+                    </a>
+                </div>
+            `;
 
             // ---- Titre personnalisé pour Sofiene Hosni ----
             if (loggedInClient.code === 'CLIENT002') {
@@ -1686,7 +1722,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom - Chaque client a ses propres liens !');
+        console.log('✅ GeCoTelecom - Sofiene Hosni a "Projets à faire" !');
         console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
