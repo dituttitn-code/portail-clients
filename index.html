@@ -130,7 +130,6 @@
             box-shadow: 0 6px 20px rgba(37,99,235,0.4);
             color: #fff;
         }
-        /* ===== Masquer l'onglet Dépôt dans le menu ===== */
         .nav-item.depot-nav {
             display: none;
         }
@@ -594,6 +593,7 @@
             color: #7f1d1d;
         }
 
+        /* ===== SECTION CARD ===== */
         .section-card {
             background: #fff;
             border-radius: 20px;
@@ -620,6 +620,62 @@
             border-radius: 4px;
         }
 
+        /* ===== LIVRABLES CARD ===== */
+        .livrables-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #2563eb;
+        }
+        .livrables-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .livrables-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #10b981);
+            border-radius: 4px;
+        }
+
+        /* ===== DÉPÔT CARD ===== */
+        .depot-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #f59e0b;
+        }
+        .depot-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .depot-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 4px;
+        }
+
         .btn-swiss {
             display: inline-block;
             background: #0f172a;
@@ -638,6 +694,24 @@
             background: #1e293b;
             transform: translateY(-2px);
         }
+        .btn-swiss.primary {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        .btn-swiss.primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+        .btn-swiss.success {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        .btn-swiss.success:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        .btn-swiss.warning {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+        }
+        .btn-swiss.warning:hover {
+            background: linear-gradient(135deg, #b45309, #d97706);
+        }
 
         .notification-box {
             background: #fef3c7;
@@ -647,8 +721,12 @@
             margin: 15px 0;
         }
         .notification-box a { color: #2563eb; font-weight: 600; }
+        .notification-box.green {
+            background: #ecfdf5;
+            border-left-color: #10b981;
+        }
 
-        /* ===== PAGE DÉPÔT (accessible uniquement depuis le dashboard) ===== */
+        /* ===== PAGE DÉPÔT ===== */
         #page-depot {
             display: none;
             max-width: 1200px;
@@ -891,7 +969,6 @@
         <span class="nav-item" data-page="propos">À propos de nous</span>
         <span class="nav-item" data-page="services">Nos Services</span>
         <span class="nav-item" data-page="contact">Contact</span>
-        <!-- L'onglet Dépôt est masqué du menu public -->
         <span class="nav-item depot-nav" data-page="depot">📤 Dépôt</span>
         <span class="nav-item client" id="clientNavBtn" data-page="login">🔐 Espace Client</span>
     </div>
@@ -1045,6 +1122,104 @@
 </section>
 
 <!-- ============================================================ -->
+<!-- PAGE LOGIN -->
+<!-- ============================================================ -->
+<section id="page-login" class="page">
+    <div id="login-page" class="active">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" />
+            </div>
+            <h1>🔐 Espace Client</h1>
+            <p>Entrez vos identifiants</p>
+            <div id="loginError" class="error">❌ Identifiant ou mot de passe incorrect.</div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="clientSelect">👤 Choisissez votre société</label>
+                    <div class="select-with-logo">
+                        <img id="clientLogoPreview" src="" alt="Logo" class="logo-preview" style="display:none;" />
+                        <select id="clientSelect" required>
+                            <option value="">-- Sélectionnez --</option>
+                        </select>
+                        <span class="arrow">▼</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Votre mot de passe" required />
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher/masquer le mot de passe">👁️</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Se connecter</button>
+            </form>
+            <div class="footer-link">
+                <a href="#" id="backToHomeFromLogin">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE DASHBOARD -->
+<!-- ============================================================ -->
+<section id="page-dashboard" class="page">
+    <div id="dashboard-page" class="active">
+        <div class="dashboard-header">
+            <h1 id="dashboardTitle">📂 PORTAIL DE PROJETS</h1>
+            <div class="dashboard-actions">
+                <a href="#" id="backToHomeFromDashboard" class="back-link">← Retour à l'accueil</a>
+                <a href="#" id="logoutLink" class="logout-link">🚪 Déconnexion</a>
+            </div>
+        </div>
+        <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
+
+        <!-- ===== SECTION 1 : ACCÉDER AUX LIVRABLES ===== -->
+        <div class="livrables-card" id="livrablesSection">
+            <h2>📥 Accéder aux livrables</h2>
+            <p style="color:#64748b; margin-bottom:15px;">
+                Téléchargez vos livrables finaux : relevés, conceptions, dessins, CDC, ADR, DDP, etc.
+            </p>
+            <div id="livrablesContent">
+                <p style="color:#64748b;">Chargement...</p>
+            </div>
+            <div style="margin-top:15px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
+                <strong>📦 Livrables disponibles :</strong> nous déposons dans ce dossier tous les documents finaux de vos projets.
+            </div>
+            <a id="livrablesSwissLink" href="#" target="_blank" class="btn-swiss success" style="margin-top:15px; display:inline-block;">
+                🚀 Accéder aux livrables
+            </a>
+        </div>
+
+        <!-- ===== SECTION 2 : DÉPOSER VOS PROJETS ===== -->
+        <div class="depot-card">
+            <h2 id="depotsTitle">📤 Déposer vos nouveaux projets</h2>
+            <p style="color:#64748b; margin-bottom:15px;">
+                Transmettez-nous vos relevés terrain, photos de chantier, croquis et documents techniques.
+            </p>
+            <button onclick="showPage('depot'); return false;" class="btn-swiss warning" style="margin-top:10px; cursor:pointer;">
+                📤 Déposer via kDrive
+            </button>
+            <div style="margin-top:20px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
+                <strong>✅ Comment ça fonctionne ?</strong>
+                <ul style="margin:8px 0 0 20px;">
+                    <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers kDrive pour envoyer vos fichiers.</li>
+                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez utiliser le même lien de dépôt à tout moment.</li>
+                    <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
+                </ul>
+            </div>
+            <div class="notification-box">
+                <strong>📢 Besoin de nous avertir ?</strong><br />
+                Une fois vos fichiers déposés, vous pouvez nous contacter par email pour nous prévenir.
+            </div>
+            <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
+                💡 <strong>Astuce :</strong> pour un nouveau projet, nommez clairement vos fichiers (ex: « Projet_Réseau_Laval_Plan.pdf ») pour que nous sachions de quoi il s'agit.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
 <!-- PAGE DÉPÔT (Accessible UNIQUEMENT depuis le dashboard) -->
 <!-- ============================================================ -->
 <section id="page-depot" class="page">
@@ -1110,96 +1285,6 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE LOGIN -->
-<!-- ============================================================ -->
-<section id="page-login" class="page">
-    <div id="login-page" class="active">
-        <div class="login-card">
-            <div class="login-logo">
-                <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" />
-            </div>
-            <h1>🔐 Espace Client</h1>
-            <p>Entrez vos identifiants</p>
-            <div id="loginError" class="error">❌ Identifiant ou mot de passe incorrect.</div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="clientSelect">👤 Choisissez votre société</label>
-                    <div class="select-with-logo">
-                        <img id="clientLogoPreview" src="" alt="Logo" class="logo-preview" style="display:none;" />
-                        <select id="clientSelect" required>
-                            <option value="">-- Sélectionnez --</option>
-                        </select>
-                        <span class="arrow">▼</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="password" placeholder="Votre mot de passe" required />
-                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher/masquer le mot de passe">👁️</button>
-                    </div>
-                </div>
-                <button type="submit" class="btn-submit">Se connecter</button>
-            </form>
-            <div class="footer-link">
-                <a href="#" id="backToHomeFromLogin">← Retour à l'accueil</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- PAGE DASHBOARD -->
-<!-- ============================================================ -->
-<section id="page-dashboard" class="page">
-    <div id="dashboard-page" class="active">
-        <div class="dashboard-header">
-            <h1 id="dashboardTitle">📂 PORTAIL DE PROJETS</h1>
-            <div class="dashboard-actions">
-                <a href="#" id="backToHomeFromDashboard" class="back-link">← Retour à l'accueil</a>
-                <a href="#" id="logoutLink" class="logout-link">🚪 Déconnexion</a>
-            </div>
-        </div>
-        <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
-
-        <div id="livrablesSection" class="section-card">
-            <h2 id="livrablesTitle">📥 Télécharger vos livrables</h2>
-            <div id="livrablesContent"><p style="color:#64748b;">Chargement...</p></div>
-            <div style="margin-top:15px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
-                <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce dossier les livrables finaux
-                <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
-            </div>
-            <a id="livrablesSwissLink" href="#" target="_blank" class="btn-swiss" style="margin-top:15px;">
-                🚀 Accéder aux livrables sur SwissTransfer
-            </a>
-        </div>
-
-        <div class="section-card">
-            <h2 id="depotsTitle">📤 Déposer vos nouveaux projets et fichiers</h2>
-            <p>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires.</p>
-            <button onclick="showPage('depot'); return false;" class="btn-swiss" style="margin-top:10px; cursor:pointer;">
-                📤 Déposer via kDrive
-            </button>
-            <div style="margin-top:20px; background:#f0fdf4; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
-                <strong>✅ Comment ça fonctionne ?</strong>
-                <ul style="margin:8px 0 0 20px;">
-                    <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers kDrive pour envoyer vos fichiers.</li>
-                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez utiliser le même lien de dépôt à tout moment.</li>
-                    <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
-                </ul>
-            </div>
-            <div class="notification-box">
-                <strong>📢 Besoin de nous avertir ?</strong><br />
-                Une fois vos fichiers déposés, vous pouvez nous contacter par email pour nous prévenir.
-            </div>
-            <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
-                💡 <strong>Astuce :</strong> pour un nouveau projet, nommez clairement vos fichiers (ex: « Projet_Réseau_Laval_Plan.pdf ») pour que nous sachions de quoi il s'agit.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================================ -->
 <!-- FOOTER -->
 <!-- ============================================================ -->
 <footer>
@@ -1216,28 +1301,31 @@
     (function() {
         'use strict';
 
-        // ===== LISTE DES CLIENTS AVEC IDENTIFIANTS =====
+        // ===== LISTE DES CLIENTS AVEC LEURS LIENS PERSONNALISÉS =====
         const clients = {
             'Metroptic': {
                 code: 'CLIENT001',
                 nom: 'Metro Optic',
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
-                livrables: 'https://www.swisstransfer.com/d/1234567890'
+                livrables: 'https://www.swisstransfer.com/d/1234567890',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082'
             },
             'Sofiene': {
                 code: 'CLIENT002',
                 nom: 'Sofiene Hosni',
                 password: 'SH1975!',
                 logo: 'logo-SofieneHosni.jpeg',
-                livrables: null
+                livrables: null,
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082'
             },
             'Infra': {
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
-                livrables: 'https://www.swisstransfer.com/d/klmnopqrst'
+                livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082'
             }
         };
 
@@ -1259,10 +1347,10 @@
         const clientBadgeContainer = document.getElementById('clientBadgeContainer');
         const livrablesSection = document.getElementById('livrablesSection');
         const livrablesSwissLink = document.getElementById('livrablesSwissLink');
+        const livrablesContent = document.getElementById('livrablesContent');
         const logoutLink = document.getElementById('logoutLink');
         const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
         const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
-        const livrablesContent = document.getElementById('livrablesContent');
         const clientLogoHeader = document.getElementById('clientLogoHeader');
         const depotsTitle = document.getElementById('depotsTitle');
         const clientSelect = document.getElementById('clientSelect');
@@ -1283,7 +1371,7 @@
         }
         populateSelect();
 
-        // ===== APERÇU DU LOGO DANS LE SELECT =====
+        // ===== APERÇU DU LOGO =====
         clientSelect.addEventListener('change', function() {
             const selectedOption = this.options[this.selectedIndex];
             const logo = selectedOption.dataset.logo;
@@ -1360,6 +1448,7 @@
         function showDashboard() {
             if (!loggedInClient) return;
 
+            // ---- Logo dans le header ----
             const headerEl = document.getElementById('clientLogoHeader');
             if (loggedInClient.logo) {
                 const img = document.createElement('img');
@@ -1412,6 +1501,7 @@
                 headerEl.classList.add('show');
             }
 
+            // ---- Badge client ----
             let badgeHtml = '';
             if (loggedInClient.logo) {
                 badgeHtml = `
@@ -1428,20 +1518,28 @@
 
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
 
+            // ---- SECTION LIVRABLES ----
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
                 livrablesSwissLink.href = loggedInClient.livrables;
                 livrablesSwissLink.style.display = 'inline-block';
-                livrablesContent.innerHTML = `<p style="color:#64748b;">Consultez vos livrables dans le dossier SwissTransfer ci-dessous (aucun compte requis).</p>`;
+                livrablesContent.innerHTML = `
+                    <p style="color:#64748b;">📂 Vos livrables sont disponibles dans le dossier ci-dessous.</p>
+                    <p style="color:#64748b; font-size:0.95rem;">🔒 Accès sécurisé via SwissTransfer.</p>
+                `;
             } else {
-                livrablesSection.style.display = 'none';
+                livrablesSection.style.display = 'block';
+                livrablesSwissLink.style.display = 'none';
+                livrablesContent.innerHTML = `
+                    <div style="background:#fef3c7; border-left:4px solid #f59e0b; padding:15px 20px; border-radius:8px;">
+                        <strong>⏳ Aucun livrable disponible pour le moment.</strong><br />
+                        <span style="color:#64748b;">Nous vous informerons dès que vos documents seront prêts.</span>
+                    </div>
+                `;
             }
 
-            if (loggedInClient.code === 'CLIENT002') {
-                depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
-            } else {
-                depotsTitle.textContent = '📤 Déposer vos nouveaux projets et fichiers';
-            }
+            // ---- SECTION DÉPÔT ----
+            depotsTitle.textContent = '📤 Déposer vos nouveaux projets';
 
             showPage('dashboard');
         }
@@ -1483,7 +1581,6 @@
                 } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
                     showPage(page);
                 } else if (page === 'depot') {
-                    // L'onglet Dépôt n'est pas visible dans le menu, mais on garde la navigation si jamais
                     if (loggedInClient) {
                         showPage('depot');
                     } else {
@@ -1534,10 +1631,9 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec espace client sécurisé !');
+        console.log('✅ GeCoTelecom avec 2 sections par client !');
         console.log('📁 Logo Sofiene Hosni : logo-SofieneHosni.jpeg');
-        console.log('📁 Lien kDrive : https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082');
-        console.log('🔐 Identifiants clients : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
+        console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
 
