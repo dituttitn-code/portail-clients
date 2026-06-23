@@ -1197,9 +1197,9 @@
             <p style="color:#64748b; margin-bottom:15px;">
                 Transmettez-nous vos relevés terrain, photos de chantier, croquis et documents techniques.
             </p>
-            <button onclick="showPage('depot'); return false;" class="btn-swiss warning" style="margin-top:10px; cursor:pointer;">
+            <a href="#" onclick="showPage('depot'); return false;" class="btn-swiss warning" style="margin-top:10px; cursor:pointer; display:inline-block;">
                 📤 Déposer via kDrive
-            </button>
+            </a>
             <div style="margin-top:20px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                 <strong>✅ Comment ça fonctionne ?</strong>
                 <ul style="margin:8px 0 0 20px;">
@@ -1236,7 +1236,7 @@
                     </div>
                 </div>
                 <div>
-                    <button onclick="showPage('dashboard'); return false;" class="depot-back">← Retour au dashboard</button>
+                    <a href="#" onclick="showPage('dashboard'); return false;" class="depot-back">← Retour au dashboard</a>
                 </div>
             </div>
 
@@ -1631,8 +1631,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec 2 sections par client !');
-        console.log('📁 Logo Sofiene Hosni : logo-SofieneHosni.jpeg');
+        console.log('✅ GeCoTelecom avec 2 sections par client et bouton kDrive fonctionnel !');
         console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
