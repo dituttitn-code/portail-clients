@@ -726,7 +726,7 @@
             border-left-color: #10b981;
         }
 
-        /* ===== PAGE DÉPÔT (nouvel onglet) ===== */
+        /* ===== PAGE DÉPÔT ===== */
         #page-depot {
             display: none;
             max-width: 1200px;
@@ -789,7 +789,6 @@
             box-shadow: 0 6px 20px rgba(37,99,235,0.4);
         }
 
-        /* Zone de dépôt - Version avec bouton (pas d'iframe) */
         .depot-content {
             padding: 60px 40px;
             text-align: center;
@@ -1259,7 +1258,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DÉPÔT (avec bouton d'ouverture dans nouvel onglet) -->
+<!-- PAGE DÉPÔT -->
 <!-- ============================================================ -->
 <section id="page-depot" class="page">
     <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
@@ -1279,7 +1278,6 @@
                 </div>
             </div>
 
-            <!-- Contenu de dépôt (pas d'iframe) -->
             <div class="depot-content">
                 <span class="big-icon">📤</span>
                 <h3>Ouvrir l'espace de dépôt</h3>
@@ -1287,9 +1285,7 @@
                     Cliquez sur le bouton ci-dessous pour accéder à votre espace kDrive sécurisé. 
                     Vous pourrez y déposer vos fichiers en toute simplicité.
                 </p>
-                <a href="https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082" 
-                   target="_blank" 
-                   class="btn-open">
+                <a href="#" id="depotOpenLink" target="_blank" class="btn-open">
                     📂 Ouvrir kDrive
                 </a>
                 <p class="secure-note">
@@ -1357,8 +1353,8 @@
                 nom: 'Metro Optic',
                 password: 'MO9300!',
                 logo: 'logometroptic-1.png',
-                livrables: 'https://www.swisstransfer.com/d/1234567890',
-                depot: 'https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082'
+                livrables: 'https://kdrive.infomaniak.com/app/share/3380048/dca1b243-55d5-4369-8002-e34508c03332',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/1f5be737-3cf7-4f0e-89ec-0892fb98dc9f'
             },
             'Sofiene': {
                 code: 'CLIENT002',
@@ -1366,15 +1362,15 @@
                 password: 'SH1975!',
                 logo: 'logo-SofieneHosni.jpeg',
                 livrables: null,
-                depot: 'https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082'
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/118ad503-5f89-4c31-8964-9ec84e0f7022'
             },
             'Infra': {
                 code: 'CLIENT003',
                 nom: 'Infrastructel',
                 password: 'InfraS9300!',
                 logo: 'logo%20infra.jpg',
-                livrables: 'https://www.swisstransfer.com/d/klmnopqrst',
-                depot: 'https://kdrive.infomaniak.com/app/share/3380048/c441efb1-de8a-4c8b-8ebb-6bf0586ae082'
+                livrables: 'https://kdrive.infomaniak.com/app/share/3380048/c16ad784-fe32-4c8e-b5c4-7933f49ce0a9',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/2393534b-2f7f-4fa7-a00d-a70821e234a2'
             }
         };
 
@@ -1406,6 +1402,7 @@
         const logoPreview = document.getElementById('clientLogoPreview');
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
+        const depotOpenLink = document.getElementById('depotOpenLink');
 
         // ===== PEUPLE LE SELECT =====
         function populateSelect() {
@@ -1567,6 +1564,11 @@
 
             dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
 
+            // ---- Mettre à jour le lien de dépôt dans la page depot ----
+            if (depotOpenLink) {
+                depotOpenLink.href = loggedInClient.depot;
+            }
+
             // ---- SECTION LIVRABLES ----
             if (loggedInClient.livrables) {
                 livrablesSection.style.display = 'block';
@@ -1574,7 +1576,7 @@
                 livrablesSwissLink.style.display = 'inline-block';
                 livrablesContent.innerHTML = `
                     <p style="color:#64748b;">📂 Vos livrables sont disponibles dans le dossier ci-dessous.</p>
-                    <p style="color:#64748b; font-size:0.95rem;">🔒 Accès sécurisé via SwissTransfer.</p>
+                    <p style="color:#64748b; font-size:0.95rem;">🔒 Accès sécurisé via kDrive.</p>
                 `;
             } else {
                 livrablesSection.style.display = 'block';
@@ -1587,8 +1589,12 @@
                 `;
             }
 
-            // ---- SECTION DÉPÔT ----
-            depotsTitle.textContent = '📤 Déposer vos nouveaux projets';
+            // ---- Titre personnalisé pour Sofiene Hosni ----
+            if (loggedInClient.code === 'CLIENT002') {
+                depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
+            } else {
+                depotsTitle.textContent = '📤 Déposer vos nouveaux projets';
+            }
 
             showPage('dashboard');
         }
@@ -1680,7 +1686,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom avec 2 sections par client - kDrive en nouvel onglet !');
+        console.log('✅ GeCoTelecom - Chaque client a ses propres liens !');
         console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
