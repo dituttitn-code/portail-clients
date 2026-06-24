@@ -32,15 +32,6 @@
             font-size: 1.8rem;
             font-weight: 700;
         }
-        .header .brand img {
-            height: 42px;
-            width: auto;
-            max-width: 100px;
-            object-fit: contain;
-            border-radius: 6px;
-            background: #ffffff;
-            padding: 4px;
-        }
         .header .brand .client-name { color: #38bdf8; }
         .header .brand .initials-fallback {
             display: flex;
@@ -209,24 +200,6 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
-        .identifiants-box {
-            background: #f0fdf4;
-            border-left: 4px solid #10b981;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        .identifiants-box strong {
-            color: #065f46;
-        }
-        .identifiants-box ul {
-            margin: 8px 0 0 20px;
-            color: #475569;
-            font-size: 0.9rem;
-        }
-        .identifiants-box ul li {
-            padding: 2px 0;
-        }
         @media (max-width: 640px) {
             .header { flex-direction: column; align-items: flex-start; }
             .header-actions { width: 100%; justify-content: flex-start; }
@@ -235,7 +208,6 @@
             .iframe-card .iframe-header { flex-direction: column; text-align: center; }
             .iframe-card .iframe-header .left { flex-direction: column; }
             .header .brand { font-size: 1.3rem; }
-            .header .brand img { height: 32px; }
             .info-client .row { flex-direction: column; gap: 0.5rem; }
         }
         @media (max-width: 480px) {
@@ -268,7 +240,7 @@
             </p>
         </section>
 
-        <!-- Informations du client -->
+        <!-- ===== NOUVEAU : Informations du client ===== -->
         <div class="info-client" id="clientInfo">
             <div class="label">Informations du compte</div>
             <div class="row">
@@ -304,19 +276,6 @@
                 </iframe>
             </div>
         </div>
-
-        <!-- Identifiants de connexion -->
-        <div class="identifiants-box">
-            <strong>📌 Identifiants de connexion :</strong>
-            <ul>
-                <li><strong>Metro Optic :</strong> metroptic / MO9300!</li>
-                <li><strong>Sofiene Hosni :</strong> sofiene / SH1975!</li>
-                <li><strong>Infrastructel :</strong> infra / InfraS9300!</li>
-            </ul>
-            <p style="margin-top: 10px; color: #64748b; font-size: 0.85rem;">
-                🔒 Si votre navigateur affiche un avertissement, cliquez sur "Détails" puis "Accéder au site".
-            </p>
-        </div>
     </main>
 
     <footer class="footer">
@@ -349,7 +308,7 @@
                 return;
             }
 
-            // Stocker en session pour les prochaines visites
+            // Stocker en session
             sessionStorage.setItem('loggedIn', 'true');
             sessionStorage.setItem('clientCode', clientCode);
             sessionStorage.setItem('clientName', clientNom);
@@ -379,7 +338,6 @@
             window.location.href = 'login.html';
         }
 
-        // Lancer l'initialisation
         document.addEventListener('DOMContentLoaded', init);
     </script>
 
