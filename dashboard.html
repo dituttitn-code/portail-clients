@@ -1,400 +1,345 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace Client — GeCoTelecom</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion — GeCoTelecom</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #1e293b;
+            --accent-color: #2563eb;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-            background: #f4f6fa;
-            color: #1e293b;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
-        .header {
-            background: #0f172a;
-            color: #ffffff;
-            padding: 1.5rem 2rem;
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            gap: 15px;
         }
-        .header .brand {
+
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            font-size: 1.8rem;
+        }
+
+        .logo-img {
+            height: 130px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-back {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 45px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e2e8f0;
+        }
+
+        .login-card h1 {
+            font-size: 2.4rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
             font-weight: 700;
         }
-        .header .brand img {
-            height: 42px;
-            width: auto;
-            max-width: 100px;
-            object-fit: contain;
-            border-radius: 6px;
-            background: #ffffff;
-            padding: 4px;
+
+        .login-card p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
-        .header .brand .client-name { color: #38bdf8; }
-        .header .brand .initials-fallback {
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding: 14px 50px 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: white;
+        }
+
+        .password-wrapper input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: white;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 8px;
+            color: #94a3b8;
+            transition: color 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
-            background: #2563eb;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-color);
             color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
             font-weight: 700;
             font-size: 1.2rem;
-            border-radius: 8px;
-        }
-        .header-actions {
-            display: flex;
-            gap: 0.8rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .header-actions .btn-header {
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            border: none;
             cursor: pointer;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
+            transition: background-color 0.2s;
+            margin-top: 8px;
         }
-        .btn-home {
-            background: #1e293b;
-            color: #e2e8f0;
-            border: 1px solid #334155;
+
+        .btn-submit:hover {
+            background-color: #1d4ed8;
         }
-        .btn-home:hover { background: #2d3a4f; }
-        .btn-logout {
-            background: #991b1b;
-            color: white;
-        }
-        .btn-logout:hover { background: #7f1d1d; }
-        .badge-client {
-            background: #1e293b;
-            padding: 0.4rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            border: 1px solid #334155;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            flex: 1;
-            width: 100%;
-        }
-        .welcome-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 2rem 2.5rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border: 1px solid #e9edf4;
-        }
-        .welcome-card h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-        .welcome-card h1 .client-name {
-            color: #2563eb;
-            background: #eef2ff;
-            padding: 0.1rem 0.8rem;
-            border-radius: 12px;
-        }
-        .welcome-card p {
-            color: #475569;
+
+        .error-msg {
+            color: #dc2626;
             font-size: 1rem;
-            line-height: 1.6;
-        }
-        .info-client {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border: 1px solid #e9edf4;
-        }
-        .info-client .label {
-            color: #64748b;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .info-client .value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-top: 2px;
-        }
-        .info-client .row {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-        .info-client .row .col {
-            flex: 1;
-            min-width: 150px;
-        }
-        .iframe-card {
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            border: 1px solid #e9edf4;
-            overflow: hidden;
-        }
-        .iframe-card .iframe-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 30px;
-            background: linear-gradient(135deg, #f8fafc, #eff6ff);
-            border-bottom: 2px solid #e2e8f0;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .iframe-card .iframe-header .left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .iframe-card .iframe-header .left .icon {
-            font-size: 2rem;
-        }
-        .iframe-card .iframe-header .left h2 {
-            font-size: 1.3rem;
-            color: #1e293b;
-        }
-        .iframe-card .iframe-header .left h2 small {
-            display: block;
-            font-size: 0.8rem;
-            color: #64748b;
-            font-weight: 400;
-        }
-        .iframe-wrapper {
-            width: 100%;
-            height: 700px;
-            background: #ffffff;
-        }
-        .iframe-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-        .footer {
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            padding: 1.5rem 2rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-        .identifiants-box {
-            background: #f0fdf4;
-            border-left: 4px solid #10b981;
-            padding: 15px 20px;
+            margin-top: 12px;
+            display: none;
+            padding: 12px 16px;
+            background-color: #fee2e2;
             border-radius: 8px;
-            margin-top: 20px;
+            border: 1px solid #fca5a5;
         }
-        .identifiants-box strong {
-            color: #065f46;
+
+        .error-msg.show {
+            display: block;
         }
-        .identifiants-box ul {
-            margin: 8px 0 0 20px;
-            color: #475569;
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            color: var(--text-muted);
             font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
         }
-        .identifiants-box ul li {
-            padding: 2px 0;
+
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
         }
-        @media (max-width: 640px) {
-            .header { flex-direction: column; align-items: flex-start; }
-            .header-actions { width: 100%; justify-content: flex-start; }
-            .welcome-card { padding: 1.5rem; }
-            .iframe-wrapper { height: 500px; }
-            .iframe-card .iframe-header { flex-direction: column; text-align: center; }
-            .iframe-card .iframe-header .left { flex-direction: column; }
-            .header .brand { font-size: 1.3rem; }
-            .header .brand img { height: 32px; }
-            .info-client .row { flex-direction: column; gap: 0.5rem; }
+
+        .footer-sub {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #475569;
+            letter-spacing: 0.5px;
+            margin-top: -2px;
         }
+
         @media (max-width: 480px) {
-            .iframe-wrapper { height: 400px; }
-            .iframe-card .iframe-header { padding: 15px 20px; }
+            .login-card {
+                padding: 30px 20px;
+            }
+            .login-card h1 {
+                font-size: 1.8rem;
+            }
+            .logo-img {
+                height: 80px;
+            }
+            .footer-sub {
+                font-size: 0.85rem;
+            }
+            .password-wrapper input {
+                padding: 12px 44px 12px 14px;
+                font-size: 1rem;
+            }
+            .form-group input[type="text"] {
+                padding: 12px 14px;
+                font-size: 1rem;
+            }
+            .btn-submit {
+                font-size: 1rem;
+                padding: 14px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- ===== EN-TÊTE ===== -->
-    <header class="header">
-        <div class="brand" id="headerBrand">
-            <!-- Sera injecté dynamiquement -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-gecotelecom%20final.jpeg" alt="GeCoTelecom" class="logo-img">
         </div>
-        <div class="header-actions">
-            <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <a href="index.html" class="btn-header btn-home">🏠 Retour à l'accueil</a>
-            <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
-        </div>
+        <a href="index.html" class="nav-back">← Retour à l’accueil</a>
     </header>
 
-    <!-- ===== CONTENU PRINCIPAL ===== -->
-    <main class="container">
-        <!-- Carte de bienvenue -->
-        <section class="welcome-card" id="welcomeCard">
-            <h1>Bonjour, <span class="client-name" id="clientNameDisplay">Client</span> 👋</h1>
-            <p id="welcomeMessage">
-                Bienvenue dans votre espace client. Vous pouvez déposer et télécharger vos documents en toute sécurité.
-            </p>
-        </section>
+    <div class="container">
+        <div class="login-card">
+            <h1>🔐 Espace Client</h1>
+            <p>Entrez votre identifiant et votre mot de passe.</p>
 
-        <!-- Informations du client -->
-        <div class="info-client" id="clientInfo">
-            <div class="label">Informations du compte</div>
-            <div class="row">
-                <div class="col">
-                    <div class="label">Client</div>
-                    <div class="value" id="infoClientName">-</div>
+            <form id="loginForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="clientUsername">Identifiant</label>
+                    <input type="text" id="clientUsername" placeholder="Ex: Metroptic" required autofocus>
                 </div>
-                <div class="col">
-                    <div class="label">Code client</div>
-                    <div class="value" id="infoClientCode">-</div>
-                </div>
-            </div>
-        </div>
 
-        <!-- ===== ESPACE DE DÉPÔT (Tiny File Manager en iframe) ===== -->
-        <div class="iframe-card">
-            <div class="iframe-header">
-                <div class="left">
-                    <span class="icon">📂</span>
-                    <div>
-                        <h2>
-                            Espace de dépôt GeCoTelecom
-                            <small>Déposez et récupérez vos documents en toute sécurité</small>
-                        </h2>
+                <div class="form-group">
+                    <label for="clientPassword">Mot de passe</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="clientPassword" placeholder="Votre mot de passe" required>
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher/masquer le mot de passe">
+                            👁️
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="iframe-wrapper">
-                <iframe 
-                    src="https://gecotelecom.rf.gd/tinyfilemanager.php" 
-                    allow="camera; microphone; autoplay"
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
 
-        <!-- Identifiants de connexion -->
-        <div class="identifiants-box">
-            <strong>📌 Identifiants de connexion :</strong>
-            <ul>
-                <li><strong>Metro Optic :</strong> metroptic / MO9300!</li>
-                <li><strong>Sofiene Hosni :</strong> sofiene / SH1975!</li>
-                <li><strong>Infrastructel :</strong> infra / InfraS9300!</li>
-            </ul>
-            <p style="margin-top: 10px; color: #64748b; font-size: 0.85rem;">
-                🔒 Si votre navigateur affiche un avertissement, cliquez sur "Détails" puis "Accéder au site".
-            </p>
+                <button type="submit" class="btn-submit">Se connecter</button>
+                <div id="errorMsg" class="error-msg">❌ Identifiant ou mot de passe invalide. Veuillez réessayer.</div>
+            </form>
         </div>
-    </main>
+    </div>
 
-    <footer class="footer">
-        &copy; 2026 GeCoTelecom — Espace Client sécurisé
+    <footer>
+        <div class="footer-brand">GeCo Telecom</div>
+        <div class="footer-sub">Compagnie Générale de Télécommunication</div>
+        <div style="margin-top: 6px;">&copy; 2026 GeCo Telecom</div>
     </footer>
 
     <script>
-        // ===== MAPPING DES CLIENTS =====
-        const clients = {
-            'CLIENT001': { nom: 'Metro Optic', code: 'CLIENT001' },
-            'CLIENT002': { nom: 'Sofiene Hosni', code: 'CLIENT002' },
-            'CLIENT003': { nom: 'Infrastructel', code: 'CLIENT003' }
+        // ===== MAPPING DES IDENTIFIANTS VERS LES CODES CLIENTS =====
+        const userMapping = {
+            'Metroptic': { code: 'CLIENT001', password: 'MO9300!', nom: 'Metro Optic' },
+            'Sofiene': { code: 'CLIENT002', password: 'SH1975!', nom: 'Sofiene Hosni' },
+            'Infra': { code: 'CLIENT003', password: 'InfraS9300!', nom: 'Infrastructel' }
         };
 
-        // ===== VÉRIFICATION DE SESSION =====
-        (function verifierSession() {
-            const loggedIn = sessionStorage.getItem('loggedIn');
-            if (loggedIn !== 'true') {
-                window.location.href = 'login.html';
-                return;
-            }
-            const nom = sessionStorage.getItem('clientName');
-            if (!nom) {
-                window.location.href = 'login.html';
-                return;
-            }
-        })();
+        // ===== AFFICHAGE / MASQUAGE DU MOT DE PASSE =====
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('clientPassword');
 
-        // ===== RÉCUPÉRATION DES INFOS =====
-        function getClientNameFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('client') ? decodeURIComponent(params.get('client')) : null;
-        }
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
 
-        function getClientCodeFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('code') ? decodeURIComponent(params.get('code')) : null;
-        }
+        // ===== GESTION DU FORMULAIRE =====
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('clientUsername').value.trim();
+            const password = document.getElementById('clientPassword').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
 
-        // ===== PERSONNALISATION DE LA PAGE =====
-        function personaliserPage() {
-            const clientCode = getClientCodeFromURL() || sessionStorage.getItem('clientCode') || 'CLIENT001';
-            const clientData = clients[clientCode] || clients['CLIENT001'];
-            const nomClient = clientData.nom;
-            const logoClient = sessionStorage.getItem('clientLogo') || '';
-
-            // Afficher les infos du client
-            document.getElementById('infoClientName').textContent = nomClient;
-            document.getElementById('infoClientCode').textContent = clientCode;
-
-            // Brand dans le header
-            const brandDiv = document.getElementById('headerBrand');
-            if (logoClient) {
-                brandDiv.innerHTML = `
-                    <img src="${logoClient}" alt="${nomClient}" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=\\'initials-fallback\\'>${nomClient.charAt(0)}</span>';" />
-                    <span class="client-name">${nomClient}</span>
-                `;
+            // Vérifier si l'identifiant existe et si le mot de passe correspond
+            if (userMapping[username] && userMapping[username].password === password) {
+                const code = userMapping[username].code;
+                const nom = userMapping[username].nom;
+                
+                // Stocker en session
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('clientName', nom);
+                sessionStorage.setItem('clientCode', code);
+                
+                // Rediriger vers dashboard avec les paramètres
+                window.location.href = `dashboard.html?code=${encodeURIComponent(code)}&client=${encodeURIComponent(nom)}`;
             } else {
-                brandDiv.innerHTML = `
-                    <span class="initials-fallback">${nomClient.charAt(0)}</span>
-                    <span class="client-name">${nomClient}</span>
-                `;
+                errorMsg.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                setTimeout(() => errorMsg.classList.remove('show'), 4000);
             }
-
-            document.getElementById('headerBadge').textContent = `🔒 Espace de ${nomClient}`;
-            document.title = `Espace Client - ${nomClient}`;
-            document.getElementById('clientNameDisplay').textContent = nomClient;
-        }
-
-        // ===== DÉCONNEXION =====
-        function deconnexion() {
-            sessionStorage.clear();
-            window.location.href = 'login.html';
-        }
-
-        document.addEventListener('DOMContentLoaded', personaliserPage);
+        });
     </script>
 
 </body>
+
 </html>
