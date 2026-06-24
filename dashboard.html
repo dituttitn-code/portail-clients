@@ -123,6 +123,37 @@
             font-size: 1rem;
             line-height: 1.6;
         }
+        .info-client {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid #e9edf4;
+        }
+        .info-client .label {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-client .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 2px;
+        }
+        .info-client .row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .info-client .row .col {
+            flex: 1;
+            min-width: 150px;
+        }
         .iframe-card {
             background: #ffffff;
             border-radius: 24px;
@@ -178,6 +209,24 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
+        .identifiants-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .identifiants-box strong {
+            color: #065f46;
+        }
+        .identifiants-box ul {
+            margin: 8px 0 0 20px;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+        .identifiants-box ul li {
+            padding: 2px 0;
+        }
         @media (max-width: 640px) {
             .header { flex-direction: column; align-items: flex-start; }
             .header-actions { width: 100%; justify-content: flex-start; }
@@ -187,6 +236,7 @@
             .iframe-card .iframe-header .left { flex-direction: column; }
             .header .brand { font-size: 1.3rem; }
             .header .brand img { height: 32px; }
+            .info-client .row { flex-direction: column; gap: 0.5rem; }
         }
         @media (max-width: 480px) {
             .iframe-wrapper { height: 400px; }
@@ -218,6 +268,21 @@
             </p>
         </section>
 
+        <!-- Informations du client -->
+        <div class="info-client" id="clientInfo">
+            <div class="label">Informations du compte</div>
+            <div class="row">
+                <div class="col">
+                    <div class="label">Client</div>
+                    <div class="value" id="infoClientName">-</div>
+                </div>
+                <div class="col">
+                    <div class="label">Code client</div>
+                    <div class="value" id="infoClientCode">-</div>
+                </div>
+            </div>
+        </div>
+
         <!-- ===== ESPACE DE DÉPÔT (Tiny File Manager en iframe) ===== -->
         <div class="iframe-card">
             <div class="iframe-header">
@@ -240,9 +305,10 @@
             </div>
         </div>
 
-        <div style="margin-top: 20px; background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px 20px; border-radius: 8px;">
+        <!-- Identifiants de connexion -->
+        <div class="identifiants-box">
             <strong>📌 Identifiants de connexion :</strong>
-            <ul style="margin: 8px 0 0 20px; color: #475569; font-size: 0.9rem;">
+            <ul>
                 <li><strong>Metro Optic :</strong> metroptic / MO9300!</li>
                 <li><strong>Sofiene Hosni :</strong> sofiene / SH1975!</li>
                 <li><strong>Infrastructel :</strong> infra / InfraS9300!</li>
@@ -258,6 +324,13 @@
     </footer>
 
     <script>
+        // ===== MAPPING DES CLIENTS =====
+        const clients = {
+            'CLIENT001': { nom: 'Metro Optic', code: 'CLIENT001' },
+            'CLIENT002': { nom: 'Sofiene Hosni', code: 'CLIENT002' },
+            'CLIENT003': { nom: 'Infrastructel', code: 'CLIENT003' }
+        };
+
         // ===== VÉRIFICATION DE SESSION =====
         (function verifierSession() {
             const loggedIn = sessionStorage.getItem('loggedIn');
@@ -278,11 +351,23 @@
             return params.get('client') ? decodeURIComponent(params.get('client')) : null;
         }
 
+        function getClientCodeFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('code') ? decodeURIComponent(params.get('code')) : null;
+        }
+
         // ===== PERSONNALISATION DE LA PAGE =====
         function personaliserPage() {
-            const nomClient = getClientNameFromURL() || sessionStorage.getItem('clientName') || 'Client';
+            const clientCode = getClientCodeFromURL() || sessionStorage.getItem('clientCode') || 'CLIENT001';
+            const clientData = clients[clientCode] || clients['CLIENT001'];
+            const nomClient = clientData.nom;
             const logoClient = sessionStorage.getItem('clientLogo') || '';
 
+            // Afficher les infos du client
+            document.getElementById('infoClientName').textContent = nomClient;
+            document.getElementById('infoClientCode').textContent = clientCode;
+
+            // Brand dans le header
             const brandDiv = document.getElementById('headerBrand');
             if (logoClient) {
                 brandDiv.innerHTML = `
@@ -299,7 +384,6 @@
 
             document.getElementById('headerBadge').textContent = `🔒 Espace de ${nomClient}`;
             document.title = `Espace Client - ${nomClient}`;
-
             document.getElementById('clientNameDisplay').textContent = nomClient;
         }
 
