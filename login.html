@@ -256,9 +256,9 @@
 
     <header>
         <div class="logo-container">
-            <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img">
+            <img src="logo-gecotelecom%20final.jpeg" alt="GeCoTelecom" class="logo-img">
         </div>
-        <a href="index.html" class="nav-back">← Retour à l’accueil</a>
+        <a href="index.html" class="nav-back">← Retour à l'accueil</a>
     </header>
 
     <div class="container">
@@ -295,11 +295,11 @@
     </footer>
 
     <script>
-        // ===== MAPPING DES IDENTIFIANTS VERS LES CODES CLIENTS =====
-        const userMapping = {
-            'Metroptic': { code: 'CLIENT001', password: 'MO9300!' },
-            'Sofiene': { code: 'CLIENT002', password: 'SH1975!' },
-            'Infra': { code: 'CLIENT003', password: 'InfraS9300!' }
+        // ===== LISTE DES CLIENTS AVEC IDENTIFIANTS ET MOTS DE PASSE =====
+        const clients = {
+            'Metroptic': { code: 'CLIENT001', nom: 'Metro Optic', password: 'MO9300!' },
+            'Sofiene': { code: 'CLIENT002', nom: 'Sofiene Hosni', password: 'SH1975!' },
+            'Infra': { code: 'CLIENT003', nom: 'Infrastructel', password: 'InfraS9300!' }
         };
 
         // ===== AFFICHAGE / MASQUAGE DU MOT DE PASSE =====
@@ -309,7 +309,6 @@
         togglePassword.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            // Changer l'icône selon l'état
             this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
         });
 
@@ -321,12 +320,18 @@
             const errorMsg = document.getElementById('errorMsg');
 
             // Vérifier si l'identifiant existe et si le mot de passe correspond
-            if (userMapping[username] && userMapping[username].password === password) {
-                const code = userMapping[username].code;
-                window.location.href = `dashboard.html?code=${encodeURIComponent(code)}`;
+            if (clients[username] && clients[username].password === password) {
+                const client = clients[username];
+                
+                // Stocker en session
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('clientCode', client.code);
+                sessionStorage.setItem('clientName', client.nom);
+                
+                // Rediriger vers dashboard avec les paramètres
+                window.location.href = `dashboard.html?code=${encodeURIComponent(client.code)}&client=${encodeURIComponent(client.nom)}`;
             } else {
                 errorMsg.classList.add('show');
-                // Réinitialiser le champ mot de passe pour plus de sécurité
                 passwordInput.value = '';
                 passwordInput.focus();
                 setTimeout(() => errorMsg.classList.remove('show'), 4000);
