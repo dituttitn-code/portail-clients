@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace Client</title>
+    <title>Espace Client — GeCoTelecom</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -93,7 +93,7 @@
             border: 1px solid #334155;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1.5rem;
             flex: 1;
@@ -123,87 +123,51 @@
             font-size: 1rem;
             line-height: 1.6;
         }
-        .welcome-card .highlight {
-            background: #eef2ff;
-            color: #4338ca;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin-top: 0.5rem;
-        }
-        .action-card {
+        .iframe-card {
             background: #ffffff;
-            border-radius: 20px;
-            padding: 1.8rem;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
             border: 1px solid #e9edf4;
-            transition: transform 0.15s, box-shadow 0.2s;
+            overflow: hidden;
+        }
+        .iframe-card .iframe-header {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #f8fafc, #eff6ff);
+            border-bottom: 2px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .action-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        .iframe-card .iframe-header .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        .action-card .icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
-        .action-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
+        .iframe-card .iframe-header .left .icon {
+            font-size: 2rem;
         }
-        .action-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            flex: 1;
+        .iframe-card .iframe-header .left h2 {
+            font-size: 1.3rem;
+            color: #1e293b;
         }
-        .action-card .btn {
-            display: inline-block;
-            margin-top: 1.2rem;
-            padding: 0.7rem 1.4rem;
-            border-radius: 40px;
-            font-weight: 600;
-            text-align: center;
-            text-decoration: none;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .action-card .btn-primary {
-            background: #0f172a;
-            color: white;
-        }
-        .action-card .btn-primary:hover { background: #1e293b; }
-        .action-card .btn-outline {
-            background: transparent;
-            border: 2px solid #cbd5e1;
-            color: #334155;
-        }
-        .action-card .btn-outline:hover { background: #f8fafc; }
-        .action-card .btn-sm {
-            font-size: 0.85rem;
-            padding: 0.5rem 1rem;
-        }
-        .action-card .footnote {
+        .iframe-card .iframe-header .left h2 small {
+            display: block;
             font-size: 0.8rem;
-            color: #94a3b8;
-            margin-top: 0.8rem;
+            color: #64748b;
+            font-weight: 400;
         }
-        .action-card .client-code {
-            background: #f1f5f9;
-            padding: 0.5rem;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            border: 1px dashed #cbd5e1;
-            word-break: break-all;
+        .iframe-wrapper {
+            width: 100%;
+            height: 700px;
+            background: #ffffff;
+        }
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
         .footer {
             background: #f8fafc;
@@ -214,141 +178,107 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
-        .info-client-bottom {
-            margin-top: 2.5rem;
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 1.8rem;
-            border: 1px solid #e9edf4;
-            text-align: center;
-        }
         @media (max-width: 640px) {
             .header { flex-direction: column; align-items: flex-start; }
             .header-actions { width: 100%; justify-content: flex-start; }
             .welcome-card { padding: 1.5rem; }
-            .actions-grid { grid-template-columns: 1fr; }
+            .iframe-wrapper { height: 500px; }
+            .iframe-card .iframe-header { flex-direction: column; text-align: center; }
+            .iframe-card .iframe-header .left { flex-direction: column; }
             .header .brand { font-size: 1.3rem; }
             .header .brand img { height: 32px; }
+        }
+        @media (max-width: 480px) {
+            .iframe-wrapper { height: 400px; }
+            .iframe-card .iframe-header { padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== EN-TÊTE PERSONNALISÉ ===== -->
+    <!-- ===== EN-TÊTE ===== -->
     <header class="header">
         <div class="brand" id="headerBrand">
             <!-- Sera injecté dynamiquement -->
         </div>
         <div class="header-actions">
             <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <!-- ✅ LIEN CORRIGÉ : Pointage direct vers www.gecotelecom.com -->
-            <a href="https://www.gecotelecom.com" class="btn-header btn-home">🏠 Retour à l'accueil</a>
+            <a href="index.html" class="btn-header btn-home">🏠 Retour à l'accueil</a>
             <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
         </div>
     </header>
 
     <!-- ===== CONTENU PRINCIPAL ===== -->
     <main class="container">
+        <!-- Carte de bienvenue -->
         <section class="welcome-card" id="welcomeCard">
             <h1>Bonjour, <span class="client-name" id="clientNameDisplay">Client</span> 👋</h1>
             <p id="welcomeMessage">
-                Bienvenue dans votre espace client dédié. Vous pouvez ici 
-                <span class="highlight">transférer vos fichiers</span> en toute sécurité via <strong>SwissTransfer</strong>.
-                <br />
-                ⚡ <strong>50 Go</strong> maximum par transfert · 
-                📅 disponible pendant <strong>30 jours</strong> · 
-                🔒 crypté et hébergé en Suisse.
+                Bienvenue dans votre espace client. Vous pouvez déposer et télécharger vos documents en toute sécurité.
             </p>
         </section>
 
-        <div class="actions-grid">
-            <div class="action-card">
-                <div class="icon">📤</div>
-                <h3>Envoyer un projet</h3>
-                <p>Déposez vos fichiers (photos, vidéos, documents) et générez un lien de téléchargement.</p>
-                <a href="https://www.swisstransfer.com/fr-fr" target="_blank" rel="noopener" class="btn btn-primary">
-                    🚀 Utiliser SwissTransfer
-                </a>
-                <span class="footnote">Ouvre dans un nouvel onglet · Aucune inscription</span>
+        <!-- ===== ESPACE DE DÉPÔT (Tiny File Manager en iframe) ===== -->
+        <div class="iframe-card">
+            <div class="iframe-header">
+                <div class="left">
+                    <span class="icon">📂</span>
+                    <div>
+                        <h2>
+                            Espace de dépôt GeCoTelecom
+                            <small>Déposez et récupérez vos documents en toute sécurité</small>
+                        </h2>
+                    </div>
+                </div>
             </div>
-
-            <div class="action-card">
-                <div class="icon">🔗</div>
-                <h3>Lien de dépôt</h3>
-                <p>Utilisez ce lien pour nous envoyer vos fichiers. Copiez-le et partagez-le par email.</p>
-                <button class="btn btn-outline btn-sm" onclick="genererLienDepot()">
-                    📋 Générer un lien
-                </button>
-                <div id="lienDepotResultat" style="margin-top:0.8rem; display:none;"></div>
-                <span class="footnote">Le lien est valable 30 jours</span>
-            </div>
-
-            <div class="action-card">
-                <div class="icon">📊</div>
-                <h3>Suivi des envois</h3>
-                <p>Consultez l'état de vos transferts récents.</p>
-                <a href="https://www.swisstransfer.com/fr-fr/history" target="_blank" rel="noopener" class="btn btn-outline">
-                    📈 Voir l'historique
-                </a>
-                <span class="footnote">Nécessite une connexion SwissTransfer</span>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://gecotelecom.rf.gd/tinyfilemanager.php" 
+                    allow="camera; microphone; autoplay"
+                    loading="lazy">
+                </iframe>
             </div>
         </div>
 
-        <div class="info-client-bottom">
-            <p style="color:#64748b; font-size:0.95rem;">
-                📌 <strong>Votre code projet :</strong> 
-                <span id="clientCodeDisplay" style="background:#f1f5f9; padding:0.2rem 1rem; border-radius:20px; font-family:monospace; font-weight:600;">-</span>
-                <br />
-                <span style="font-size:0.85rem; color:#94a3b8;">
-                    Si vous avez besoin d'aide, contactez-nous à support@votresite.com
-                </span>
+        <div style="margin-top: 20px; background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px 20px; border-radius: 8px;">
+            <strong>📌 Identifiants de connexion :</strong>
+            <ul style="margin: 8px 0 0 20px; color: #475569; font-size: 0.9rem;">
+                <li><strong>Metro Optic :</strong> metroptic / MO9300!</li>
+                <li><strong>Sofiene Hosni :</strong> sofiene / SH1975!</li>
+                <li><strong>Infrastructel :</strong> infra / InfraS9300!</li>
+            </ul>
+            <p style="margin-top: 10px; color: #64748b; font-size: 0.85rem;">
+                🔒 Si votre navigateur affiche un avertissement, cliquez sur "Détails" puis "Accéder au site".
             </p>
         </div>
     </main>
 
     <footer class="footer">
-        &copy; 2026 Espace Client — Transfert sécurisé via SwissTransfer (Infomaniak)
+        &copy; 2026 GeCoTelecom — Espace Client sécurisé
     </footer>
 
     <script>
-        // ---------- VÉRIFICATION DE SESSION ----------
+        // ===== VÉRIFICATION DE SESSION =====
         (function verifierSession() {
             const loggedIn = sessionStorage.getItem('loggedIn');
             if (loggedIn !== 'true') {
-                window.location.href = 'index.html';
+                window.location.href = 'login.html';
                 return;
             }
             const nom = sessionStorage.getItem('clientName');
             if (!nom) {
-                window.location.href = 'index.html';
+                window.location.href = 'login.html';
                 return;
-            }
-            const urlParams = new URLSearchParams(window.location.search);
-            if (!urlParams.has('client')) {
-                window.location.href = `dashboard.html?client=${encodeURIComponent(nom)}`;
             }
         })();
 
-        // ---------- RÉCUPÉRATION DES INFOS ----------
+        // ===== RÉCUPÉRATION DES INFOS =====
         function getClientNameFromURL() {
             const params = new URLSearchParams(window.location.search);
             return params.get('client') ? decodeURIComponent(params.get('client')) : null;
         }
 
-        function genererCodeProjet(nom) {
-            if (!nom) return 'PROJET-001';
-            const initiales = nom
-                .split(' ')
-                .map(mot => mot.charAt(0).toUpperCase())
-                .join('');
-            const date = new Date();
-            const jour = String(date.getDate()).padStart(2, '0');
-            const mois = String(date.getMonth() + 1).padStart(2, '0');
-            const an = String(date.getFullYear()).slice(-2);
-            return `${initiales}-${jour}${mois}${an}`;
-        }
-
-        // ---------- PERSONNALISATION DE LA PAGE ----------
+        // ===== PERSONNALISATION DE LA PAGE =====
         function personaliserPage() {
             const nomClient = getClientNameFromURL() || sessionStorage.getItem('clientName') || 'Client';
             const logoClient = sessionStorage.getItem('clientLogo') || '';
@@ -368,47 +298,15 @@
             }
 
             document.getElementById('headerBadge').textContent = `🔒 Espace de ${nomClient}`;
-            document.getElementById('clientCodeDisplay').textContent = genererCodeProjet(nomClient);
             document.title = `Espace Client - ${nomClient}`;
-
-            const msg = document.getElementById('welcomeMessage');
-            msg.innerHTML = `
-                Bienvenue dans votre espace client dédié, <strong>${nomClient}</strong>. 
-                Vous pouvez ici <span class="highlight">transférer vos fichiers</span> 
-                en toute sécurité via <strong>SwissTransfer</strong>.
-                <br />
-                ⚡ <strong>50 Go</strong> maximum par transfert · 
-                📅 disponible pendant <strong>30 jours</strong> · 
-                🔒 crypté et hébergé en Suisse.
-            `;
 
             document.getElementById('clientNameDisplay').textContent = nomClient;
         }
 
-        // ---------- FONCTIONS UTILITAIRES ----------
-        function genererLienDepot() {
-            const nomClient = sessionStorage.getItem('clientName') || 'Client';
-            const id = Math.random().toString(36).substring(2, 10);
-            const lien = `https://www.swisstransfer.com/depot/${id}`;
-
-            const resultatDiv = document.getElementById('lienDepotResultat');
-            resultatDiv.style.display = 'block';
-            resultatDiv.innerHTML = `
-                <strong>🔗 Lien de dépôt pour ${nomClient} :</strong>
-                <div class="client-code">
-                    <a href="${lien}" target="_blank" rel="noopener">${lien}</a>
-                </div>
-                <span style="font-size:0.8rem; color:#64748b; display:block; margin-top:0.5rem;">
-                    ⚠️ Ce lien est fictif. Pour un vrai lien, créez-le sur 
-                    <a href="https://www.swisstransfer.com/fr-fr" target="_blank">SwissTransfer</a>.
-                </span>
-            `;
-        }
-
-        // ✅ DÉCONNEXION CORRIGÉE : redirige vers www.gecotelecom.com
+        // ===== DÉCONNEXION =====
         function deconnexion() {
             sessionStorage.clear();
-            window.location.href = 'https://www.gecotelecom.com';
+            window.location.href = 'login.html';
         }
 
         document.addEventListener('DOMContentLoaded', personaliserPage);
