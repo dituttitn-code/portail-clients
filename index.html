@@ -938,6 +938,16 @@
             font-weight: 700;
             font-size: 1.3rem;
         }
+        .depot-instructions .highlight-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .depot-instructions .highlight-box strong {
+            color: #065f46;
+        }
 
         /* ===== FOOTER ===== */
         footer {
@@ -1284,7 +1294,7 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE DÉPÔT -->
+<!-- PAGE DÉPÔT (MISE À JOUR DES INSTRUCTIONS) -->
 <!-- ============================================================ -->
 <section id="page-depot" class="page">
     <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
@@ -1339,14 +1349,23 @@
             </div>
         </div>
 
+        <!-- ===== INSTRUCTIONS MISES À JOUR ===== -->
         <div class="depot-instructions">
             <h3>📋 Comment déposer vos fichiers ?</h3>
             <ul>
                 <li><strong>Étape 1 :</strong> Cliquez sur le bouton "Ouvrir kDrive" ci-dessus</li>
-                <li><strong>Étape 2 :</strong> Dans la page kDrive, glissez-déposez vos fichiers</li>
-                <li><strong>Étape 3 :</strong> Vos fichiers sont automatiquement synchronisés avec notre équipe</li>
-                <li><strong>Étape 4 :</strong> Nous recevons une notification dès que vous déposez des fichiers</li>
+                <li><strong>Étape 2 :</strong> Créez un compte Infomaniak <strong>gratuit</strong> (une seule fois) ou connectez-vous si vous en avez déjà un</li>
+                <li><strong>Étape 3 :</strong> Une fois connecté, vous accéderez automatiquement à votre espace de dépôt à chaque visite</li>
+                <li><strong>Étape 4 :</strong> Glissez-déposez vos fichiers dans l'espace de dépôt</li>
+                <li><strong>Étape 5 :</strong> Vos fichiers sont automatiquement synchronisés avec notre équipe</li>
+                <li><strong>Étape 6 :</strong> Nous recevons une notification dès que vous déposez des fichiers</li>
             </ul>
+            
+            <div class="highlight-box">
+                <strong>💡 Astuce :</strong> La création d'un compte Infomaniak est <strong>gratuite</strong> et ne prend que 2 minutes. 
+                Une fois votre compte créé, vous n'aurez plus besoin de vous reconnecter : l'accès à votre espace de dépôt est automatique.
+            </div>
+            
             <p style="margin-top: 15px; color: #64748b; font-size: 0.95rem;">
                 💡 <strong>Astuce :</strong> Pour un nouveau projet, nommez clairement vos fichiers 
                 (ex: « Projet_Laval_Relevés_2026.pdf ») pour faciliter leur traitement.
@@ -1722,7 +1741,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom - Logo mis à jour !');
+        console.log('✅ GeCoTelecom - Instructions de dépôt mises à jour !');
         console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
