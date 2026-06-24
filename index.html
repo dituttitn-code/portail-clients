@@ -1071,7 +1071,6 @@
         </div>
 
         <!-- ===== SECTION 2 : DÉPOSER VOS PROJETS ===== -->
-        <!-- Pour Sofiene Hosni, ce bloc sera remplacé par SwissTransfer -->
         <div id="depotSection">
             <!-- Cette section sera remplacée dynamiquement selon le client -->
         </div>
@@ -1116,12 +1115,12 @@
                 password: 'SH1975!',
                 logo: 'logo-SofieneHosni.jpeg',
                 livrables: 'https://kdrive.infomaniak.com/app/share/3380048/632e8904-d4e8-4506-b279-b6c0bacf3034',
-                depot: 'https://www.swisstransfer.com/d/abcdefghij', // Lien SwissTransfer
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/118ad503-5f89-4c31-8964-9ec84e0f7022',
                 livrablesLabel: '📋 Projets à faire',
                 livrablesIcon: '📋',
                 depotLabel: '📤 Déposer vos nouveaux relevés',
                 depotDesc: 'Transmettez-nous vos nouveaux relevés, croquis et documents techniques.',
-                depotBtn: '📤 Déposer via SwissTransfer'
+                depotBtn: '📤 Déposer via kDrive'
             },
             'Infra': {
                 code: 'CLIENT003',
@@ -1353,19 +1352,18 @@
             // ---- SECTION DÉPÔT (personnalisée selon le client) ----
             const isSwissTransfer = loggedInClient.code === 'CLIENT002';
             const depotBtnClass = isSwissTransfer ? 'btn-swiss primary' : 'btn-swiss warning';
-            const depotIcon = isSwissTransfer ? '📤' : '📤';
 
             depotSection.innerHTML = `
                 <div class="depot-card">
                     <h2>${loggedInClient.depotLabel}</h2>
                     <p style="color:#64748b; margin-bottom:15px;">${loggedInClient.depotDesc}</p>
                     <a href="${loggedInClient.depot}" target="_blank" class="${depotBtnClass}" style="margin-top:10px; cursor:pointer; display:inline-block;">
-                        ${depotIcon} ${loggedInClient.depotBtn}
+                        📤 ${loggedInClient.depotBtn}
                     </a>
                     <div style="margin-top:20px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
                         <strong>✅ Comment ça fonctionne ?</strong>
                         <ul style="margin:8px 0 0 20px;">
-                            <li><strong>${isSwissTransfer ? 'Envoyer vos relevés' : 'Déposer un nouveau projet'} :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers ${isSwissTransfer ? 'SwissTransfer' : 'kDrive'} pour envoyer vos fichiers.</li>
+                            <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers kDrive pour envoyer vos fichiers.</li>
                             <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez utiliser le même lien de dépôt à tout moment.</li>
                             <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
                         </ul>
@@ -1464,7 +1462,7 @@
             logout();
         }
 
-        console.log('✅ GeCoTelecom - Sofiene Hosni utilise SwissTransfer pour le dépôt !');
+        console.log('✅ GeCoTelecom - Sofiene Hosni utilise kDrive pour le dépôt !');
         console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
