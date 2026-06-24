@@ -108,6 +108,23 @@
             font-size: 1.05rem;
         }
 
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: white;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
         .password-wrapper {
             position: relative;
             display: flex;
@@ -126,23 +143,6 @@
         }
 
         .password-wrapper input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-        }
-
-        .form-group input[type="text"] {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #d1d5db;
-            border-radius: 10px;
-            font-size: 1.15rem;
-            font-family: inherit;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            background-color: white;
-        }
-
-        .form-group input[type="text"]:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
