@@ -194,61 +194,7 @@
             line-height: 1.9;
         }
 
-        /* ===== ESPACE CLIENT (iframe) ===== */
-        #page-client {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        #page-client .client-container {
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-        }
-        #page-client .client-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 30px;
-            background: linear-gradient(135deg, #f8fafc, #eff6ff);
-            border-bottom: 2px solid #e2e8f0;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        #page-client .client-header .left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        #page-client .client-header .left .icon {
-            font-size: 2.5rem;
-        }
-        #page-client .client-header .left h2 {
-            font-size: 1.5rem;
-            color: #1e293b;
-        }
-        #page-client .client-header .left h2 small {
-            display: block;
-            font-size: 0.85rem;
-            color: #64748b;
-            font-weight: 400;
-        }
-        #page-client .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            height: 700px;
-            background: #ffffff;
-        }
-        #page-client .iframe-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        /* ===== AUTRES PAGES (À PROPOS, SERVICES, CONTACT) ===== */
+        /* ===== PAGES INTÉRIEURES ===== */
         .page-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -281,6 +227,7 @@
             margin-bottom: 20px;
         }
 
+        /* ===== À PROPOS ===== */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
@@ -296,6 +243,7 @@
         .about-card h3 { font-size: 1.6rem; color: #1e293b; margin-bottom: 10px; }
         .about-card p { font-size: 1.15rem; }
 
+        /* ===== SERVICES ===== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px,1fr));
@@ -320,6 +268,7 @@
         }
         .service-card ul li { margin-bottom: 10px; }
 
+        /* ===== CONTACT ===== */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -467,9 +416,6 @@
             .footer-sub { font-size: 0.9rem; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
-            #page-client .iframe-wrapper { height: 500px; }
-            #page-client .client-header { flex-direction: column; text-align: center; }
-            #page-client .client-header .left { flex-direction: column; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
@@ -481,8 +427,6 @@
             .footer-brand { font-size: 1rem; }
             .footer-sub { font-size: 0.8rem; }
             .footer-copy { font-size: 0.7rem; }
-            #page-client .iframe-wrapper { height: 400px; }
-            #page-client .client-header { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -507,7 +451,7 @@
         <span class="nav-item" data-page="propos">À propos de nous</span>
         <span class="nav-item" data-page="services">Nos Services</span>
         <span class="nav-item" data-page="contact">Contact</span>
-        <span class="nav-item client" data-page="client">🔐 Espace Client</span>
+        <a href="login.html" class="nav-item client">🔐 Espace Client</a>
     </div>
 </header>
 
@@ -659,32 +603,6 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- PAGE ESPACE CLIENT (Tiny File Manager intégré) -->
-<!-- ============================================================ -->
-<section id="page-client" class="page">
-    <div class="client-container">
-        <div class="client-header">
-            <div class="left">
-                <span class="icon">🔐</span>
-                <div>
-                    <h2>
-                        Espace Client GeCoTelecom
-                        <small>Déposez et téléchargez vos documents en toute sécurité</small>
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="iframe-wrapper">
-            <iframe 
-                src="https://gecotelecom.rf.gd/tinyfilemanager.php" 
-                allow="camera; microphone; autoplay"
-                loading="lazy">
-            </iframe>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================================ -->
 <!-- FOOTER -->
 <!-- ============================================================ -->
 <footer>
@@ -707,8 +625,7 @@
             home: document.getElementById('page-home'),
             propos: document.getElementById('page-propos'),
             services: document.getElementById('page-services'),
-            contact: document.getElementById('page-contact'),
-            client: document.getElementById('page-client')
+            contact: document.getElementById('page-contact')
         };
 
         // ===== NAVIGATION =====
@@ -736,8 +653,8 @@
         // ===== INIT =====
         showPage('home');
 
-        console.log('✅ GeCoTelecom - Espace Client intégré avec Tiny File Manager !');
-        console.log('🔐 Identifiants : metroptic/MO9300!, sofiene/SH1975!, infra/InfraS9300!');
+        console.log('✅ GeCoTelecom - Espace Client redirige vers login.html');
+        console.log('🔐 Identifiants : Metroptic/MO9300!, Sofiene/SH1975!, Infra/InfraS9300!');
     })();
 </script>
 
