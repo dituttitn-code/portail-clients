@@ -1,415 +1,422 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace Client — GeCoTelecom</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes travaux — GeCoTelecom</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #1e293b;
+            --accent-color: #2563eb;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-            background: #f4f6fa;
-            color: #1e293b;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        .header {
-            background: #0f172a;
-            color: #ffffff;
-            padding: 1.5rem 2rem;
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            gap: 15px;
         }
-        .header .brand {
+
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            font-size: 1.8rem;
-            font-weight: 700;
         }
-        .header .brand .client-name { color: #38bdf8; }
-        .header .brand .initials-fallback {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            background: #2563eb;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-radius: 8px;
+
+        .logo-img {
+            height: 110px;
+            width: auto;
+            object-fit: contain;
         }
-        .header-actions {
+
+        .nav-links {
             display: flex;
-            gap: 0.8rem;
+            gap: 20px;
             align-items: center;
             flex-wrap: wrap;
         }
-        .header-actions .btn-header {
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
+
+        .nav-item {
+            color: var(--text-muted);
             text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
+            font-weight: 600;
+            transition: color 0.2s;
         }
-        .btn-home {
-            background: #1e293b;
-            color: #e2e8f0;
-            border: 1px solid #334155;
+
+        .nav-item:hover {
+            color: var(--accent-color);
         }
-        .btn-home:hover { background: #2d3a4f; }
-        .btn-logout {
-            background: #991b1b;
-            color: white;
+
+        .nav-item.logout {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: 8px 18px;
+            border-radius: 20px;
         }
-        .btn-logout:hover { background: #7f1d1d; }
-        .badge-client {
-            background: #1e293b;
-            padding: 0.4rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            border: 1px solid #334155;
+
+        .nav-item.logout:hover {
+            background-color: #fecaca;
         }
+
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
             flex: 1;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
             width: 100%;
         }
-        .welcome-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 2rem 2.5rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border: 1px solid #e9edf4;
-        }
-        .welcome-card h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-        .welcome-card h1 .client-name {
-            color: #2563eb;
-            background: #eef2ff;
-            padding: 0.1rem 0.8rem;
-            border-radius: 12px;
-        }
-        .welcome-card p {
-            color: #475569;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        .info-client {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border: 1px solid #e9edf4;
-        }
-        .info-client .label {
-            color: #64748b;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .info-client .value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-top: 2px;
-        }
-        .info-client .row {
+
+        .dashboard-header {
             display: flex;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            margin-top: 0.5rem;
+            gap: 15px;
+            margin-bottom: 30px;
         }
-        .info-client .row .col {
-            flex: 1;
-            min-width: 150px;
+
+        .dashboard-header h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
         }
-        .depot-section {
-            margin-top: 2rem;
-        }
-        .section-card {
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            border: 1px solid #e9edf4;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-        .section-card .section-header {
+
+        .client-badge {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 20px 30px;
-            background: linear-gradient(135deg, #f8fafc, #eff6ff);
-            border-bottom: 2px solid #e2e8f0;
+            background-color: #dbeafe;
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
         }
-        .section-card .section-header .icon {
-            font-size: 2rem;
+
+        .client-badge img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
+            object-fit: contain;
         }
-        .section-card .section-header h2 {
-            font-size: 1.3rem;
-            color: #1e293b;
+
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
         }
-        .section-card .section-header h2 small {
-            display: block;
-            font-size: 0.8rem;
-            color: #64748b;
-            font-weight: 400;
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
         }
-        .section-card .section-body {
-            padding: 5px;
-            background: #ffffff;
+
+        .section-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
         }
-        .section-card .section-body iframe {
-            width: 100%;
-            height: 500px;
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-drive {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin-top: 10px;
             border: none;
-            display: block;
-            border-radius: 0 0 24px 24px;
+            cursor: pointer;
+            font-size: 1rem;
         }
-        .section-card .depot-header {
-            background: #fef3c7;
+
+        .btn-drive:hover {
+            background-color: #1557b0;
+        }
+
+        .btn-drive svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .drive-instruction {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0 5px 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .drive-instruction strong {
+            color: #15803d;
+        }
+
+        .drive-instruction ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .drive-instruction ul li {
+            margin-bottom: 4px;
+        }
+
+        .notification-simple {
+            background-color: #fef3c7;
             border-left: 4px solid #f59e0b;
-            padding: 12px 20px;
-            margin: 0 5px 5px 5px;
-            border-radius: 8px 8px 0 0;
-            font-size: 0.9rem;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.95rem;
             color: #92400e;
         }
-        .section-card .livrables-header {
-            background: #ecfdf5;
-            border-left: 4px solid #10b981;
-            padding: 12px 20px;
-            margin: 0 5px 5px 5px;
-            border-radius: 8px 8px 0 0;
-            font-size: 0.9rem;
-            color: #065f46;
-        }
+
         .footer {
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            padding: 1.5rem 2rem;
             text-align: center;
-            color: #64748b;
+            padding: 20px 20px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .footer-sub {
             font-size: 0.9rem;
-            margin-top: 2rem;
+            font-weight: 500;
+            color: #475569;
+            letter-spacing: 0.5px;
+            margin-top: -2px;
         }
-        @media (max-width: 640px) {
-            .header { flex-direction: column; align-items: flex-start; }
-            .header-actions { width: 100%; justify-content: flex-start; }
-            .welcome-card { padding: 1.5rem; }
-            .section-card .section-body iframe { height: 400px; }
-            .section-card .section-header { flex-direction: column; text-align: center; }
-            .header .brand { font-size: 1.3rem; }
-            .info-client .row { flex-direction: column; gap: 0.5rem; }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo-img {
+                height: 80px;
+            }
+            .client-badge {
+                flex-wrap: wrap;
+            }
+            .footer-sub {
+                font-size: 0.8rem;
+            }
         }
+
         @media (max-width: 480px) {
-            .section-card .section-body iframe { height: 350px; }
-            .section-card .section-header { padding: 15px 20px; }
+            .logo-img {
+                height: 70px;
+            }
+            .footer-sub {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- ===== EN-TÊTE ===== -->
-    <header class="header">
-        <div class="brand" id="headerBrand">
-            <!-- Sera injecté dynamiquement -->
+    <header>
+        <div class="logo-container">
+            <img src="logo-4%20GeCoTelecom.png" alt="GeCoTelecom" class="logo-img">
         </div>
-        <div class="header-actions">
-            <span class="badge-client" id="headerBadge">🔒 Espace sécurisé</span>
-            <a href="index.html" class="btn-header btn-home">🏠 Retour à l'accueil</a>
-            <button class="btn-header btn-logout" onclick="deconnexion()">🚪 Déconnexion</button>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Accueil</a>
+            <a href="login.html" class="nav-item logout">Déconnexion</a>
         </div>
     </header>
 
-    <!-- ===== CONTENU PRINCIPAL ===== -->
-    <main class="container">
-        <!-- Carte de bienvenue -->
-        <section class="welcome-card" id="welcomeCard">
-            <h1>Bonjour, <span class="client-name" id="clientNameDisplay">Client</span> 👋</h1>
-            <p id="welcomeMessage">
-                Bienvenue dans votre espace client. Vous pouvez déposer vos documents et récupérer vos livrables.
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>📂 Mes travaux</h1>
+            <span class="client-badge" id="clientBadge">
+                <!-- Rempli par JavaScript -->
+            </span>
+        </div>
+
+        <!-- ===== SECTION 1 : TÉLÉCHARGER VOS FICHIERS LIVRABLES ===== -->
+        <div id="downloadSection" class="section-card">
+            <h2>📥 Télécharger vos fichiers livrables</h2>
+            <div class="drive-instruction">
+                <strong>📦 Télécharger nos travaux :</strong> nous déposerons dans ce dossier les livrables finaux
+                <strong>(relevé, conception, dessin, CDC, ADR, DDP, etc...)</strong> que vous pourrez récupérer à tout moment.
+            </div>
+            <div class="drive-instruction" style="border-left-color: var(--accent-color); background-color: #eff6ff;">
+                <strong>🔗 Accès direct :</strong> consultez et téléchargez vos livrables depuis notre dossier Google Drive dédié.
+            </div>
+            <a id="driveLinkDownload" href="#" target="_blank" class="btn-drive">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4.5 17.5L7.5 12L10.5 17.5H4.5ZM13.5 17.5L16.5 12L19.5 17.5H13.5ZM9 10.5L12 5.5L15 10.5H9Z"/>
+                </svg>
+                Ouvrir Google Drive (téléchargement les travaux finaux-livrables)
+            </a>
+        </div>
+
+        <!-- ===== SECTION 2 : DÉPOSER VOS NOUVEAUX PROJETS ET FICHIERS ===== -->
+        <div class="section-card">
+            <h2>📤 Déposer vos nouveaux projets et fichiers</h2>
+            <p>
+                <strong>Utilisez cet espace pour nous soumettre les nouveaux projets et nous transmettre tous les fichiers nécessaires afin que nous puissions réaliser vos travaux dans les meilleures conditions.</strong>
             </p>
-        </section>
-
-        <!-- Informations du client -->
-        <div class="info-client" id="clientInfo">
-            <div class="label">Informations du compte</div>
-            <div class="row">
-                <div class="col">
-                    <div class="label">Client</div>
-                    <div class="value" id="infoClientName">-</div>
-                </div>
-                <div class="col">
-                    <div class="label">Code client</div>
-                    <div class="value" id="infoClientCode">-</div>
-                </div>
+            <div class="drive-instruction">
+                <strong>✅ Comment ça fonctionne ?</strong>
+                <ul>
+                    <li><strong>Déposer un nouveau projet :</strong> créez un dossier avec le nom de votre projet, glissez-y vos fichiers et nous le traiterons dans le bref délais.</li>
+                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez à tout moment ajouter ou mettre à jour des documents dans votre dossier.</li>
+                    <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
+                </ul>
+                <p style="margin-top: 10px;">
+                    👉 Cliquez sur le bouton ci‑dessous pour ouvrir votre dossier Google Drive dédié aux nouveaux projets.
+                </p>
             </div>
+            <a id="driveLinkUpload" href="#" target="_blank" class="btn-drive">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4.5 17.5L7.5 12L10.5 17.5H4.5ZM13.5 17.5L16.5 12L19.5 17.5H13.5ZM9 10.5L12 5.5L15 10.5H9Z"/>
+                </svg>
+                Ouvrir Google Drive (dépôt de nouveaux projets à faire)
+            </a>
+
+            <div class="notification-simple">
+                <strong>📢 Besoin de nous avertir ?</strong><br>
+                Après avoir déposé vos fichiers, veuillez avertir le client afin de nous en informer.
+            </div>
+
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);">
+                💡 <strong>Astuce :</strong> pour un nouveau projet, créez un dossier avec son nom, puis glissez‑y tous vos fichiers. Nous saurons ainsi qu'il s'agit d'une nouvelle demande.
+            </p>
         </div>
 
-        <!-- ===== SECTION 1 : DÉPÔT (client → vous) ===== -->
-        <div class="depot-section">
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="icon">📤</span>
-                    <div>
-                        <h2>
-                            Déposer vos documents
-                            <small>Transmettez-nous vos relevés, croquis et documents techniques pour vos projets</small>
-                        </h2>
-                    </div>
-                </div>
-                <div class="depot-header">
-                    📌 <strong>Espace de dépôt :</strong> Déposez ici tous les documents nécessaires pour vos projets (relevés, photos, croquis, etc.)
-                </div>
-                <div class="section-body">
-                    <iframe 
-                        src="" 
-                        id="depotFrame"
-                        allow="camera; microphone; autoplay"
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- ===== SECTION 2 : LIVRABLES (vous → client) ===== -->
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="icon">📥</span>
-                    <div>
-                        <h2>
-                            Livrables
-                            <small>Téléchargez vos livrables finaux : relevés, conceptions, dessins, CDC, ADR, DDP</small>
-                        </h2>
-                    </div>
-                </div>
-                <div class="livrables-header">
-                    📦 <strong>Livrables disponibles :</strong> Nous déposons ici tous les documents finaux de vos projets.
-                </div>
-                <div class="section-body">
-                    <iframe 
-                        src="" 
-                        id="livrablesFrame"
-                        allow="camera; microphone; autoplay"
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </main>
+        <a href="index.html" class="back-link">← Retour à l'accueil du site</a>
+    </div>
 
     <footer class="footer">
-        &copy; 2026 GeCoTelecom — Espace Client sécurisé
+        <div class="footer-brand">GeCoTelecom</div>
+        <div class="footer-sub">Compagnie Générale de Télécommunication</div>
+        <div style="margin-top: 6px;">&copy; 2026 GeCoTelecom</div>
     </footer>
 
     <script>
-        // ===== MAPPING DES CLIENTS =====
-        const clients = {
-            'CLIENT001': { 
-                nom: 'Metro Optic', 
-                code: 'CLIENT001', 
-                login: 'metroptic', 
-                password: 'MO9300!',
-                depotFolder: 'Depot',
-                livrablesFolder: 'Livrables'
+        // ===== DONNÉES CLIENTS AVEC NOUVEAUX LIENS =====
+        const clientData = {
+            'CLIENT001': {
+                nom: 'Metro Optic',
+                logo: 'logo%20metroptic.png',
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1-9M0wmSf845aSLNnAE2dZ11NlSiL7MWd?usp=sharing',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1z927HZCs5kfxJLSABK2RYTlRgvl1h-6W?usp=sharing'
             },
-            'CLIENT002': { 
-                nom: 'Sofiene Hosni', 
-                code: 'CLIENT002', 
-                login: 'sofiene', 
-                password: 'SH1975!',
-                depotFolder: 'Depot',
-                livrablesFolder: 'Livrables'
+            'CLIENT002': {
+                nom: 'Sofiene Hosni',
+                logo: null,
+                driveLinkLivrables: null,
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1RPhI2niPlcfgV_5aj_CPsdnc30WG6PZX?usp=sharing'
             },
-            'CLIENT003': { 
-                nom: 'Infrastructel', 
-                code: 'CLIENT003', 
-                login: 'infra', 
-                password: 'InfraS9300!',
-                depotFolder: 'Depot',
-                livrablesFolder: 'Livrables'
+            'CLIENT003': {
+                nom: 'Infrastructel',
+                logo: 'logo%20infra.jpg',
+                driveLinkLivrables: 'https://drive.google.com/drive/folders/1c8pzE3KhZLap0B2WOs8YYtHMBTTHETeS?usp=sharing',
+                driveLinkNouveauxProjets: 'https://drive.google.com/drive/folders/1CY03ggtbYtdkkTHAxY-mJI8QY4z1RGTa?usp=sharing'
             }
         };
 
-        // ===== RÉCUPÉRATION DES PARAMÈTRES URL =====
-        function getParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
+        // ===== RÉCUPÉRATION DU CODE =====
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code')?.toUpperCase();
 
-        // ===== INITIALISATION =====
-        function init() {
-            const clientCode = getParam('code') || sessionStorage.getItem('clientCode');
-            const clientNom = getParam('client') || sessionStorage.getItem('clientName');
+        if (!code || !clientData[code]) {
+            window.location.href = 'login.html';
+        } else {
+            const data = clientData[code];
 
-            if (!clientCode || !clientNom) {
-                window.location.href = 'login.html';
-                return;
+            // ===== BADGE CLIENT =====
+            const badge = document.getElementById('clientBadge');
+            let badgeHtml = `Client : ${data.nom} (${code})`;
+            if (data.logo) {
+                badgeHtml = `<img src="${data.logo}" alt="Logo ${data.nom}"> ${data.nom} (${code})`;
+            }
+            badge.innerHTML = badgeHtml;
+
+            // ===== LIEN GOOGLE DRIVE POUR LES LIVRABLES =====
+            if (data.driveLinkLivrables) {
+                document.getElementById('driveLinkDownload').href = data.driveLinkLivrables;
+                document.getElementById('driveLinkDownload').style.display = 'inline-flex';
+            } else {
+                document.getElementById('driveLinkDownload').style.display = 'none';
+                const downloadSection = document.getElementById('downloadSection');
+                const instructions = downloadSection.querySelectorAll('.drive-instruction');
+                instructions.forEach(el => el.style.display = 'none');
             }
 
-            sessionStorage.setItem('loggedIn', 'true');
-            sessionStorage.setItem('clientCode', clientCode);
-            sessionStorage.setItem('clientName', clientNom);
-
-            const clientData = clients[clientCode] || { nom: clientNom, code: clientCode };
-
-            document.getElementById('infoClientName').textContent = clientData.nom;
-            document.getElementById('infoClientCode').textContent = clientData.code;
-
-            const brandDiv = document.getElementById('headerBrand');
-            brandDiv.innerHTML = `
-                <span class="initials-fallback">${clientData.nom.charAt(0)}</span>
-                <span class="client-name">${clientData.nom}</span>
-            `;
-
-            document.getElementById('headerBadge').textContent = `🔒 Espace de ${clientData.nom}`;
-            document.title = `Espace Client - ${clientData.nom}`;
-            document.getElementById('clientNameDisplay').textContent = clientData.nom;
-
-            // ===== Configuration des iframes avec les bons dossiers =====
-            const baseUrl = 'https://gecotelecom.rf.gd/tinyfilemanager.php';
-            const login = clientData.login || clientData.nom.toLowerCase();
-            const password = clientData.password || '';
-
-            // Iframe Dépôt (client dépose)
-            const depotFrame = document.getElementById('depotFrame');
-            depotFrame.src = `${baseUrl}?username=${login}&password=${password}&folder=${clientData.depotFolder}`;
-
-            // Iframe Livrables (vous déposez)
-            const livrablesFrame = document.getElementById('livrablesFrame');
-            livrablesFrame.src = `${baseUrl}?username=${login}&password=${password}&folder=${clientData.livrablesFolder}`;
+            // ===== LIEN GOOGLE DRIVE POUR LES NOUVEAUX PROJETS =====
+            if (data.driveLinkNouveauxProjets) {
+                document.getElementById('driveLinkUpload').href = data.driveLinkNouveauxProjets;
+                document.getElementById('driveLinkUpload').style.display = 'inline-flex';
+            } else {
+                document.getElementById('driveLinkUpload').style.display = 'none';
+                document.querySelectorAll('.drive-instruction').forEach(el => el.style.display = 'none');
+                document.querySelector('.notification-simple').style.display = 'none';
+            }
         }
-
-        // ===== DÉCONNEXION =====
-        function deconnexion() {
-            sessionStorage.clear();
-            window.location.href = 'login.html';
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 
 </body>
+
 </html>
