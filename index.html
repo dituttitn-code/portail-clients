@@ -130,6 +130,9 @@
             box-shadow: 0 6px 20px rgba(37,99,235,0.4);
             color: #fff;
         }
+        .nav-item.depot-nav {
+            display: none;
+        }
 
         /* ===== PAGES ===== */
         .page { display: none; }
@@ -364,6 +367,578 @@
             display: block;
         }
 
+        /* ===== LOGIN ===== */
+        #login-page {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            padding: 40px 20px;
+            background: #f5f9ff;
+        }
+        #login-page.active { display: flex; }
+        .login-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        .login-card .login-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-card .login-logo img {
+            height: 120px;
+            mix-blend-mode: darken;
+            filter: brightness(1.02) contrast(1.05);
+        }
+        .login-card h1 { font-size: 2.4rem; color: #1e293b; margin-bottom: 8px; }
+        .login-card p { color: #64748b; margin-bottom: 25px; font-size: 1.2rem; }
+        .login-card .form-group { margin-bottom: 22px; }
+        .login-card .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+
+        .login-card .form-group .select-with-logo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #fff;
+            transition: border-color 0.3s;
+            padding: 4px 4px 4px 12px;
+        }
+        .login-card .form-group .select-with-logo:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+        }
+        .select-with-logo .logo-preview {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        .select-with-logo select {
+            width: 100%;
+            padding: 14px 18px 14px 0;
+            border: none;
+            background: transparent;
+            font-size: 1.2rem;
+            font-family: inherit;
+            color: #1e293b;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .select-with-logo select:focus { outline: none; }
+        .select-with-logo .arrow {
+            margin-left: auto;
+            padding-right: 12px;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+        .password-wrapper:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding: 16px 18px;
+            border: none;
+            background: transparent;
+            font-size: 1.2rem;
+            font-family: inherit;
+        }
+        .password-wrapper input:focus { outline: none; }
+        .toggle-password {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s;
+            padding: 8px 14px;
+        }
+        .toggle-password:hover { color: #1e293b; }
+
+        .login-card .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #fff;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 6px;
+        }
+        .login-card .btn-submit:hover { transform: translateY(-2px); }
+        .login-card .error {
+            color: #dc2626;
+            background: #fee2e2;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .login-card .error.show { display: block; }
+        .login-card .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #94a3b8;
+        }
+        .login-card .footer-link a { color: #2563eb; text-decoration: none; }
+
+        /* ===== DASHBOARD ===== */
+        #dashboard-page {
+            display: none;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        #dashboard-page.active { display: block; }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .dashboard-header h1 {
+            font-size: 2.6rem;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .client-badge {
+            background: #dbeafe;
+            color: #2563eb;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .client-badge .logo-small {
+            height: 30px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            background: white;
+            padding: 2px 6px;
+            max-width: 40px;
+        }
+        .client-badge .initials-small {
+            background: #2563eb;
+            color: white;
+            font-weight: 700;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+        .dashboard-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .dashboard-actions .back-link,
+        .dashboard-actions .logout-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .dashboard-actions .back-link:hover,
+        .dashboard-actions .logout-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        .dashboard-actions .logout-link {
+            color: #b91c1c;
+        }
+        .dashboard-actions .logout-link:hover {
+            color: #7f1d1d;
+        }
+
+        /* ===== SECTION CARD ===== */
+        .section-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+        .section-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .section-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #2563eb);
+            border-radius: 4px;
+        }
+
+        /* ===== LIVRABLES CARD ===== */
+        .livrables-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #2563eb;
+        }
+        .livrables-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .livrables-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #10b981);
+            border-radius: 4px;
+        }
+
+        /* ===== PROJETS À FAIRE CARD (pour Sofiene) ===== */
+        .projets-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #8b5cf6;
+        }
+        .projets-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .projets-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #8b5cf6);
+            border-radius: 4px;
+        }
+
+        /* ===== DÉPÔT CARD ===== */
+        .depot-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #f59e0b;
+        }
+        .depot-card h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .depot-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 4px;
+        }
+
+        .btn-swiss {
+            display: inline-block;
+            background: #0f172a;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(15,23,42,0.25);
+        }
+        .btn-swiss:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+        }
+        .btn-swiss.primary {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        .btn-swiss.primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+        .btn-swiss.success {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        .btn-swiss.success:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+        .btn-swiss.warning {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+        }
+        .btn-swiss.warning:hover {
+            background: linear-gradient(135deg, #b45309, #d97706);
+        }
+        .btn-swiss.purple {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+        .btn-swiss.purple:hover {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed);
+        }
+
+        .notification-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .notification-box a { color: #2563eb; font-weight: 600; }
+        .notification-box.green {
+            background: #ecfdf5;
+            border-left-color: #10b981;
+        }
+        .notification-box.purple {
+            background: #f5f3ff;
+            border-left-color: #8b5cf6;
+        }
+
+        /* ===== PAGE DÉPÔT ===== */
+        #page-depot {
+            display: none;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        #page-depot.active { display: block; }
+
+        .depot-container {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        .depot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #f8fafc, #eff6ff);
+            border-bottom: 2px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .depot-header .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .depot-header .left .icon {
+            font-size: 2.5rem;
+        }
+        .depot-header .left h2 {
+            font-size: 1.5rem;
+            color: #1e293b;
+        }
+        .depot-header .left h2 small {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+        .depot-back {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .depot-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+        }
+
+        .depot-content {
+            padding: 60px 40px;
+            text-align: center;
+            background: #f8fafc;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .depot-content .big-icon {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .depot-content h3 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        .depot-content p {
+            color: #64748b;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+        .depot-content .btn-open {
+            display: inline-block;
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            color: #fff;
+            padding: 18px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+        }
+        .depot-content .btn-open:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4);
+        }
+        .depot-content .secure-note {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .depot-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 25px 30px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        .depot-info .info-item {
+            text-align: center;
+        }
+        .depot-info .info-item .label {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .depot-info .info-item .value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .depot-instructions {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+        .depot-instructions h3 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .depot-instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+        .depot-instructions ul li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .depot-instructions ul li:last-child {
+            border-bottom: none;
+        }
+        .depot-instructions ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             text-align: center;
@@ -412,21 +987,40 @@
             .services-grid { grid-template-columns: 1fr; }
             .about-grid { grid-template-columns: 1fr; }
             .contact-item { flex-direction: column; align-items: flex-start; }
+            .dashboard-header h1 { font-size: 2rem; }
+            .map-container iframe { height: 280px; }
+            .login-card .login-logo img { height: 90px; }
+            .login-card h1 { font-size: 2rem; }
+            .dashboard-actions { width: 100%; justify-content: flex-end; }
             .footer-brand { font-size: 1.2rem; }
             .footer-sub { font-size: 0.9rem; }
             .contact-form .form-row { grid-template-columns: 1fr; }
             .contact-form h3 { font-size: 1.5rem; }
+            .depot-content { padding: 40px 20px; }
+            .depot-content h3 { font-size: 1.5rem; }
+            .depot-info { grid-template-columns: 1fr 1fr; }
+            .depot-header { flex-direction: column; text-align: center; }
+            .depot-header .left { flex-direction: column; }
         }
         @media (max-width: 480px) {
             .logo-img { height: 90px; }
             .hero-content h1 { font-size: 2.2rem; }
             .nav-links { gap: 10px; }
             .nav-item { font-size: 0.8rem; }
+            .login-card { padding: 30px 20px; }
+            .login-card .login-logo img { height: 80px; }
+            .login-card h1 { font-size: 1.8rem; }
             .btn-submit { width: 100%; text-align: center; }
             .map-container iframe { height: 220px; }
+            .dashboard-actions { flex-direction: row; gap: 10px; }
             .footer-brand { font-size: 1rem; }
             .footer-sub { font-size: 0.8rem; }
             .footer-copy { font-size: 0.7rem; }
+            .depot-content { padding: 30px 15px; }
+            .depot-content h3 { font-size: 1.2rem; }
+            .depot-content .btn-open { padding: 14px 30px; font-size: 1rem; }
+            .depot-info { grid-template-columns: 1fr; }
+            .depot-header { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -451,7 +1045,8 @@
         <span class="nav-item" data-page="propos">À propos de nous</span>
         <span class="nav-item" data-page="services">Nos Services</span>
         <span class="nav-item" data-page="contact">Contact</span>
-        <a href="login.html" class="nav-item client">🔐 Espace Client</a>
+        <span class="nav-item depot-nav" data-page="depot">📤 Dépôt</span>
+        <span class="nav-item client" id="clientNavBtn" data-page="login">🔐 Espace Client</span>
     </div>
 </header>
 
@@ -603,6 +1198,164 @@
 </section>
 
 <!-- ============================================================ -->
+<!-- PAGE LOGIN -->
+<!-- ============================================================ -->
+<section id="page-login" class="page">
+    <div id="login-page" class="active">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="logo-gecotelecom%20final.jpeg" alt="GeCoTelecom" />
+            </div>
+            <h1>🔐 Espace Client</h1>
+            <p>Entrez vos identifiants</p>
+            <div id="loginError" class="error">❌ Identifiant ou mot de passe incorrect.</div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="clientSelect">👤 Choisissez votre société</label>
+                    <div class="select-with-logo">
+                        <img id="clientLogoPreview" src="" alt="Logo" class="logo-preview" style="display:none;" />
+                        <select id="clientSelect" required>
+                            <option value="">-- Sélectionnez --</option>
+                        </select>
+                        <span class="arrow">▼</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Votre mot de passe" required />
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher/masquer le mot de passe">👁️</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Se connecter</button>
+            </form>
+            <div class="footer-link">
+                <a href="#" id="backToHomeFromLogin">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE DASHBOARD -->
+<!-- ============================================================ -->
+<section id="page-dashboard" class="page">
+    <div id="dashboard-page" class="active">
+        <div class="dashboard-header">
+            <h1 id="dashboardTitle">📂 PORTAIL DE PROJETS</h1>
+            <div class="dashboard-actions">
+                <a href="#" id="backToHomeFromDashboard" class="back-link">← Retour à l'accueil</a>
+                <a href="#" id="logoutLink" class="logout-link">🚪 Déconnexion</a>
+            </div>
+        </div>
+        <div id="clientBadgeContainer" style="display:inline-block; margin-bottom:20px;"></div>
+
+        <!-- ===== SECTION 1 : ACCÉDER AUX LIVRABLES / PROJETS À FAIRE ===== -->
+        <div id="livrablesSection">
+            <!-- Cette section sera remplacée dynamiquement selon le client -->
+        </div>
+
+        <!-- ===== SECTION 2 : DÉPOSER VOS PROJETS ===== -->
+        <div class="depot-card">
+            <h2 id="depotsTitle">📤 Déposer vos nouveaux projets</h2>
+            <p style="color:#64748b; margin-bottom:15px;">
+                Transmettez-nous vos nouveaux projets, croquis et documents techniques.
+            </p>
+            <a href="#" onclick="showPage('depot'); return false;" class="btn-swiss warning" style="margin-top:10px; cursor:pointer; display:inline-block;">
+                📤 Déposer via kDrive
+            </a>
+            <div style="margin-top:20px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
+                <strong>✅ Comment ça fonctionne ?</strong>
+                <ul style="margin:8px 0 0 20px;">
+                    <li><strong>Déposer un nouveau projet :</strong> cliquez sur le bouton ci‑dessus, vous serez redirigé vers kDrive pour envoyer vos fichiers.</li>
+                    <li><strong>Transmettre des fichiers complémentaires :</strong> vous pouvez utiliser le même lien de dépôt à tout moment.</li>
+                    <li><strong>Aller-retour continu :</strong> cet espace est votre point d'échange permanent avec nous, accessible 24h/24.</li>
+                </ul>
+            </div>
+            <div class="notification-box">
+                <strong>📢 Besoin de nous avertir ?</strong><br />
+                Une fois vos fichiers déposés, vous pouvez nous contacter par email pour nous prévenir.
+            </div>
+            <p style="margin-top:10px; color:#64748b; font-size:0.9rem;">
+                💡 <strong>Astuce :</strong> Veuillez préciser la nature de votre demande afin de faciliter son analyse, son traitement et son assignation à l'équipe appropriée.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE DÉPÔT -->
+<!-- ============================================================ -->
+<section id="page-depot" class="page">
+    <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+        <div class="depot-container">
+            <div class="depot-header">
+                <div class="left">
+                    <span class="icon">📂</span>
+                    <div>
+                        <h2>
+                            Espace de dépôt GeCoTelecom
+                            <small>Hébergé en Suisse 🇨🇭 — Sécurisé et confidentiel</small>
+                        </h2>
+                    </div>
+                </div>
+                <div>
+                    <a href="#" onclick="showPage('dashboard'); return false;" class="depot-back">← Retour au dashboard</a>
+                </div>
+            </div>
+
+            <div class="depot-content">
+                <span class="big-icon">📤</span>
+                <h3>Ouvrir l'espace de dépôt</h3>
+                <p>
+                    Cliquez sur le bouton ci-dessous pour accéder à votre espace kDrive sécurisé. 
+                    Vous pourrez y déposer vos fichiers en toute simplicité.
+                </p>
+                <a href="#" id="depotOpenLink" target="_blank" class="btn-open">
+                    📂 Ouvrir kDrive
+                </a>
+                <p class="secure-note">
+                    🔒 S'ouvre dans un nouvel onglet sécurisé · Aucune inscription requise
+                </p>
+            </div>
+
+            <div class="depot-info">
+                <div class="info-item">
+                    <div class="label">Stockage</div>
+                    <div class="value">15 Go</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Sécurité</div>
+                    <div class="value">🔒 Chiffré</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Hébergement</div>
+                    <div class="value">🇨🇭 Suisse</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Support</div>
+                    <div class="value">24/7</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="depot-instructions">
+            <h3>📋 Comment déposer vos fichiers ?</h3>
+            <ul>
+                <li><strong>Étape 1 :</strong> Cliquez sur le bouton "Ouvrir kDrive" ci-dessus</li>
+                <li><strong>Étape 2 :</strong> Dans la page kDrive, glissez-déposez vos fichiers</li>
+                <li><strong>Étape 3 :</strong> Vos fichiers sont automatiquement synchronisés avec notre équipe</li>
+                <li><strong>Étape 4 :</strong> Nous recevons une notification dès que vous déposez des fichiers</li>
+            </ul>
+            <p style="margin-top: 15px; color: #64748b; font-size: 0.95rem;">
+                💡 <strong>Astuce :</strong> Pour un nouveau projet, nommez clairement vos fichiers 
+                (ex: « Projet_Laval_Relevés_2026.pdf ») pour faciliter leur traitement.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
 <!-- FOOTER -->
 <!-- ============================================================ -->
 <footer>
@@ -619,17 +1372,109 @@
     (function() {
         'use strict';
 
+        // ===== LISTE DES CLIENTS AVEC LEURS LIENS PERSONNALISÉS =====
+        const clients = {
+            'Metroptic': {
+                code: 'CLIENT001',
+                nom: 'Metro Optic',
+                password: 'MO9300!',
+                logo: 'logometroptic-1.png',
+                livrables: 'https://kdrive.infomaniak.com/app/share/3380048/dca1b243-55d5-4369-8002-e34508c03332',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/1f5be737-3cf7-4f0e-89ec-0892fb98dc9f',
+                livrablesLabel: '📥 Accéder aux livrables',
+                livrablesIcon: '📥'
+            },
+            'Sofiene': {
+                code: 'CLIENT002',
+                nom: 'Sofiene Hosni',
+                password: 'SH1975!',
+                logo: 'logo-SofieneHosni.jpeg',
+                livrables: 'https://kdrive.infomaniak.com/app/share/3380048/632e8904-d4e8-4506-b279-b6c0bacf3034',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/118ad503-5f89-4c31-8964-9ec84e0f7022',
+                livrablesLabel: '📋 Projets à faire',
+                livrablesIcon: '📋'
+            },
+            'Infra': {
+                code: 'CLIENT003',
+                nom: 'Infrastructel',
+                password: 'InfraS9300!',
+                logo: 'logo%20infra.jpg',
+                livrables: 'https://kdrive.infomaniak.com/app/share/3380048/c16ad784-fe32-4c8e-b5c4-7933f49ce0a9',
+                depot: 'https://kdrive.infomaniak.com/app/share/3380048/2393534b-2f7f-4fa7-a00d-a70821e234a2',
+                livrablesLabel: '📥 Accéder aux livrables',
+                livrablesIcon: '📥'
+            }
+        };
+
         // ===== DOM =====
         const navItems = document.querySelectorAll('.nav-item[data-page]');
         const pages = {
             home: document.getElementById('page-home'),
             propos: document.getElementById('page-propos'),
             services: document.getElementById('page-services'),
-            contact: document.getElementById('page-contact')
+            contact: document.getElementById('page-contact'),
+            depot: document.getElementById('page-depot'),
+            login: document.getElementById('page-login'),
+            dashboard: document.getElementById('page-dashboard')
         };
+        const loginError = document.getElementById('loginError');
+        const loginForm = document.getElementById('loginForm');
+        const clientNavBtn = document.getElementById('clientNavBtn');
+        const dashboardTitle = document.getElementById('dashboardTitle');
+        const clientBadgeContainer = document.getElementById('clientBadgeContainer');
+        const livrablesSection = document.getElementById('livrablesSection');
+        const logoutLink = document.getElementById('logoutLink');
+        const backToHomeFromLogin = document.getElementById('backToHomeFromLogin');
+        const backToHomeFromDashboard = document.getElementById('backToHomeFromDashboard');
+        const clientLogoHeader = document.getElementById('clientLogoHeader');
+        const depotsTitle = document.getElementById('depotsTitle');
+        const clientSelect = document.getElementById('clientSelect');
+        const logoPreview = document.getElementById('clientLogoPreview');
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const depotOpenLink = document.getElementById('depotOpenLink');
+
+        // ===== PEUPLE LE SELECT =====
+        function populateSelect() {
+            const keys = Object.keys(clients);
+            keys.forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.dataset.logo = clients[key].logo;
+                option.textContent = clients[key].nom;
+                clientSelect.appendChild(option);
+            });
+        }
+        populateSelect();
+
+        // ===== APERÇU DU LOGO =====
+        clientSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const logo = selectedOption.dataset.logo;
+            if (logo) {
+                logoPreview.src = logo;
+                logoPreview.style.display = 'block';
+                logoPreview.onerror = function() { this.style.display = 'none'; };
+                logoPreview.onload = function() { this.style.display = 'block'; };
+            } else {
+                logoPreview.style.display = 'none';
+            }
+        });
+
+        // ===== TOGGLE PASSWORD =====
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+            });
+        }
 
         // ===== NAVIGATION =====
-        function showPage(pageId) {
+        let currentPage = 'home';
+        let loggedInClient = null;
+
+        window.showPage = function(pageId) {
             Object.keys(pages).forEach(id => {
                 pages[id].classList.remove('active');
             });
@@ -640,21 +1485,245 @@
                 const p = item.dataset.page;
                 item.classList.toggle('active', p === pageId);
             });
+            if (pageId === 'login' || pageId === 'dashboard') {
+                navItems.forEach(item => {
+                    if (item.dataset.page !== 'login' && item.dataset.page !== 'dashboard' && item.dataset.page !== 'depot') {
+                        item.classList.remove('active');
+                    }
+                });
+                clientNavBtn.classList.add('active');
+            } else {
+                clientNavBtn.classList.remove('active');
+            }
+            currentPage = pageId;
+        };
+
+        // ===== LOGIN =====
+        function login(username, password) {
+            const client = clients[username];
+            if (client && client.password === password) {
+                loggedInClient = client;
+                sessionStorage.setItem('loggedInClient', JSON.stringify(client));
+                showDashboard();
+                return true;
+            } else {
+                loginError.classList.add('show');
+                return false;
+            }
+        }
+
+        function logout() {
+            loggedInClient = null;
+            sessionStorage.removeItem('loggedInClient');
+            clientLogoHeader.classList.remove('show');
+            clientLogoHeader.innerHTML = '';
+            showPage('home');
+        }
+
+        // ===== DASHBOARD =====
+        function showDashboard() {
+            if (!loggedInClient) return;
+
+            // ---- Logo dans le header ----
+            const headerEl = document.getElementById('clientLogoHeader');
+            if (loggedInClient.logo) {
+                const img = document.createElement('img');
+                img.src = loggedInClient.logo;
+                img.alt = 'Logo ' + loggedInClient.nom;
+                img.style.maxHeight = '50px';
+                img.style.height = '100%';
+                img.style.width = 'auto';
+                img.style.objectFit = 'contain';
+                img.style.borderRadius = '6px';
+                img.style.background = 'white';
+                img.style.padding = '4px 10px';
+                img.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const fallbackSpan = document.createElement('span');
+                    fallbackSpan.className = 'initials-fallback';
+                    fallbackSpan.textContent = loggedInClient.nom.charAt(0);
+                    headerEl.innerHTML = '';
+                    headerEl.appendChild(fallbackSpan);
+                    headerEl.classList.add('show');
+                };
+
+                img.onload = function() {
+                    headerEl.innerHTML = '';
+                    headerEl.appendChild(img);
+                    headerEl.classList.add('show');
+                };
+
+                if (img.complete) {
+                    if (img.naturalWidth > 0) {
+                        headerEl.innerHTML = '';
+                        headerEl.appendChild(img);
+                        headerEl.classList.add('show');
+                    } else {
+                        img.onerror();
+                    }
+                } else {
+                    headerEl.innerHTML = '';
+                    headerEl.appendChild(img);
+                    headerEl.classList.add('show');
+                }
+            } else {
+                const fallbackSpan = document.createElement('span');
+                fallbackSpan.className = 'initials-fallback';
+                fallbackSpan.textContent = loggedInClient.nom.charAt(0);
+                headerEl.innerHTML = '';
+                headerEl.appendChild(fallbackSpan);
+                headerEl.classList.add('show');
+            }
+
+            // ---- Badge client ----
+            let badgeHtml = '';
+            if (loggedInClient.logo) {
+                badgeHtml = `
+                    <span class="client-badge">
+                        <img src="${loggedInClient.logo}" class="logo-small" alt="Logo ${loggedInClient.nom}" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML += '<span class=\\'initials-small\\'>${loggedInClient.nom.charAt(0)}</span>';" />
+                        ${loggedInClient.nom} (${loggedInClient.code})
+                    </span>
+                `;
+            } else {
+                badgeHtml = `<span class="client-badge">👤 ${loggedInClient.nom} (${loggedInClient.code})</span>`;
+            }
+            clientBadgeContainer.innerHTML = badgeHtml;
+
+            dashboardTitle.textContent = `📂 PORTAIL DE PROJETS – ${loggedInClient.nom}`;
+
+            // ---- Mettre à jour le lien de dépôt dans la page depot ----
+            if (depotOpenLink) {
+                depotOpenLink.href = loggedInClient.depot;
+            }
+
+            // ---- SECTION LIVRABLES / PROJETS À FAIRE (personnalisée) ----
+            const isSofiene = loggedInClient.code === 'CLIENT002';
+            const cardClass = isSofiene ? 'projets-card' : 'livrables-card';
+            const icon = isSofiene ? '📋' : '📥';
+            const title = isSofiene ? 'Projets à faire' : 'Accéder aux livrables';
+            const description = isSofiene 
+                ? 'Consultez les projets à réaliser : relevés, conceptions, dessins, CDC, ADR, DDP, etc.' 
+                : 'Téléchargez vos livrables finaux : relevés, conceptions, dessins, CDC, ADR, DDP, etc.';
+
+            livrablesSection.innerHTML = `
+                <div class="${cardClass}">
+                    <h2>${icon} ${title}</h2>
+                    <p style="color:#64748b; margin-bottom:15px;">${description}</p>
+                    <div id="livrablesContent">
+                        <p style="color:#64748b;">📂 Vos documents sont disponibles dans le dossier ci-dessous.</p>
+                        <p style="color:#64748b; font-size:0.95rem;">🔒 Accès sécurisé via kDrive.</p>
+                    </div>
+                    <div style="margin-top:15px; background:#ecfdf5; border-left:4px solid #10b981; padding:15px 20px; border-radius:8px;">
+                        <strong>📦 Documents disponibles :</strong> nous déposons dans ce dossier tous les documents de vos projets.
+                    </div>
+                    <a href="${loggedInClient.livrables}" target="_blank" class="btn-swiss ${isSofiene ? 'purple' : 'success'}" style="margin-top:15px; display:inline-block;">
+                        ${isSofiene ? '📋 Voir les projets à faire' : '🚀 Accéder aux livrables'}
+                    </a>
+                </div>
+            `;
+
+            // ---- Titre personnalisé pour Sofiene Hosni ----
+            if (loggedInClient.code === 'CLIENT002') {
+                depotsTitle.textContent = '📤 Déposer vos nouveaux relevés';
+            } else {
+                depotsTitle.textContent = '📤 Déposer vos nouveaux projets';
+            }
+
+            showPage('dashboard');
+        }
+
+        // ===== RESTAURATION DE SESSION =====
+        function restoreSession() {
+            const stored = sessionStorage.getItem('loggedInClient');
+            if (stored) {
+                try {
+                    const client = JSON.parse(stored);
+                    const found = Object.values(clients).find(c => c.nom === client.nom && c.password === client.password);
+                    if (found) {
+                        loggedInClient = found;
+                        showDashboard();
+                        return true;
+                    } else {
+                        sessionStorage.removeItem('loggedInClient');
+                    }
+                } catch(e) { /* ignore */ }
+            }
+            return false;
         }
 
         // ===== EVENTS =====
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 const page = this.dataset.page;
-                showPage(page);
+                if (page === 'login') {
+                    if (loggedInClient) {
+                        showDashboard();
+                    } else {
+                        showPage('login');
+                        loginError.classList.remove('show');
+                        passwordInput.value = '';
+                        if (togglePassword) togglePassword.textContent = '👁️';
+                        clientSelect.selectedIndex = 0;
+                        logoPreview.style.display = 'none';
+                    }
+                } else if (page === 'home' || page === 'propos' || page === 'services' || page === 'contact') {
+                    showPage(page);
+                } else if (page === 'depot') {
+                    if (loggedInClient) {
+                        showPage('depot');
+                    } else {
+                        showPage('login');
+                    }
+                }
             });
         });
 
-        // ===== INIT =====
-        showPage('home');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = clientSelect.value;
+            const password = passwordInput.value.trim();
+            if (login(username, password)) {
+                loginError.classList.remove('show');
+            }
+        });
 
-        console.log('✅ GeCoTelecom - Espace Client redirige vers login.html');
-        console.log('🔐 Identifiants : Metroptic/MO9300!, Sofiene/SH1975!, Infra/InfraS9300!');
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            logout();
+        });
+
+        backToHomeFromLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('home');
+        });
+
+        backToHomeFromDashboard.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('home');
+        });
+
+        // ===== INIT =====
+        if (!restoreSession()) {
+            showPage('home');
+        }
+
+        if (currentPage === 'home') {
+            navItems.forEach(item => {
+                if (item.dataset.page === 'home') item.classList.add('active');
+                else if (item.dataset.page !== 'login' && item.dataset.page !== 'dashboard') item.classList.remove('active');
+            });
+            clientNavBtn.classList.remove('active');
+        }
+
+        if (currentPage === 'dashboard' && !loggedInClient) {
+            logout();
+        }
+
+        console.log('✅ GeCoTelecom - Logo mis à jour !');
+        console.log('🔐 Identifiants : Metroptic (MO9300!), Sofiene (SH1975!), Infra (InfraS9300!)');
     })();
 </script>
 
